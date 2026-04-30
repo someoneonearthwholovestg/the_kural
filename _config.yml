@@ -1,6 +1,13 @@
 # ═══════════════════════════════════════════════════════════════
-#  THEKURAL — SITE CONFIGURATION
+#  THEKURAL — _config.yml
+#  ──────────────────────────────────────────────────────────────
+#  Everything an admin needs to change is in THIS file.
+#  Sections are clearly labelled. No need to touch any HTML.
 # ═══════════════════════════════════════════════════════════════
+
+
+# ─── SITE IDENTITY ─────────────────────────────────────────────
+# Shown in browser tab, header logo, footer, meta tags.
 
 title:        "TheKural"
 tagline:      "Stories worth telling"
@@ -8,7 +15,25 @@ description:  "A thoughtful space for ideas, stories, and perspectives."
 url:          "https://someoneonearthwholovestg.github.io"
 baseurl:      "/thekural.in"
 lang:         "en"
-logo:         "/assets/images/logo.png"
+
+
+# ─── LOGO & FAVICON ────────────────────────────────────────────
+# logo_text_prefix  – the plain part of the logo  (e.g. "The")
+# logo_text_accent  – the coloured part            (e.g. "Kural")
+# favicon           – path or absolute URL to a .png/.ico
+
+logo_text_prefix: "The"
+logo_text_accent:  "Kural"
+logo:              "/assets/images/logo.png"
+favicon:           "https://i.ibb.co/xK8XVXTn/logoo.png"
+
+
+# ─── FOOTER IMAGE ──────────────────────────────────────────────
+# Full-width decorative image shown between content and footer.
+# Leave blank ("") to hide it.
+
+footer_image: "https://i.ibb.co/G4yxKJ9v/Gemini-Generated-Image-ld6y4ald6y4ald6y.png"
+
 
 # ─── AUTHOR ────────────────────────────────────────────────────
 author:
@@ -16,20 +41,80 @@ author:
   bio:    "Voices & Perceptions"
   avatar: "/assets/images/about.png"
 
-# ─── JEKYLL CORE ───────────────────────────────────────────────
-markdown:    kramdown
-highlighter: rouge
-permalink:   /:categories/:title/
 
-plugins:
-  - jekyll-feed
-  - jekyll-sitemap
-  - jekyll-seo-tag
+# ─── NAVIGATION ────────────────────────────────────────────────
+# Controls header + footer nav. Add/remove items freely.
+# For a dropdown, add a `children:` list under the parent.
+# `url` values are relative to baseurl.
 
-# ─── DATA FILES ────────────────────────────────────────────────
-# Jekyll reads _data/ by default (GitHub Pages compatible).
+nav:
+  explore_url: "/explore"         # "Explore all articles" button on homepage
+
+# Nav items are stored in _data/nav.yml (unchanged)
+# but the explore button URL above is set here for easy access.
+
+
+# ─── SOCIAL LINKS ──────────────────────────────────────────────
+# Set to "" to hide that icon in the footer.
+
+social:
+  facebook:  "https://facebook.com"
+  twitter:   "https://twitter.com"
+  whatsapp:  "https://wa.me/YOUR_NUMBER"   # replace YOUR_NUMBER e.g. 919876543210
+  email:     "your@email.com"
+
+
+# ─── SECTION LABELS (homepage) ─────────────────────────────────
+# The small uppercase labels above each section on the homepage.
+
+sections:
+  nazar_label:  "Nazar — Visual Journal"
+  latest_label: "Latest articles"
+
+
+# ─── COLORS (LIGHT MODE) ───────────────────────────────────────
+# These are CSS custom properties. Use any valid CSS color value.
+# primary       = accent / links / highlights
+# primary_dark  = hover state of primary
+# bg            = page background
+# surface       = cards, panels
+# text          = main body text
+# text_muted    = secondary / meta text
+# border        = dividers, card borders
+# accent        = subtle tint (used in gradients)
+# footer        = footer background
+
+colors:
+  primary:      "#4A4A4A"
+  primary_dark: "#2E2E2E"
+  bg:           "#FFFFFF"
+  surface:      "#F5F5F5"
+  text:         "#1A1A1A"
+  text_muted:   "#8A8A8A"
+  border:       "#E0E0E0"
+  accent:       "#BDBDBD"
+  footer:       "#000000"
+
+
+# ─── DARK MODE COLORS ──────────────────────────────────────────
+# Applied automatically when the user toggles dark mode.
+
+dark_colors:
+  primary:      "#FFD54F"
+  primary_dark: "#FFCA28"
+  bg:           "#1A1405"
+  surface:      "#241B08"
+  text:         "#FFF6D6"
+  text_muted:   "#C9B458"
+  border:       "#4A3A10"
+  accent:       "#FFE082"
+  footer:       "#000000"
+
 
 # ─── TYPOGRAPHY ────────────────────────────────────────────────
+# Font names must match exactly what Google Fonts serves.
+# Change the name here and the stylesheet updates automatically.
+
 fonts:
   post_heading:    "Caveat"
   post_subheading: "Kalam"
@@ -44,17 +129,6 @@ font_sizes:
   body:         "1.1rem"
   ui:           "0.88rem"
 
-# ─── COLORS (LIGHT MODE) ───────────────────────────────────────
-colors:
-  primary:      "#4A4A4A"
-  primary_dark: "#2E2E2E"
-  bg:           "#FFFFFF"
-  surface:      "#F5F5F5"
-  text:         "#1A1A1A"
-  text_muted:   "#8A8A8A"
-  border:       "#E0E0E0"
-  accent:       "#BDBDBD"
-  footer:       "#000000"
 
 # ─── FEATURES ──────────────────────────────────────────────────
 show_reading_time: true
@@ -62,66 +136,13 @@ show_tags:         true
 posts_per_page:    9
 default_image:     "/assets/images/default-cover.png"
 
-# ─── COLLECTIONS ───────────────────────────────────────────────
-# IMPORTANT: collections_dir applies to ALL collections below.
-# Every collection folder must live inside src/2-reading-room/
-# That means _quarters/ must be at src/2-reading-room/_quarters/
-# (NOT at the project root)
 
-collections_dir: src/2-reading-room
-collections:
+# ─── JEKYLL CORE ───────────────────────────────────────────────
+markdown:    kramdown
+highlighter: rouge
+permalink:   /:categories/:title/
 
-  quarters:
-    output: true
-    permalink: /nazar/:name/
-
-  nazar:
-    output: true
-    permalink: /nazar/:name/
-
-  book-reviews:
-    output: true
-    permalink: /book-reviews/:name/
-
-  keywords:
-    output: true
-    permalink: /keywords/:name/
-
-  criticulture:
-    output: true
-    permalink: /criticulture/:name/
-
-# ─── DEFAULT FRONT-MATTER ──────────────────────────────────────
-defaults:
-  - scope:
-      path: ""
-      type: "nazar"
-    values:
-      layout: nazar-post
-
-  - scope:
-      path: ""
-      type: "quarters"
-    values:
-      layout: nazar-quarter
-
-  - scope:
-      path: ""
-      type: "book-reviews"
-    values:
-      layout: post
-
-  - scope:
-      path: ""
-      type: "keywords"
-    values:
-      layout: post
-
-  - scope:
-      path: ""
-      type: "criticulture"
-    values:
-      layout: post
-
-# ─── NAVIGATION ────────────────────────────────────────────────
-# Edit _data/nav.yml to control the nav bar.
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
