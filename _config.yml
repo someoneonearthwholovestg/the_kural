@@ -1,0 +1,127 @@
+# ═══════════════════════════════════════════════════════════════
+#  THEKURAL — SITE CONFIGURATION
+# ═══════════════════════════════════════════════════════════════
+
+title:        "TheKural"
+tagline:      "Stories worth telling"
+description:  "A thoughtful space for ideas, stories, and perspectives."
+url:          "https://someoneonearthwholovestg.github.io"
+baseurl:      "/thekural.in"
+lang:         "en"
+logo:         "/assets/images/logo.png"
+
+# ─── AUTHOR ────────────────────────────────────────────────────
+author:
+  name:   "The Kural"
+  bio:    "Voices & Perceptions"
+  avatar: "/assets/images/about.png"
+
+# ─── JEKYLL CORE ───────────────────────────────────────────────
+markdown:    kramdown
+highlighter: rouge
+permalink:   /:categories/:title/
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# ─── DATA FILES ────────────────────────────────────────────────
+# Jekyll reads _data/ by default (GitHub Pages compatible).
+
+# ─── TYPOGRAPHY ────────────────────────────────────────────────
+fonts:
+  post_heading:    "Caveat"
+  post_subheading: "Kalam"
+  body:            "Patrick Hand"
+  ui:              "Architects Daughter"
+  mono:            "JetBrains Mono"
+
+font_sizes:
+  post_heading: "3.4rem"
+  card_heading: "1.45rem"
+  subheading:   "1.3rem"
+  body:         "1.1rem"
+  ui:           "0.88rem"
+
+# ─── COLORS (LIGHT MODE) ───────────────────────────────────────
+colors:
+  primary:      "#4A4A4A"
+  primary_dark: "#2E2E2E"
+  bg:           "#FFFFFF"
+  surface:      "#F5F5F5"
+  text:         "#1A1A1A"
+  text_muted:   "#8A8A8A"
+  border:       "#E0E0E0"
+  accent:       "#BDBDBD"
+  footer:       "#000000"
+
+# ─── FEATURES ──────────────────────────────────────────────────
+show_reading_time: true
+show_tags:         true
+posts_per_page:    9
+default_image:     "/assets/images/default-cover.png"
+
+# ─── COLLECTIONS ───────────────────────────────────────────────
+# IMPORTANT: collections_dir applies to ALL collections below.
+# Every collection folder must live inside src/2-reading-room/
+# That means _quarters/ must be at src/2-reading-room/_quarters/
+# (NOT at the project root)
+
+collections_dir: src/2-reading-room
+collections:
+
+  quarters:
+    output: true
+    permalink: /nazar/:name/
+
+  nazar:
+    output: true
+    permalink: /nazar/:name/
+
+  book-reviews:
+    output: true
+    permalink: /book-reviews/:name/
+
+  keywords:
+    output: true
+    permalink: /keywords/:name/
+
+  criticulture:
+    output: true
+    permalink: /criticulture/:name/
+
+# ─── DEFAULT FRONT-MATTER ──────────────────────────────────────
+defaults:
+  - scope:
+      path: ""
+      type: "nazar"
+    values:
+      layout: nazar-post
+
+  - scope:
+      path: ""
+      type: "quarters"
+    values:
+      layout: nazar-quarter
+
+  - scope:
+      path: ""
+      type: "book-reviews"
+    values:
+      layout: post
+
+  - scope:
+      path: ""
+      type: "keywords"
+    values:
+      layout: post
+
+  - scope:
+      path: ""
+      type: "criticulture"
+    values:
+      layout: post
+
+# ─── NAVIGATION ────────────────────────────────────────────────
+# Edit _data/nav.yml to control the nav bar.
