@@ -203,9 +203,9 @@ permalink: /nazar
   </div>
 
   <div class="explore-grid">
-    {% assign quarter_indices = site.collections.nazar | where_exp: "p", "p.type == 'quarter-index'" | sort | reverse %}
+    {% assign quarter_indices = site.nazar | where_exp: "p", "p.type == 'quarter-index'" | sort: "date" | reverse %}
     {% for qi in quarter_indices %}
-    {% assign q_posts = site.collections.nazar | where_exp: "p", "p.path contains qi.key" | where_exp: "p", "p.type != 'quarter-index'" %}
+    {% assign q_posts = site.nazar | where_exp: "p", "p.path contains qi.key" | where_exp: "p", "p.type != 'quarter-index'" %}
     <a href="{{ '/nazar/' | append: qi.key | relative_url }}" class="post-card" style="text-decoration:none;">
       <div class="post-card-img">
         <img src="{{ qi.image }}" alt="{{ qi.label }}" loading="lazy" />
@@ -238,7 +238,7 @@ permalink: /nazar
 
 <script>
   const NAZAR_ITEMS = [
-    {% assign nazar_posts = site.collections.nazar 
+    {% assign nazar_posts = site.nazar
       | where_exp: "p", "p.type != 'quarter-index'" 
       | where_exp: "p", "p.image" %}
       
