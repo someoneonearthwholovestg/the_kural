@@ -141,14 +141,19 @@ default_image:     "/assets/images/default-cover.png"
 nav:
   - label: Home
     url: /
-  - label: Nazar
+  - label: Reading Room
+    url: "#"
     children:
-      - label: Q1 2025
-        url: /nazar/q1-2025
-      - label: Q2 2025
-        url: /nazar/q2-2025
-  - label: Explore
-    url: /explore
+      - label: Nazar
+        url: /nazar
+      - label: Book Reviews
+        url: /book-reviews
+      - label: Keywords
+        url: /keywords
+      - label: Criticulture
+        url: /criticulture
+  - label: Submit
+    url: /submission
   - label: About
     url: /about
 
