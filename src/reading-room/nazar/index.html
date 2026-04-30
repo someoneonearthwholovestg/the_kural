@@ -238,7 +238,7 @@ permalink: /nazar
 
 <script>
   const NAZAR_ITEMS = [
-    {% assign nazar_posts = site.collections.nazar | where_exp: "p", "p.type != 'quarter-index'" | sort: 'date' | reverse %}
+    {% assign nazar_posts = site.collections.nazar | where_exp: "p", "p.type != 'quarter-index'"}
     {% for post in nazar_posts %}
     {% if post.image %}
     { url: "{{ post.image }}", caption: "{{ post.title | escape }}" }{% unless forloop.last %},{% endunless %}
