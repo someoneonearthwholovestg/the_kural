@@ -137,6 +137,22 @@ posts_per_page:    9
 default_image:     "/assets/images/default-cover.png"
 
 
+# ─── NAVIGATION ────────────────────────────────────────────────
+nav:
+  - label: Home
+    url: /
+  - label: Nazar
+    children:
+      - label: Q1 2025
+        url: /nazar/q1-2025
+      - label: Q2 2025
+        url: /nazar/q2-2025
+  - label: Explore
+    url: /explore
+  - label: About
+    url: /about
+
+
 # ─── JEKYLL CORE ───────────────────────────────────────────────
 markdown:    kramdown
 highlighter: rouge
