@@ -203,23 +203,29 @@ permalink: /nazar
   </div>
 
   <div class="explore-grid">
-    {% for quarter in site.data.nazar_quarters %}
+    {% for file in site.data.nazar %}
+    {% assign quarter = file[1] %}
     {% assign q_posts = site.collections["nazar"] | where_exp: "p", "p.path contains quarter.key" %}
-    <a href="{{ '/nazar/' | append: quarter.key | relative_url }}" class="post-card"
-      style="text-decoration:none;">
+  
+    <a href="{{ '/nazar/' | append: quarter.key | relative_url }}" class="post-card" style="text-decoration:none;">
+      
       <div class="post-card-img">
         <img src="{{ quarter.image }}" alt="{{ quarter.label }}" loading="lazy" />
       </div>
+  
       <div class="post-card-body">
         <div class="post-card-meta">
           <span>{{ q_posts.size }} posts</span>
         </div>
+  
         <h2 class="post-card-title">{{ quarter.label }}</h2>
         <p class="post-card-excerpt">{{ quarter.description }}</p>
+  
         <div class="post-card-footer">
-          <span class="read-more-arrow">View <i data-lucide="arrow-right" style="width:13px;height:13px;"></i></span>
+          <span class="read-more-arrow">View →</span>
         </div>
       </div>
+  
     </a>
     {% endfor %}
   </div>
