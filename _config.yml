@@ -158,6 +158,22 @@ nav:
     url: /about
 
 
+collections_dir: src/reading-room
+collections:
+  nazar:
+    output: true
+    permalink: /nazar/:title/
+  book-reviews:
+    output: true
+    permalink: /book-reviews/:title/
+  keywords:
+    output: true
+    permalink: /keywords/:title/
+  criticulture:
+    output: true
+    permalink: /criticulture/:title/
+
+
 # ─── JEKYLL CORE ───────────────────────────────────────────────
 markdown:    kramdown
 highlighter: rouge
