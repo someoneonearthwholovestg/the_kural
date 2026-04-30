@@ -238,11 +238,12 @@ permalink: /nazar
 
 <script>
   const NAZAR_ITEMS = [
-    {% assign nazar_posts = site.collections.nazar | where_exp: "p", "p.type != 'quarter-index'"}
+    {% assign nazar_posts = site.collections.nazar 
+      | where_exp: "p", "p.type != 'quarter-index'" 
+      | where_exp: "p", "p.image" %}
+      
     {% for post in nazar_posts %}
-    {% if post.image %}
-    { url: "{{ post.image }}", caption: "{{ post.title | escape }}" }{% unless forloop.last %},{% endunless %}
-    {% endif %}
+      { url: "{{ post.image }}", caption: {{ post.title | jsonify }} }{% unless forloop.last %},{% endunless %}
     {% endfor %}
   ];
   let currentIndex = 0;
