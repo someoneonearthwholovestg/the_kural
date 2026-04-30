@@ -163,9 +163,9 @@ collections:
   nazar:
     output: true
     permalink: /nazar/:title/
-  book-reviews:
+  book-review:
     output: true
-    permalink: /book-reviews/:title/
+    permalink: /book-review/:title/
   keywords:
     output: true
     permalink: /keywords/:title/
