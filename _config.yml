@@ -146,8 +146,8 @@ nav:
     children:
       - label: Nazar
         url: /nazar
-      - label: Book Reviews
-        url: /book-reviews
+      - label: Book Review
+        url: /book-review
       - label: Keywords
         url: /keywords
       - label: Criticulture
