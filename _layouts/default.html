@@ -505,7 +505,7 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
       </a>
 
       <nav class="header-nav" id="desktop-nav">
-        {% for item in site.data.nav %}
+        {% for item in site.nav %}
           {% if item.children %}
             <div class="nav-dropdown">
               <button class="nav-link dropdown-toggle">
@@ -549,7 +549,7 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
 
   <div class="mobile-nav" id="mobile-nav">
     <div class="mobile-nav-inner">
-      {% for item in site.data.nav %}
+      {% for item in site.nav %}
         {% if item.children %}
           <div class="mobile-nav-group">
             <div class="mobile-nav-group-label">{{ item.label }}</div>
@@ -614,7 +614,7 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
       </div>
 
       <nav class="footer-nav">
-        {% for item in site.data.nav %}
+        {% for item in site.nav %}
           {% if item.children %}
             <div class="footer-nav-group">
               <span class="footer-nav-label">{{ item.label }}</span>
