@@ -1,5 +1,5 @@
 ---
-layout: nazar-post
+layout: post
 title: "The Art of Slow Thinking"
 date: 2026-01-15
 author: rithu
