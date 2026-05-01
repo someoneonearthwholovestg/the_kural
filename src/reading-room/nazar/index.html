@@ -14,7 +14,7 @@ permalink: /nazar/
     {% assign quarters = site.pages | where_exp: "p", "p.url contains '/nazar/'" | where_exp: "p", "p.key != nil" | sort: "key" | reverse %}
     {% if quarters and quarters.size > 0 %}
       {% for quarter in quarters %}
-        <a href="{{ quarter.url }}" class="quarter-card">
+        <a href="{{ quarter.url | relative_url }}" class="quarter-card">
           {% if quarter.image %}
             <div class="quarter-card-image">
               <img src="{{ quarter.image | relative_url }}" alt="{{ quarter.label }}" loading="lazy">
