@@ -1,5 +1,5 @@
 ---
-layout: book-review
+layout: default
 title: "The God of Small Things"
 author: "Arundhati Roy"
 year: 1997
