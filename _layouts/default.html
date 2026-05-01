@@ -565,6 +565,12 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
   </div>
 </header>
 
+{% if page.url == "/" and site.header_image != "" %}
+<div style="width:100%;line-height:0;">
+  <img src="{{ site.header_image }}" alt="" style="width:100%;height:auto;display:block;" />
+</div>
+{% endif %}
+
 <!-- ════════════════════════════════════════════════════════════
      SEARCH OVERLAY
      ════════════════════════════════════════════════════════════ -->
