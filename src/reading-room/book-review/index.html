@@ -12,7 +12,7 @@ permalink: /book-review/
   </div>
 
   <div class="book-list">
-    {% assign books = site.pages | where_exp: "p", "p.url contains '/book-review/'" | where_exp: "p", "p.layout == 'book-review'" %}
+    {% assign books = site.collections['book-review'].docs %}
     {% if books and books.size > 0 %}
       {% for book in books %}
         <a href="{{ book.url | relative_url }}" class="book-row {% cycle 'row-left', 'row-right' %}" style="text-decoration:none;color:inherit;">
