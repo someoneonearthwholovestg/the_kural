@@ -10,7 +10,6 @@ permalink: /nazar/
     <p class="page-subtitle">Visual stories captured through the lens</p>
   </div>
 
-  <!-- Quarter Grid Section -->
   <section class="quarters-grid">
     {% assign quarters = site.pages | where_exp: "p", "p.url contains '/nazar/'" | where_exp: "p", "p.key != nil" | sort: "key" | reverse %}
     {% if quarters and quarters.size > 0 %}
@@ -33,124 +32,90 @@ permalink: /nazar/
       <p class="empty-state">No quarters found.</p>
     {% endif %}
   </section>
-
-  <!-- Lightbox Section -->
-  <section class="nazar-lightbox-section">
-    {% assign all_posts = site.pages | where_exp: "p", "p.url contains '/nazar/'" | where_exp: "p", "p.layout == 'post'" %}
-    {% if all_posts and all_posts.size > 0 %}
-      {% assign nazar_posts = all_posts | where_exp: "p", "p.image != nil" %}
-      {% if nazar_posts and nazar_posts.size > 0 %}
-        <div class="lightbox-gallery">
-          {% for post in nazar_posts %}
-            <div class="lightbox-item"
-                 data-title="{{ post.title | escape }}"
-                 data-description="{{ post.description | default: '' | escape }}"
-                 data-image="{{ post.image | relative_url }}">
-              <img src="{{ post.image | relative_url }}"
-                   alt="{{ post.title | escape }}"
-                   loading="lazy">
-              <div class="lightbox-item-overlay">
-                <span>{{ post.title }}</span>
-              </div>
-            </div>
-          {% endfor %}
-        </div>
-
-        <!-- Lightbox Modal -->
-        <div id="lightbox-modal" class="lightbox-modal" style="display:none;">
-          <div class="lightbox-modal-backdrop"></div>
-          <div class="lightbox-modal-content">
-            <button class="lightbox-close" aria-label="Close">&times;</button>
-            <button class="lightbox-prev" aria-label="Previous">&#8249;</button>
-            <button class="lightbox-next" aria-label="Next">&#8250;</button>
-            <img class="lightbox-image" src="" alt="">
-            <div class="lightbox-info">
-              <h3 class="lightbox-title"></h3>
-              <p class="lightbox-description"></p>
-            </div>
-          </div>
-        </div>
-
-        <script>
-        (function() {
-          const items = document.querySelectorAll('.lightbox-item');
-          const modal = document.getElementById('lightbox-modal');
-          const modalImg = modal.querySelector('.lightbox-image');
-          const modalTitle = modal.querySelector('.lightbox-title');
-          const modalDesc = modal.querySelector('.lightbox-description');
-          const closeBtn = modal.querySelector('.lightbox-close');
-          const prevBtn = modal.querySelector('.lightbox-prev');
-          const nextBtn = modal.querySelector('.lightbox-next');
-          const backdrop = modal.querySelector('.lightbox-modal-backdrop');
-          let currentIndex = 0;
-
-          function getDataArray() {
-            var arr = [];
-            items.forEach(function(item) {
-              arr.push({
-                image: item.getAttribute('data-image'),
-                title: item.getAttribute('data-title'),
-                description: item.getAttribute('data-description')
-              });
-            });
-            return arr;
-          }
-
-          function openModal(index) {
-            var data = getDataArray();
-            if (index < 0 || index >= data.length) return;
-            currentIndex = index;
-            modalImg.src = data[index].image;
-            modalImg.alt = data[index].title;
-            modalTitle.textContent = data[index].title;
-            modalDesc.textContent = data[index].description;
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-          }
-
-          function closeModal() {
-            modal.style.display = 'none';
-            document.body.style.overflow = '';
-          }
-
-          items.forEach(function(item, i) {
-            item.addEventListener('click', function() {
-              openModal(i);
-            });
-            item.style.cursor = 'pointer';
-          });
-
-          closeBtn.addEventListener('click', closeModal);
-          backdrop.addEventListener('click', closeModal);
-
-          prevBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            var data = getDataArray();
-            var newIndex = (currentIndex - 1 + data.length) % data.length;
-            openModal(newIndex);
-          });
-
-          nextBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            var data = getDataArray();
-            var newIndex = (currentIndex + 1) % data.length;
-            openModal(newIndex);
-          });
-
-          document.addEventListener('keydown', function(e) {
-            if (modal.style.display === 'none') return;
-            if (e.key === 'Escape') closeModal();
-            if (e.key === 'ArrowLeft') prevBtn.click();
-            if (e.key === 'ArrowRight') nextBtn.click();
-          });
-        })();
-        </script>
-
-      {% else %}
-        <p class="empty-state">No posts with images found.</p>
-      {% endif %}
-    {% else %}
-      <p class="empty-state">No posts found in this collection.</p>
-    {% endif %}
-  </section>
 </div>
+
+<style>
+  .nazar-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-subtitle {
+    color: #888;
+    font-size: 1rem;
+  }
+
+  .quarters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+    justify-items: center;
+  }
+
+  .quarter-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .quarter-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+  }
+
+  .quarter-card-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+
+  .quarter-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .quarter-card:hover .quarter-card-image img {
+    transform: scale(1.04);
+  }
+
+  .quarter-card-content {
+    padding: 1.2rem 1.4rem 1.5rem;
+  }
+
+  .quarter-card-content h2 {
+    font-size: 1.1rem;
+    margin: 0 0 0.4rem;
+  }
+
+  .quarter-card-content p {
+    font-size: 0.875rem;
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .empty-state {
+    text-align: center;
+    color: #aaa;
+    font-size: 0.9rem;
+  }
+</style>
