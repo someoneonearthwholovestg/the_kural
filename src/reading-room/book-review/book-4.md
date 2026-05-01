@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "The God of Small Things"
-author: "Arundhati Roy"
-year: 1997
+title: "Maths OPEN elective"
+author: "Nabil A Navab"
+year: 2001
 permalink: /book-review/post-4/
 image: "https://picsum.photos/seed/book1/400/600"
-description: "A short description of the book."
+description: "We Need To Study Right.."
 ---
 
 > **How to use this guide:** Read every section in order. Each concept builds on the previous one. Every topic here maps directly to a question in your two assignment papers.
