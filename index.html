@@ -21,13 +21,6 @@ permalink: /
 <section>
   <div class="container">
 
-    {% if site.posts.size == 0 %}
-    <div style="text-align:center;padding:4rem 0;color:var(--c-text-muted);">
-      <i data-lucide="feather" style="width:48px;height:48px;opacity:.3;margin:0 auto 1rem;display:block;"></i>
-      <p style="font-family:var(--font-ui);">No articles yet — add a file to <code>_posts/</code> to get started!</p>
-    </div>
-    {% else %}
-
     {% assign latest_quarter = site.pages | where_exp: "p", "p.key != nil" | where_exp: "p", "p.url contains '/nazar/'" | sort: "key" | reverse | first %}
     {% if latest_quarter %}
     <section style="margin:3rem 0;">
