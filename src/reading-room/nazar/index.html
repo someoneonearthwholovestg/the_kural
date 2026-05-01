@@ -6,10 +6,11 @@ permalink: /nazar/
 
 <div class="nazar-page">
   <div class="page-header">
-    <h1>Nazar</h1>
-    <p class="page-subtitle">Visual stories captured through the lens</p>
+    <h1>Nazar (Photo Essays)</h1>
+    <p class="page-subtitle">Nazar is a quarterly photo essay series shaped around a shared theme. It brings together visual narratives that attend to the textures of everyday life, without claiming neutrality. What is shown here is as much about framing as it is about what enters the frame. Each edition emerges through an open call, inviting situated ways of seeing.</p>
   </div>
 
+  
   <section class="quarters-grid">
     {% assign quarters = site.pages | where_exp: "p", "p.url contains '/nazar/'" | where_exp: "p", "p.key != nil" | sort: "key" | reverse %}
     {% if quarters and quarters.size > 0 %}
