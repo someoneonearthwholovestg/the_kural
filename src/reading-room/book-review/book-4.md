@@ -1,11 +1,11 @@
 ---
-layout: nazar-post
-title: "MTH002 Statistical Methods — Complete Study Guide"
-date: 2026-01-01
-author: rithu
-tags: [statistics, mathematics, study-guide, MTH002]
-excerpt: "A complete zero-to-exam-ready guide covering counting, probability, random variables, distributions, and hypothesis testing for MTH002."
-image: ""
+layout: post
+title: "The God of Small Things"
+author: "Arundhati Roy"
+year: 1997
+permalink: /book-review/post-3/
+image: "https://picsum.photos/seed/book1/400/600"
+description: "A short description of the book."
 ---
 
 > **How to use this guide:** Read every section in order. Each concept builds on the previous one. Every topic here maps directly to a question in your two assignment papers.
