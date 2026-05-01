@@ -1,9 +1,126 @@
 ---
 layout: default
-title: "2026 — Q2"
-permalink: /nazar/2026-Q2/
-key: "2026-Q2"
-label: "2026 — Q2"
-description: "Summer fragments. Light and shadow from April through June."
-image: "https://picsum.photos/seed/q2/600/400"
+title: "2026 — Q1"
+permalink: /nazar/2026-Q1/
+key: "2026-Q1"
+label: "2026 — Q1"
+description: "Spring dispatches. Quiet observations from January through March."
+image: "https://picsum.photos/seed/q1/600/400"
 ---
+
+<div class="quarter-detail">
+  <div class="quarter-header">
+    <a href="/nazar/" class="back-link">← Nazar</a>
+    <h1>2026 — Q1</h1>
+    <p>Spring dispatches. Quiet observations from January through March.</p>
+  </div>
+
+  <div class="posts-grid">
+    {% assign posts = site.pages | where_exp: "p", "p.url contains '/nazar/2026-Q1/'" | where_exp: "p", "p.layout == 'post'" %}
+    {% for post in posts %}
+      <a href="{{ post.url }}" class="post-card">
+        {% if post.image %}
+          <div class="post-card-image">
+            <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" loading="lazy">
+          </div>
+        {% endif %}
+        <div class="post-card-content">
+          <h3>{{ post.title }}</h3>
+          {% if post.description %}
+            <p>{{ post.description }}</p>
+          {% endif %}
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .quarter-detail {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  .back-link {
+    font-size: 0.85rem;
+    color: #888;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+
+  .back-link:hover {
+    color: #333;
+  }
+
+  .quarter-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .quarter-header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .quarter-header p {
+    color: #888;
+    font-size: 0.95rem;
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .post-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .post-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+  }
+
+  .post-card-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+
+  .post-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .post-card:hover .post-card-image img {
+    transform: scale(1.04);
+  }
+
+  .post-card-content {
+    padding: 1rem 1.2rem 1.4rem;
+  }
+
+  .post-card-content h3 {
+    font-size: 1rem;
+    margin: 0 0 0.4rem;
+  }
+
+  .post-card-content p {
+    font-size: 0.825rem;
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
+  }
+</style>
