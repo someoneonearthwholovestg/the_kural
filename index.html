@@ -21,18 +21,14 @@ permalink: /
 <section>
   <div class="container">
 
-    {% if site.posts.size == 0 %}
-    <div style="text-align:center;padding:4rem 0;color:var(--c-text-muted);">
-      <i data-lucide="feather" style="width:48px;height:48px;opacity:.3;margin:0 auto 1rem;display:block;"></i>
-      <p style="font-family:var(--font-ui);">No articles yet — add a file to <code>_posts/</code> to get started!</p>
-    </div>
-    {% else %}
+    <!-- ── NAZAR SECTION ── -->
+    {% assign all_quarters = site.pages | where_exp: "p", "p.key != nil" | where_exp: "p", "p.url contains '/nazar/'" | sort: "key" | reverse %}
+    {% assign latest_quarter = all_quarters | first %}
+    {% assign nazar_docs = site.pages | where_exp: "p", "p.layout == 'post'" | where_exp: "p", "p.url contains '/nazar/'" %}
 
-    {% assign latest_quarter = site.pages | where_exp: "p", "p.key != nil" | where_exp: "p", "p.url contains '/nazar/'" | sort: "key" | reverse | first %}
     {% if latest_quarter %}
     <section style="margin:3rem 0;">
       <div class="section-label">Nazar — Visual Journal</div>
-      {% assign nazar_docs = site.pages | where_exp: "p", "p.layout == 'post'" | where_exp: "p", "p.url contains '/nazar/'" %}
       {% assign q_posts = nazar_docs | where_exp: "p", "p.url contains latest_quarter.key" %}
       <div class="post-card" onclick="document.getElementById('nazar-quarters-modal').classList.add('open')"
         style="cursor:pointer;text-decoration:none;display:flex;flex-direction:row;max-width:700px;margin:0 auto;border-radius:30px 80px 30px 80px;">
@@ -66,12 +62,11 @@ permalink: /
           </button>
         </div>
         <div class="nazar-modal-grid">
-          {% assign all_quarters = site.pages | where_exp: "p", "p.key != nil" | where_exp: "p", "p.url contains '/nazar/'" | sort: "key" | reverse %}
           {% for quarter in all_quarters limit:4 %}
           {% assign qp = nazar_docs | where_exp: "p", "p.url contains quarter.key" %}
           <a href="{{ quarter.url | relative_url }}" class="nazar-quarter-card">
             <div class="nazar-quarter-img">
-              <img src="{{ quarter.image }}" alt="{{ quarter.label }}" loading="lazy" />
+              <img src="{{ quarter.image | relative_url }}" alt="{{ quarter.label }}" loading="lazy" />
             </div>
             <div class="nazar-quarter-body">
               <span class="nazar-quarter-meta">{{ qp.size }} stories</span>
@@ -87,7 +82,6 @@ permalink: /
     </div>
 
     <style>
-      /* ── Nazar Quarters Modal ── */
       .nazar-modal-overlay {
         position: fixed;
         inset: 0;
@@ -289,13 +283,20 @@ permalink: /
     </style>
 
     <script>
-      // Close modal on Escape key
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') {
           document.getElementById('nazar-quarters-modal').classList.remove('open');
         }
       });
     </script>
+
+    <!-- ── LATEST ARTICLES ── -->
+    {% if site.posts.size == 0 %}
+    <div style="text-align:center;padding:4rem 0;color:var(--c-text-muted);">
+      <i data-lucide="feather" style="width:48px;height:48px;opacity:.3;margin:0 auto 1rem;display:block;"></i>
+      <p style="font-family:var(--font-ui);">No articles yet — add a file to <code>_posts/</code> to get started!</p>
+    </div>
+    {% else %}
 
     <div class="section-label">Latest articles</div>
 
