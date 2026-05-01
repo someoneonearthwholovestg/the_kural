@@ -12,9 +12,8 @@ permalink: /nazar/
 
   <!-- Quarter Grid Section -->
   <section class="quarters-grid">
-    {% assign all_quarters = site.nazar | where_exp: "item", "item.type == 'quarter-index'" %}
-    {% if all_quarters and all_quarters.size > 0 %}
-      {% assign quarters = all_quarters | sort: "key" %}
+    {% assign quarters = site.pages | where_exp: "p", "p.url contains '/nazar/'" | where_exp: "p", "p.key != nil" | sort: "key" | reverse %}
+    {% if quarters and quarters.size > 0 %}
       {% for quarter in quarters %}
         <a href="{{ quarter.url }}" class="quarter-card">
           {% if quarter.image %}
@@ -31,24 +30,24 @@ permalink: /nazar/
         </a>
       {% endfor %}
     {% else %}
-      <p class="empty-state">No quarters found. Add folders with index.md files inside the nazar collection.</p>
+      <p class="empty-state">No quarters found.</p>
     {% endif %}
   </section>
 
   <!-- Lightbox Section -->
   <section class="nazar-lightbox-section">
-    {% assign all_posts = site.nazar | where_exp: "p", "p.type != 'quarter-index'" %}
+    {% assign all_posts = site.pages | where_exp: "p", "p.url contains '/nazar/'" | where_exp: "p", "p.layout == 'post'" %}
     {% if all_posts and all_posts.size > 0 %}
       {% assign nazar_posts = all_posts | where_exp: "p", "p.image != nil" %}
       {% if nazar_posts and nazar_posts.size > 0 %}
         <div class="lightbox-gallery">
           {% for post in nazar_posts %}
-            <div class="lightbox-item" 
+            <div class="lightbox-item"
                  data-title="{{ post.title | escape }}"
                  data-description="{{ post.description | default: '' | escape }}"
                  data-image="{{ post.image | relative_url }}">
-              <img src="{{ post.image | relative_url }}" 
-                   alt="{{ post.title | escape }}" 
+              <img src="{{ post.image | relative_url }}"
+                   alt="{{ post.title | escape }}"
                    loading="lazy">
               <div class="lightbox-item-overlay">
                 <span>{{ post.title }}</span>
