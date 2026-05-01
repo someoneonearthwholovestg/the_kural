@@ -4,7 +4,7 @@ title: Home
 permalink: /
 ---
 
-<!--- ── HERO ── --->
+<!-- ── HERO ── -->
 <section class="hero">
   <div class="container">
     <p class="hero-eyebrow">Welcome to {{ site.title }}</p>
@@ -81,273 +81,372 @@ permalink: /
       </div>
     </div>
 
-    <style>
-      .nazar-modal-overlay {
-        position: fixed;
-        inset: 0;
-        z-index: 1000;
-        background: rgba(0, 0, 0, .55);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity .3s ease;
-        padding: 1.5rem;
-      }
-
-      .nazar-modal-overlay.open {
-        opacity: 1;
-        pointer-events: all;
-      }
-
-      .nazar-modal {
-        background: var(--c-bg);
-        border: 1px solid var(--c-border);
-        border-radius: 24px;
-        box-shadow: 0 25px 60px rgba(0, 0, 0, .25);
-        width: min(960px, 96vw);
-        max-height: 85vh;
-        overflow-y: auto;
-        transform: scale(.92) translateY(20px);
-        transition: transform .35s cubic-bezier(.4, 0, .2, 1);
-        scrollbar-width: none;
-      }
-
-      .nazar-modal::-webkit-scrollbar {
-        display: none;
-      }
-
-      .nazar-modal-overlay.open .nazar-modal {
-        transform: scale(1) translateY(0);
-      }
-
-      .nazar-modal-header {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        padding: 2rem 2rem 1rem;
-        position: sticky;
-        top: 0;
-        background: var(--c-bg);
-        z-index: 2;
-        border-bottom: 1px solid var(--c-border);
-      }
-
-      .nazar-modal-title {
-        font-family: var(--font-heading);
-        font-size: 1.6rem;
-        font-weight: 700;
-        color: var(--c-text);
-        line-height: 1.2;
-        margin-bottom: .3rem;
-      }
-
-      .nazar-modal-sub {
-        font-family: var(--font-ui);
-        font-size: .82rem;
-        color: var(--c-text-muted);
-        margin: 0;
-      }
-
-      .nazar-modal-close {
-        width: 36px;
-        height: 36px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid var(--c-border);
-        border-radius: 10px;
-        background: transparent;
-        color: var(--c-text-muted);
-        cursor: pointer;
-        transition: all var(--transition);
-        flex-shrink: 0;
-      }
-
-      .nazar-modal-close:hover {
-        background: var(--c-surface);
-        color: var(--c-text);
-        border-color: var(--c-primary);
-      }
-
-      .nazar-modal-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-        padding: 1.5rem 2rem 2rem;
-      }
-
-      .nazar-quarter-card {
-        display: flex;
-        flex-direction: row;
-        gap: 0;
-        background: var(--c-surface);
-        border: 1px solid var(--c-border);
-        border-radius: 16px;
-        overflow: hidden;
-        text-decoration: none;
-        color: inherit;
-        transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-      }
-
-      .nazar-quarter-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
-        border-color: var(--c-primary);
-      }
-
-      .nazar-quarter-img {
-        width: 28%;
-        flex-shrink: 0;
-        overflow: hidden;
-        background: color-mix(in srgb, var(--c-primary) 10%, var(--c-surface));
-      }
-
-      .nazar-quarter-img img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform .5s ease;
-      }
-
-      .nazar-quarter-card:hover .nazar-quarter-img img {
-        transform: scale(1.05);
-      }
-
-      .nazar-quarter-body {
-        padding: 0.7rem 1rem;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-
-      .nazar-quarter-meta {
-        font-family: var(--font-ui);
-        font-size: .72rem;
-        font-weight: 600;
-        letter-spacing: .1em;
-        text-transform: uppercase;
-        color: var(--c-text-muted);
-        margin-bottom: .4rem;
-      }
-
-      .nazar-quarter-title {
-        font-family: var(--font-heading);
-        font-size: 1rem;
-        font-weight: 700;
-        color: var(--c-text);
-        margin-bottom: .35rem;
-        line-height: 1.2;
-        transition: color .25s ease;
-      }
-
-      .nazar-quarter-card:hover .nazar-quarter-title {
-        color: var(--c-primary);
-      }
-
-      .nazar-quarter-desc {
-        font-size: .8rem;
-        color: var(--c-text-muted);
-        line-height: 1.4;
-        margin: 0 0 .3rem;
-      }
-
-      @media (max-width: 500px) {
-        .nazar-modal-grid {
-          padding: 1rem;
-        }
-
-        .nazar-quarter-card {
-          flex-direction: column;
-        }
-
-        .nazar-quarter-img {
-          width: 100%;
-          aspect-ratio: 16/9;
-        }
-
-        .nazar-modal-header {
-          padding: 1.5rem 1rem .8rem;
-        }
-      }
-
-      @media (max-width: 600px) {
-        .nazar-modal-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
-
-    <script>
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
-          document.getElementById('nazar-quarters-modal').classList.remove('open');
-        }
-      });
-    </script>
-
     <!-- ── LATEST ARTICLES ── -->
-    {% if site.posts.size == 0 %}
-    <div style="text-align:center;padding:4rem 0;color:var(--c-text-muted);">
-      <i data-lucide="feather" style="width:48px;height:48px;opacity:.3;margin:0 auto 1rem;display:block;"></i>
-      <p style="font-family:var(--font-ui);">No articles yet — add a file to <code>_posts/</code> to get started!</p>
-    </div>
-    {% else %}
+    {% if site.posts.size > 0 %}
+    <section style="margin:3rem 0;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+        <div class="section-label" style="margin:0;">Latest articles</div>
+        <a href="{{ '/explore' | relative_url }}" class="read-more-arrow" style="font-size:0.82rem;">
+          View all <i data-lucide="arrow-right" style="width:13px;height:13px;"></i>
+        </a>
+      </div>
 
-    <div class="section-label">Latest articles</div>
-
-    <div class="posts-grid">
-      {% for post in site.posts limit: site.posts_per_page %}
-      <a href="{{ post.url | relative_url }}" class="post-card fade-in" style="text-decoration:none;">
-
-        {% if post.image %}
-        <div class="post-card-img">
-          <img src="{{ post.image }}" alt="{{ post.image_alt | default: post.title }}" loading="lazy" />
-        </div>
-        {% else %}
-        <div class="post-card-img"
-          style="background:linear-gradient(145deg,color-mix(in srgb,var(--c-primary) 15%,var(--c-surface)),color-mix(in srgb,var(--c-accent) 10%,var(--c-surface)));display:flex;align-items:center;justify-content:center;">
-          <i data-lucide="feather" style="width:38px;height:38px;color:var(--c-primary);opacity:.4;"></i>
-        </div>
-        {% endif %}
-
-        <div class="post-card-body">
-          <div class="post-card-meta">
-            <span>{{ post.date | date: "%b %d, %Y" }}</span>
-            {% if post.tags.size > 0 %}
-            <span class="dot"></span>
-            <span>{{ post.tags | first }}</span>
-            {% endif %}
-          </div>
-          <h2 class="post-card-title">{{ post.title }}</h2>
-          <p class="post-card-excerpt">{{ post.excerpt | strip_html | truncatewords: 22 }}</p>
-          <div class="post-card-footer">
-            <div class="tag-list">
-              {% for tag in post.tags limit: 2 %}
-              <span class="tag">{{ tag }}</span>
-              {% endfor %}
+      <div class="carousel-wrapper">
+        <button class="carousel-btn carousel-prev" onclick="scrollCarousel(-1)" aria-label="Previous">&#8249;</button>
+        <div class="carousel-track" id="carousel-track">
+          {% for post in site.posts limit: 5 %}
+          <a href="{{ post.url | relative_url }}" class="carousel-card" style="text-decoration:none;color:inherit;">
+            {% if post.image %}
+            <div class="carousel-card-img">
+              <img src="{{ post.image }}" alt="{{ post.title }}" loading="lazy">
             </div>
-            <span class="read-more-arrow">Read <i data-lucide="arrow-right" style="width:13px;height:13px;"></i></span>
-          </div>
+            {% else %}
+            <div class="carousel-card-img" style="background:linear-gradient(145deg,color-mix(in srgb,var(--c-primary) 15%,var(--c-surface)),color-mix(in srgb,var(--c-accent) 10%,var(--c-surface)));display:flex;align-items:center;justify-content:center;">
+              <i data-lucide="feather" style="width:32px;height:32px;color:var(--c-primary);opacity:.4;"></i>
+            </div>
+            {% endif %}
+            <div class="carousel-card-body">
+              <div class="carousel-card-meta">
+                <span>{{ post.date | date: "%b %d, %Y" }}</span>
+                {% if post.tags.size > 0 %}
+                <span class="dot"></span>
+                <span>{{ post.tags | first }}</span>
+                {% endif %}
+              </div>
+              <h3 class="carousel-card-title">{{ post.title }}</h3>
+              <p class="carousel-card-excerpt">{{ post.excerpt | strip_html | truncatewords: 16 }}</p>
+            </div>
+          </a>
+          {% endfor %}
         </div>
+        <button class="carousel-btn carousel-next" onclick="scrollCarousel(1)" aria-label="Next">&#8250;</button>
+      </div>
 
-      </a>
-      {% endfor %}
-    </div>
-
-    {% if site.posts.size > site.posts_per_page %}
-    <div style="text-align:center;margin-top:3rem;">
-      <a href="{{ '/explore' | relative_url }}" class="btn">
-        View all {{ site.posts.size }} articles
-        <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
-      </a>
-    </div>
+    </section>
     {% endif %}
 
-    {% endif %}
   </div>
 </section>
+
+<style>
+  /* ── Nazar Modal ── */
+  .nazar-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, .55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s ease;
+    padding: 1.5rem;
+  }
+
+  .nazar-modal-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .nazar-modal {
+    background: var(--c-bg);
+    border: 1px solid var(--c-border);
+    border-radius: 24px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, .25);
+    width: min(960px, 96vw);
+    max-height: 85vh;
+    overflow-y: auto;
+    transform: scale(.92) translateY(20px);
+    transition: transform .35s cubic-bezier(.4, 0, .2, 1);
+    scrollbar-width: none;
+  }
+
+  .nazar-modal::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nazar-modal-overlay.open .nazar-modal {
+    transform: scale(1) translateY(0);
+  }
+
+  .nazar-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 2rem 2rem 1rem;
+    position: sticky;
+    top: 0;
+    background: var(--c-bg);
+    z-index: 2;
+    border-bottom: 1px solid var(--c-border);
+  }
+
+  .nazar-modal-title {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--c-text);
+    line-height: 1.2;
+    margin-bottom: .3rem;
+  }
+
+  .nazar-modal-sub {
+    font-family: var(--font-ui);
+    font-size: .82rem;
+    color: var(--c-text-muted);
+    margin: 0;
+  }
+
+  .nazar-modal-close {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--c-border);
+    border-radius: 10px;
+    background: transparent;
+    color: var(--c-text-muted);
+    cursor: pointer;
+    transition: all var(--transition);
+    flex-shrink: 0;
+  }
+
+  .nazar-modal-close:hover {
+    background: var(--c-surface);
+    color: var(--c-text);
+    border-color: var(--c-primary);
+  }
+
+  .nazar-modal-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1.5rem 2rem 2rem;
+  }
+
+  .nazar-quarter-card {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+
+  .nazar-quarter-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
+    border-color: var(--c-primary);
+  }
+
+  .nazar-quarter-img {
+    width: 28%;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--c-primary) 10%, var(--c-surface));
+  }
+
+  .nazar-quarter-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .5s ease;
+  }
+
+  .nazar-quarter-card:hover .nazar-quarter-img img {
+    transform: scale(1.05);
+  }
+
+  .nazar-quarter-body {
+    padding: 0.7rem 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .nazar-quarter-meta {
+    font-family: var(--font-ui);
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--c-text-muted);
+    margin-bottom: .4rem;
+  }
+
+  .nazar-quarter-title {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--c-text);
+    margin-bottom: .35rem;
+    line-height: 1.2;
+    transition: color .25s ease;
+  }
+
+  .nazar-quarter-card:hover .nazar-quarter-title {
+    color: var(--c-primary);
+  }
+
+  .nazar-quarter-desc {
+    font-size: .8rem;
+    color: var(--c-text-muted);
+    line-height: 1.4;
+    margin: 0 0 .3rem;
+  }
+
+  /* ── Carousel ── */
+  .carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: 1.2rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    padding: 0.5rem 0.2rem 1rem;
+    flex: 1;
+  }
+
+  .carousel-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .carousel-card {
+    flex-shrink: 0;
+    width: 240px;
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: 16px;
+    overflow: hidden;
+    scroll-snap-align: start;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .carousel-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+  }
+
+  .carousel-card-img {
+    width: 100%;
+    height: 140px;
+    overflow: hidden;
+  }
+
+  .carousel-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .carousel-card:hover .carousel-card-img img {
+    transform: scale(1.04);
+  }
+
+  .carousel-card-body {
+    padding: 0.9rem 1rem 1rem;
+  }
+
+  .carousel-card-meta {
+    font-size: 0.72rem;
+    color: var(--c-text-muted);
+    margin-bottom: 0.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .carousel-card-title {
+    font-size: 0.95rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    margin: 0 0 0.4rem;
+    line-height: 1.3;
+    color: var(--c-text);
+  }
+
+  .carousel-card-excerpt {
+    font-size: 0.8rem;
+    color: var(--c-text-muted);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .carousel-btn {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--c-border);
+    background: var(--c-surface);
+    color: var(--c-text);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    line-height: 1;
+  }
+
+  .carousel-btn:hover {
+    background: var(--c-primary);
+    color: #fff;
+    border-color: var(--c-primary);
+  }
+
+  @media (max-width: 500px) {
+    .nazar-modal-grid {
+      padding: 1rem;
+    }
+
+    .nazar-quarter-card {
+      flex-direction: column;
+    }
+
+    .nazar-quarter-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+    }
+
+    .nazar-modal-header {
+      padding: 1.5rem 1rem .8rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .nazar-modal-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      document.getElementById('nazar-quarters-modal').classList.remove('open');
+    }
+  });
+
+  function scrollCarousel(dir) {
+    const track = document.getElementById('carousel-track');
+    track.scrollBy({ left: dir * 260, behavior: 'smooth' });
+  }
+</script>
