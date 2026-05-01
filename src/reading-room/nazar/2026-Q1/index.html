@@ -18,7 +18,7 @@ image: "https://picsum.photos/seed/q1/600/400"
   <div class="posts-grid">
     {% assign posts = site.pages | where_exp: "p", "p.url contains '/nazar/2026-Q1/'" | where_exp: "p", "p.layout == 'post'" %}
     {% for post in posts %}
-      <a href="{{ post.url }}" class="post-card">
+      <a href="{{ post.url | relative_url }}" class="post-card">
         {% if post.image %}
           <div class="post-card-image">
             <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" loading="lazy">
