@@ -118,10 +118,10 @@ dark_colors:
 # use : https://fonts.google.com/
 fonts:
   post_heading:    "Playwrite Argentina Guides" #"Caveat"
-  post_subheading: "Kalam"
-  body:            "Patrick Hand"
-  ui:              "Architects Daughter"
-  mono:            "JetBrains Mono"
+  post_subheading: "Playfair Display" #"Kalam"
+  body:            "PT Serif" #"Patrick Hand"
+  ui:              "Source Serif 4" #"Architects Daughter"
+  mono:            "IBM Plex Mono" #"JetBrains Mono"
 
 font_sizes:
   post_heading: "3.4rem"
