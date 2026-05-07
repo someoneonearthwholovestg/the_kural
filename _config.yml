@@ -115,7 +115,7 @@ dark_colors:
 # ─── TYPOGRAPHY ────────────────────────────────────────────────
 # Font names must match exactly what Google Fonts serves.
 # Change the name here and the stylesheet updates automatically.
-
+# use : https://fonts.google.com/
 fonts:
   post_heading:    "Playwrite Argentina Guides" #"Caveat"
   post_subheading: "Kalam"
