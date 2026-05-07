@@ -117,7 +117,7 @@ dark_colors:
 # Change the name here and the stylesheet updates automatically.
 
 fonts:
-  post_heading:    "Caveat"
+  post_heading:    "Playwrite Argentina Guides" #"Caveat"
   post_subheading: "Kalam"
   body:            "Patrick Hand"
   ui:              "Architects Daughter"
