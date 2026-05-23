@@ -515,16 +515,15 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
 }
 @media (max-width: 600px) { .explore-grid { grid-template-columns: 1fr; } }
 
-/* ── FOOTER WAVE ── */
 .footer-wave {
   display: block;
   line-height: 0;
-  background: var(--c-bg);  /* matches page background above the wave */
+  background: var(--c-bg);
+  margin-bottom: -2px;
 }
 
 .footer-wave svg {
   width: 100%;
-  height: auto;
   display: block;
 }
 
@@ -653,20 +652,9 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
      FOOTER  —  social links from social: in _config.yml
      ════════════════════════════════════════════════════════════ -->
 
-     <div class="footer-wave">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 160" preserveAspectRatio="none">
-    <path fill="{{ site.colors.footer }}" d="
-      M0,160
-      L0,100
-      C80,120 120,60 200,80
-      C280,100 320,40 420,55
-      C520,70 560,30 660,45
-      C760,60 800,20 900,35
-      C1000,50 1060,10 1160,25
-      C1260,40 1340,90 1440,70
-      L1440,160
-      Z
-    "/>
+<div class="footer-wave">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+    <path fill="{{ site.colors.footer }}" d="M0,120 L0,0 L1440,120 Z"/>
   </svg>
 </div>
 
