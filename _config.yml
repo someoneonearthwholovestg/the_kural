@@ -32,9 +32,13 @@ favicon:           "https://i.ibb.co/xK8XVXTn/logoo.png"
 # Full-width decorative image shown between content and footer.
 # Leave blank ("") to hide it.
 
-footer_image: "https://i.ibb.co/G4yxKJ9v/Gemini-Generated-Image-ld6y4ald6y4ald6y.png"
-# header_image: "https://i.ibb.co/yFfZZHn4/header.jpg"
+# ─── HEADER IMAGE ──────────────────────────────────────────────
+header_image_light: "https://i.ibb.co/G4yxKJ9v/Gemini-Generated-Image-ld6y4ald6y4ald6y.png"
+header_image_dark:  "https://i.ibb.co/G4yxKJ9v/Gemini-Generated-Image-ld6y4ald6y4ald6y.png"
 
+# ─── FOOTER IMAGE ──────────────────────────────────────────────
+# footer_image_light: "https://your-light-footer.png"
+# footer_image_dark:  "https://your-dark-footer.png"
 
 
 # ─── AUTHOR ────────────────────────────────────────────────────

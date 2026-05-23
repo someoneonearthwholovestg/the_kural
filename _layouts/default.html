@@ -199,6 +199,38 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
   transition: background var(--transition);
 }
 .header-inner { display: flex; align-items: center; gap: 1rem; height: 64px; }
+
+/* ── SITE HEADER IMAGE ── */
+.site-header-img-wrap {
+  position: relative;
+  height: 20vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  line-height: 0;
+}
+
+/* stretched blurred copy fills left/right with edge colors */
+.site-header-img-bg {
+  position: absolute;
+  inset: -10%;           /* slightly oversized to hide blur fringe */
+  background-size: cover;
+  background-position: center;
+  filter: blur(28px) saturate(1.4);
+}
+
+/* the real image: height locked to 20vh, width auto keeps ratio */
+.site-header-img-wrap > img {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
 .site-logo {
   font-family: var(--font-heading); font-size: 1.55rem; font-weight: 700;
   color: var(--c-text) !important; letter-spacing: -.02em; flex-shrink: 0;
@@ -565,9 +597,18 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
   </div>
 </header>
 
-{% if page.url == "/" and site.header_image != "" %}
-<div style="width:100%;line-height:0;">
-  <img src="{{ site.header_image }}" alt="" style="width:100%;height:auto;display:block;" />
+{% if page.url == "/" %}
+<div class="site-header-img-wrap">
+  <!-- blurred bg layer picks up left/right edge colors -->
+  <div class="site-header-img-bg"
+       id="header-img-light-bg"
+       style="background-image:url('{{ site.header_image_light }}');"></div>
+  <div class="site-header-img-bg"
+       id="header-img-dark-bg"
+       style="background-image:url('{{ site.header_image_dark }}');display:none;"></div>
+  <!-- actual image, ratio preserved, centered -->
+  <img id="header-img-light" src="{{ site.header_image_light }}" alt="" />
+  <img id="header-img-dark"  src="{{ site.header_image_dark }}"  alt="" style="display:none;" />
 </div>
 {% endif %}
 
@@ -600,9 +641,10 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
      FOOTER IMAGE  —  set footer_image: in _config.yml
      Leave blank ("") to hide it entirely.
      ════════════════════════════════════════════════════════════ -->
-{% if site.footer_image != "" %}
+{% if site.footer_image_light != "" %}
 <div style="width:100%;line-height:0;">
-  <img src="{{ site.footer_image }}" alt="" style="width:100%;height:auto;display:block;" />
+  <img id="footer-img-light" src="{{ site.footer_image_light }}" alt="" style="width:100%;height:auto;display:block;" />
+  <img id="footer-img-dark"  src="{{ site.footer_image_dark }}"  alt="" style="width:100%;height:auto;display:block;display:none;" />
 </div>
 {% endif %}
 
@@ -686,14 +728,33 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
     var themeBtn   = document.getElementById('theme-toggle');
     var savedTheme = localStorage.getItem('tk-theme') || 'light';
     html.setAttribute('data-theme', savedTheme);
+    applyThemeImages(savedTheme);
 
     if (themeBtn) {
       themeBtn.addEventListener('click', function () {
         var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
         html.setAttribute('data-theme', next);
         localStorage.setItem('tk-theme', next);
+        applyThemeImages(next);
         if (window.lucide) lucide.createIcons();
       });
+    }
+
+    function applyThemeImages(theme) {
+      var isDark = theme === 'dark';
+      var hl   = document.getElementById('header-img-light');
+      var hd   = document.getElementById('header-img-dark');
+      var hlbg = document.getElementById('header-img-light-bg');
+      var hdbg = document.getElementById('header-img-dark-bg');
+      if (hl)   hl.style.display   = isDark ? 'none'  : 'block';
+      if (hd)   hd.style.display   = isDark ? 'block' : 'none';
+      if (hlbg) hlbg.style.display = isDark ? 'none'  : 'block';
+      if (hdbg) hdbg.style.display = isDark ? 'block' : 'none';
+
+      var fl = document.getElementById('footer-img-light');
+      var fd = document.getElementById('footer-img-dark');
+      if (fl) fl.style.display = isDark ? 'none'  : 'block';
+      if (fd) fd.style.display = isDark ? 'block' : 'none';
     }
 
     /* ── 2. SEARCH ───────────────────────────────────────── */
