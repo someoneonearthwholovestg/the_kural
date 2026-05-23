@@ -36,6 +36,22 @@ favicon:           "https://i.ibb.co/xK8XVXTn/logoo.png"
 header_image_light: "https://thethirdeyeportal.in/wp-content/uploads/2025/12/savitribai-graphics-4-1200.avif"
 header_image_dark:  "https://thethirdeyeportal.in/wp-content/uploads/2025/12/savitribai-graphics-4-1200.avif"
 
+# ─── HEADER IMAGE BACKGROUND BANDS ────────────────────────────
+# Each band needs: color, from (%), to (%)
+# All bands must start at 0 and end at 100 combined.
+
+header_bg_bands:
+  light:
+    - color: "#223143"
+      to: 80
+    - color: "#efefef"
+      to: 100
+  dark:
+    - color: "#223143"
+      to: 80
+    - color: "#efefef"
+      to: 100
+
 # ─── FOOTER IMAGE ──────────────────────────────────────────────
 footer_image_light: "https://i.ibb.co/G4yxKJ9v/Gemini-Generated-Image-ld6y4ald6y4ald6y.png"
 footer_image_dark:  "https://i.ibb.co/G4yxKJ9v/Gemini-Generated-Image-ld6y4ald6y4ald6y.png"
