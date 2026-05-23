@@ -202,10 +202,8 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
 }
 .header-inner { display: flex; align-items: center; gap: 1rem; height: 64px; }
 
-/* ── SITE HEADER IMAGE ── */
 .site-header-img-wrap {
-  position: relative;
-  overflow: hidden;
+  height: var(--header-img-height);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -220,10 +218,7 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
   width: auto;
   display: block;
   object-fit: contain;
-  position: relative;
-  z-index: 1;
 }
-
 .site-logo {
   font-family: var(--font-heading); font-size: 1.55rem; font-weight: 700;
   color: var(--c-text) !important; letter-spacing: -.02em; flex-shrink: 0;
@@ -736,8 +731,6 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
       var fd = document.getElementById('footer-img-dark');
       if (fl) fl.style.display = isDark ? 'none'  : 'block';
       if (fd) fd.style.display = isDark ? 'block' : 'none';
-
-      fitHeaderImage(); // ← re-check fit after swap
     }
 
     /* ── HEADER IMAGE FIT ─────────────────────────────── */
