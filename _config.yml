@@ -30,7 +30,7 @@ favicon:           "https://i.ibb.co/xK8XVXTn/logoo.png"
 
 # ─── HEADER IMAGE ──────────────────────────────────────────────
 
-header_image_height: "40vh"
+header_image_height: "35vh"
 
 # Leave blank ("") to hide it.
 header_image_light: "https://thethirdeyeportal.in/wp-content/uploads/2025/12/savitribai-graphics-4-1200.avif"
