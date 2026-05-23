@@ -76,31 +76,54 @@
      ════════════════════════════════════════════════════════════ -->
 <style>
 
-/* ── CSS VARIABLES (driven by _config.yml) ── */
+/* ─────────────────────────────────────────────────────────────
+   CSS VARIABLES — all sourced from _config.yml
+   ───────────────────────────────────────────────────────────── */
 :root {
+  /* Fonts */
   --font-heading:    "{{ site.fonts.post_heading }}", Georgia, serif;
   --font-subheading: "{{ site.fonts.post_subheading }}", Georgia, serif;
   --font-body:       "{{ site.fonts.body }}", Georgia, serif;
   --font-ui:         "{{ site.fonts.ui }}", system-ui, sans-serif;
   --font-mono:       "{{ site.fonts.mono }}", monospace;
 
+  /* Font sizes */
   --fs-post-heading: {{ site.font_sizes.post_heading }};
   --fs-card-heading: {{ site.font_sizes.card_heading }};
   --fs-subheading:   {{ site.font_sizes.subheading }};
   --fs-body:         {{ site.font_sizes.body }};
   --fs-ui:           {{ site.font_sizes.ui }};
 
-  /* Light mode — edit colors: in _config.yml */
+  /* ── Global accent / primary (unchanged — used for buttons, tags, etc.) ── */
   --c-primary:      {{ site.colors.primary }};
   --c-primary-dark: {{ site.colors.primary_dark }};
-  --c-bg:           {{ site.colors.bg }};
-  --c-surface:      {{ site.colors.surface }};
-  --c-text:         {{ site.colors.text }};
-  --c-text-muted:   {{ site.colors.text_muted }};
-  --c-border:       {{ site.colors.border }};
   --c-accent:       {{ site.colors.accent }};
-  --c-footer:       {{ site.colors.footer }};
 
+  /* ── Header ── */
+  --c-header-bg:     {{ site.header_colors.light.bg }};
+  --c-header-text:   {{ site.header_colors.light.text }};
+  --c-header-muted:  {{ site.header_colors.light.muted }};
+  --c-header-border: {{ site.header_colors.light.border }};
+
+  /* ── Body / page ── */
+  --c-bg:         {{ site.body_colors.light.bg }};
+  --c-surface:    {{ site.body_colors.light.surface }};
+  --c-text:       {{ site.body_colors.light.text }};
+  --c-text-muted: {{ site.body_colors.light.text_muted }};
+  --c-border:     {{ site.body_colors.light.border }};
+
+  /* ── Footer ── */
+  --c-footer:           {{ site.footer_colors.light.bg }};
+  --c-footer-text:      {{ site.footer_colors.light.text }};
+  --c-footer-muted:     {{ site.footer_colors.light.text_muted }};
+  --c-footer-link:      {{ site.footer_colors.light.link }};
+  --c-footer-link-h:    {{ site.footer_colors.light.link_hover }};
+  --c-footer-border:    {{ site.footer_colors.light.border }};
+  --c-footer-social:    {{ site.footer_colors.light.social_bg }};
+  --c-footer-social-h:  {{ site.footer_colors.light.social_hover }};
+  --c-footer-copy:      {{ site.footer_colors.light.copy }};
+
+  /* Misc */
   --c-surface-hover: color-mix(in srgb, var(--c-primary) 6%, var(--c-surface));
   --shadow-sm:  0 1px 3px rgba(44,21,8,.06), 0 1px 2px rgba(44,21,8,.04);
   --shadow-md:  0 4px 16px rgba(44,21,8,.08), 0 2px 6px rgba(44,21,8,.05);
@@ -112,23 +135,38 @@
   {% assign prev = 0 %}--header-bg: linear-gradient(to bottom{% for b in site.header_bg_bands.light %}, {{ b.color }} {{ prev }}% {{ b.to }}%{% assign prev = b.to %}{% endfor %});
 }
 
-/* Dark mode — edit dark_colors: in _config.yml */
+/* ── DARK MODE ── */
 [data-theme="dark"] {
-  --c-primary:       {{ site.dark_colors.primary }};
-  --c-primary-dark:  {{ site.dark_colors.primary_dark }};
-  --c-bg:            {{ site.dark_colors.bg }};
-  --c-surface:       {{ site.dark_colors.surface }};
-  --c-text:          {{ site.dark_colors.text }};
-  --c-text-muted:    {{ site.dark_colors.text_muted }};
-  --c-border:        {{ site.dark_colors.border }};
-  --c-accent:        {{ site.dark_colors.accent }};
-  --c-footer:        {{ site.dark_colors.footer }};
+  --c-primary:      {{ site.dark_colors.primary }};
+  --c-primary-dark: {{ site.dark_colors.primary_dark }};
+  --c-accent:       {{ site.dark_colors.accent }};
+
+  --c-header-bg:     {{ site.header_colors.dark.bg }};
+  --c-header-text:   {{ site.header_colors.dark.text }};
+  --c-header-muted:  {{ site.header_colors.dark.muted }};
+  --c-header-border: {{ site.header_colors.dark.border }};
+
+  --c-bg:         {{ site.body_colors.dark.bg }};
+  --c-surface:    {{ site.body_colors.dark.surface }};
+  --c-text:       {{ site.body_colors.dark.text }};
+  --c-text-muted: {{ site.body_colors.dark.text_muted }};
+  --c-border:     {{ site.body_colors.dark.border }};
+
+  --c-footer:           {{ site.footer_colors.dark.bg }};
+  --c-footer-text:      {{ site.footer_colors.dark.text }};
+  --c-footer-muted:     {{ site.footer_colors.dark.text_muted }};
+  --c-footer-link:      {{ site.footer_colors.dark.link }};
+  --c-footer-link-h:    {{ site.footer_colors.dark.link_hover }};
+  --c-footer-border:    {{ site.footer_colors.dark.border }};
+  --c-footer-social:    {{ site.footer_colors.dark.social_bg }};
+  --c-footer-social-h:  {{ site.footer_colors.dark.social_hover }};
+  --c-footer-copy:      {{ site.footer_colors.dark.copy }};
+
   --c-surface-hover: color-mix(in srgb, var(--c-primary) 10%, var(--c-surface));
   --shadow-sm:  0 1px 3px rgba(0,0,0,.3);
   --shadow-md:  0 4px 16px rgba(0,0,0,.35);
   --shadow-lg:  0 12px 40px rgba(0,0,0,.45);
-  --header-bg: linear-gradient(to bottom{% for b in site.header_bg_bands.dark %}, {{ b.color }} {{ b.from }}% {{ b.to }}%{% endfor %});
-  {% assign prev = 0 %}--header-bg: linear-gradient(to bottom{% for b in site.header_bg_bands.light %}, {{ b.color }} {{ prev }}% {{ b.to }}%{% assign prev = b.to %}{% endfor %});
+  {% assign prev = 0 %}--header-bg: linear-gradient(to bottom{% for b in site.header_bg_bands.dark %}, {{ b.color }} {{ prev }}% {{ b.to }}%{% assign prev = b.to %}{% endfor %});
 }
 
 /* ── RESET ── */
@@ -193,16 +231,44 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
 .container        { max-width: 1160px; margin: 0 auto; padding: 0 1.5rem; }
 .container-narrow { max-width: 720px;  margin: 0 auto; padding: 0 1.5rem; }
 
-/* ── HEADER ── */
+/* ─────────────────────────────────────────────────────────────
+   HEADER  —  all colors via --c-header-* variables
+   ───────────────────────────────────────────────────────────── */
 .site-header {
   position: sticky; top: 0; z-index: 100;
-  background: color-mix(in srgb, var(--c-bg) 88%, transparent);
+  background: var(--c-header-bg);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border-bottom: 1px solid var(--c-border);
-  transition: background var(--transition);
+  border-bottom: 1px solid var(--c-header-border);
+  transition: background var(--transition), border-color var(--transition);
 }
 .header-inner { display: flex; align-items: center; gap: 1rem; height: 64px; }
+
+/* Header logo — text fallback or icon */
+.site-logo {
+  display: flex; align-items: center;
+  font-family: var(--font-heading); font-size: 1.55rem; font-weight: 700;
+  color: var(--c-header-text) !important; letter-spacing: -.02em; flex-shrink: 0;
+  gap: .45rem;
+}
+.site-logo span { color: var(--c-primary); }
+
+/* Icon variants — JS swaps visibility based on theme */
+.logo-icon {
+  height: 36px; width: auto;
+  display: block;
+  object-fit: contain;
+}
+.logo-icon-light { display: block; }
+.logo-icon-dark  { display: none;  }
+[data-theme="dark"] .logo-icon-light { display: none;  }
+[data-theme="dark"] .logo-icon-dark  { display: block; }
+
+/* Hide text logo when an icon is configured */
+.logo-text { display: flex; align-items: center; }
+{% if site.icon_light != "" %}
+.logo-text { display: none; }
+{% endif %}
 
 /* ── SITE HEADER IMAGE ── */
 .site-header-img-wrap {
@@ -217,47 +283,50 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
   background: var(--header-bg);
   transition: background var(--transition);
 }
-
 .site-header-img-wrap > img {
-  height: 100%;
-  width: auto;
-  display: block;
-  object-fit: contain;
-  position: relative;
-  z-index: 1;
+  height: 100%; width: auto;
+  display: block; object-fit: contain;
+  position: relative; z-index: 1;
 }
 
-.site-logo {
-  font-family: var(--font-heading); font-size: 1.55rem; font-weight: 700;
-  color: var(--c-text) !important; letter-spacing: -.02em; flex-shrink: 0;
-}
-.site-logo span { color: var(--c-primary); }
+/* Nav links use header text colors */
 .header-nav { display: flex; align-items: center; gap: .2rem; margin-left: 1.5rem; }
 .nav-link {
   font-family: var(--font-ui); font-size: var(--fs-ui); font-weight: 500;
-  color: var(--c-text-muted) !important;
+  color: var(--c-header-muted) !important;
   padding: .4rem .75rem; border-radius: 6px;
   transition: background var(--transition), color var(--transition);
   letter-spacing: .02em; text-transform: uppercase;
 }
-.nav-link:hover, .nav-link.active { color: var(--c-text) !important; background: var(--c-surface); }
+.nav-link:hover, .nav-link.active {
+  color: var(--c-header-text) !important;
+  background: color-mix(in srgb, var(--c-header-text) 8%, transparent);
+}
 .header-actions { display: flex; align-items: center; gap: .5rem; margin-left: auto; }
 .header-search-btn {
   display: flex; align-items: center; gap: .5rem;
-  background: transparent; border: 1px solid var(--c-border);
+  background: transparent; border: 1px solid var(--c-header-border);
   border-radius: 8px; padding: 0 1rem; height: 38px;
   width: clamp(120px, 33vw, 340px);
   font-family: var(--font-ui); font-size: var(--fs-ui); font-weight: 500;
-  color: var(--c-text-muted); cursor: pointer; transition: all var(--transition);
+  color: var(--c-header-muted); cursor: pointer; transition: all var(--transition);
 }
-.header-search-btn:hover { background: var(--c-surface); color: var(--c-text); border-color: var(--c-primary); }
+.header-search-btn:hover {
+  background: color-mix(in srgb, var(--c-header-text) 8%, transparent);
+  color: var(--c-header-text);
+  border-color: var(--c-primary);
+}
 .icon-btn {
   width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
-  border: 1px solid var(--c-border); border-radius: 8px;
-  background: transparent; color: var(--c-text-muted); cursor: pointer;
+  border: 1px solid var(--c-header-border); border-radius: 8px;
+  background: transparent; color: var(--c-header-muted); cursor: pointer;
   transition: all var(--transition);
 }
-.icon-btn:hover { background: var(--c-surface); color: var(--c-text); border-color: var(--c-primary); }
+.icon-btn:hover {
+  background: color-mix(in srgb, var(--c-header-text) 8%, transparent);
+  color: var(--c-header-text);
+  border-color: var(--c-primary);
+}
 .icon-btn svg { width: 16px; height: 16px; }
 .icon-sun { display: none; }
 [data-theme="dark"] .icon-sun  { display: block; }
@@ -267,14 +336,17 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
 .nav-dropdown { position: relative; }
 .dropdown-toggle {
   font-family: var(--font-ui); font-size: var(--fs-ui); font-weight: 500;
-  color: var(--c-text-muted) !important;
+  color: var(--c-header-muted) !important;
   padding: .4rem .75rem; border-radius: 6px;
   border: none; background: transparent; cursor: pointer;
   display: flex; align-items: center;
   transition: background var(--transition), color var(--transition);
   letter-spacing: .02em; text-transform: uppercase;
 }
-.dropdown-toggle:hover, .nav-dropdown.open .dropdown-toggle { color: var(--c-text) !important; background: var(--c-surface); }
+.dropdown-toggle:hover, .nav-dropdown.open .dropdown-toggle {
+  color: var(--c-header-text) !important;
+  background: color-mix(in srgb, var(--c-header-text) 8%, transparent);
+}
 .nav-dropdown.open .dropdown-toggle svg { transform: rotate(180deg); }
 .dropdown-menu {
   position: absolute; top: calc(100% + .5rem); left: 0;
@@ -459,27 +531,72 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
 .author-name { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; }
 .author-bio  { font-size: .9rem; color: var(--c-text-muted); margin-top: .2rem; }
 
-/* ── FOOTER ── */
+/* ─────────────────────────────────────────────────────────────
+   FOOTER  —  all colors via --c-footer-* variables
+   ───────────────────────────────────────────────────────────── */
 .site-footer { background: var(--c-footer); padding: 3rem 0 0; }
-.footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; padding-bottom: 2.5rem; border-bottom: 1px solid #222; }
+.footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--c-footer-border); }
 .footer-brand { display: flex; flex-direction: column; gap: .75rem; align-items: center; text-align: center; }
-.footer-logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: #fff; }
-.footer-logo span { color: var(--c-primary); }
-.footer-tagline { font-family: var(--font-ui); font-size: .78rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--c-primary); }
-.footer-desc { font-family: var(--font-ui); font-size: .84rem; color: #888; line-height: 1.7; max-width: 320px; text-align: center; }
+
+/* Footer logo: image if use_logo_in_footer + logo set, else text */
+.footer-logo-img {
+  height: {{ site.footer_logo_height }};
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+.footer-logo-text {
+  font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700;
+  color: var(--c-footer-text);
+}
+.footer-logo-text span { color: var(--c-primary); }
+
+{% if site.use_logo_in_footer and site.logo != "" %}
+.footer-logo-text { display: none; }
+{% else %}
+.footer-logo-img  { display: none; }
+{% endif %}
+
+.footer-tagline {
+  font-family: var(--font-ui); font-size: .78rem; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--c-primary);
+}
+.footer-desc { font-family: var(--font-ui); font-size: .84rem; color: var(--c-footer-muted); line-height: 1.7; max-width: 320px; text-align: center; }
 .footer-nav { display: flex; flex-direction: column; gap: .3rem; align-items: center; }
-.footer-nav-group { display: flex; flex-direction: column; gap: .1rem; margin-top: .5rem; align-items: flex-start; background: rgba(255,255,255,.03); border: 1px solid #222; border-radius: var(--radius); padding: .75rem 1.1rem .85rem; }
-.footer-nav-label { font-family: var(--font-ui); font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--c-primary); padding: .2rem 0; margin-top: .4rem; }
-.footer-nav-link { font-family: var(--font-ui); font-size: .85rem; color: #888 !important; padding: .25rem 0; transition: color var(--transition); }
-.footer-nav-link:hover { color: #fff !important; }
-.footer-nav-child { font-size: .82rem; color: #777 !important; padding: .15rem 0; display: flex; align-items: center; gap: .4rem; }
-.footer-nav-child:hover { color: #ccc !important; }
+.footer-nav-group {
+  display: flex; flex-direction: column; gap: .1rem; margin-top: .5rem;
+  align-items: flex-start;
+  background: color-mix(in srgb, var(--c-footer-text) 4%, transparent);
+  border: 1px solid var(--c-footer-border);
+  border-radius: var(--radius); padding: .75rem 1.1rem .85rem;
+}
+.footer-nav-label {
+  font-family: var(--font-ui); font-size: .65rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--c-primary);
+  padding: .2rem 0; margin-top: .4rem;
+}
+.footer-nav-link { font-family: var(--font-ui); font-size: .85rem; color: var(--c-footer-link) !important; padding: .25rem 0; transition: color var(--transition); }
+.footer-nav-link:hover { color: var(--c-footer-link-h) !important; }
+.footer-nav-child { font-size: .82rem; color: var(--c-footer-muted) !important; padding: .15rem 0; display: flex; align-items: center; gap: .4rem; }
+.footer-nav-child:hover { color: var(--c-footer-link-h) !important; }
 .footer-nav-dot { color: var(--c-primary); font-size: .6rem; opacity: .7; flex-shrink: 0; }
-.footer-bottom { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 0; gap: 1rem; flex-wrap: wrap; }
+.footer-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.25rem 0; gap: 1rem; flex-wrap: wrap;
+}
 .footer-socials { display: flex; gap: .5rem; align-items: center; }
-.footer-social-btn { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border: 1px solid #333; border-radius: 8px; color: #888 !important; transition: all var(--transition); background: transparent; }
-.footer-social-btn:hover { border-color: var(--c-primary); color: var(--c-primary) !important; background: color-mix(in srgb, var(--c-primary) 10%, transparent); }
-.footer-copy { font-family: var(--font-ui); font-size: .78rem; color: #555; }
+.footer-social-btn {
+  width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--c-footer-border); border-radius: 8px;
+  color: var(--c-footer-muted) !important; transition: all var(--transition);
+  background: var(--c-footer-social);
+}
+.footer-social-btn:hover {
+  border-color: var(--c-primary);
+  color: var(--c-primary) !important;
+  background: var(--c-footer-social-h);
+}
+.footer-copy { font-family: var(--font-ui); font-size: .78rem; color: var(--c-footer-copy); }
 
 /* ── MISC ── */
 .divider { height: 1px; background: var(--c-border); margin: 3rem 0; }
@@ -516,16 +633,11 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
 @media (max-width: 600px) { .explore-grid { grid-template-columns: 1fr; } }
 
 .footer-wave {
-  display: block;
-  line-height: 0;
+  display: block; line-height: 0;
   background: var(--c-bg);
   margin-bottom: -2px;
 }
-
-.footer-wave svg {
-  width: 100%;
-  display: block;
-}
+.footer-wave svg { width: 100%; display: block; }
 
 </style>
 
@@ -540,8 +652,16 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
   <div class="container">
     <div class="header-inner">
 
+      <!-- Logo: shows icon images if icon_light/icon_dark are set in _config.yml,
+           otherwise falls back to text logo -->
       <a href="{{ '/' | relative_url }}" class="site-logo">
-        {{ site.logo_text_prefix }}<span>{{ site.logo_text_accent }}</span>
+        {% if site.icon_light != "" %}
+          <img src="{{ site.icon_light }}" alt="{{ site.title }}" class="logo-icon logo-icon-light" />
+          <img src="{{ site.icon_dark  }}" alt="{{ site.title }}" class="logo-icon logo-icon-dark"  />
+        {% endif %}
+        <span class="logo-text">
+          {{ site.logo_text_prefix }}<span>{{ site.logo_text_accent }}</span>
+        </span>
       </a>
 
       <nav class="header-nav" id="desktop-nav">
@@ -633,44 +753,48 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
 </div>
 
 <!-- ════════════════════════════════════════════════════════════
-     MAIN CONTENT (injected by Jekyll)
+     MAIN CONTENT
      ════════════════════════════════════════════════════════════ -->
 <main>{{ content }}</main>
 
 <!-- ════════════════════════════════════════════════════════════
      FOOTER IMAGE  —  set footer_image: in _config.yml
-     Leave blank ("") to hide it entirely.
      ════════════════════════════════════════════════════════════ -->
 {% if site.footer_image_light != "" %}
 <div style="width:100%;line-height:0;">
   <img id="footer-img-light" src="{{ site.footer_image_light }}" alt="" style="width:100%;height:auto;display:block;" />
-  <img id="footer-img-dark"  src="{{ site.footer_image_dark }}"  alt="" style="width:100%;height:auto;display:block;display:none;" />
+  <img id="footer-img-dark"  src="{{ site.footer_image_dark }}"  alt="" style="width:100%;height:auto;display:none;" />
 </div>
 {% endif %}
 
-<!-- ════════════════════════════════════════════════════════════
-     FOOTER  —  social links from social: in _config.yml
-     ════════════════════════════════════════════════════════════ -->
-
+<!-- Wave divider into footer -->
 <div class="footer-wave">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
-    <path fill="{{ site.colors.footer }}" d="
+    <path fill="{{ site.footer_colors.light.bg }}" d="
       M0,0
       C200,10 400,80 700,90
       C1000,100 1200,110 1440,120
-      L1440,120
-      L0,120
-      Z
+      L1440,120 L0,120 Z
     "/>
   </svg>
 </div>
 
+<!-- ════════════════════════════════════════════════════════════
+     FOOTER
+     ════════════════════════════════════════════════════════════ -->
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
 
       <div class="footer-brand">
-        <div class="footer-logo">{{ site.logo_text_prefix }}<span>{{ site.logo_text_accent }}</span></div>
+        <!-- Logo image if use_logo_in_footer is true and logo is set -->
+        {% if site.use_logo_in_footer and site.logo != "" %}
+          <img src="{{ site.logo }}" alt="{{ site.title }}" class="footer-logo-img" />
+        {% endif %}
+        <!-- Fallback text logo -->
+        <div class="footer-logo-text">
+          {{ site.logo_text_prefix }}<span>{{ site.logo_text_accent }}</span>
+        </div>
         <p class="footer-tagline">{{ site.author.bio }}</p>
         <p class="footer-desc">{{ site.description }}</p>
       </div>
@@ -723,7 +847,7 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
 </footer>
 
 <!-- ════════════════════════════════════════════════════════════
-     JAVASCRIPT — theme · search · fade-in · dropdowns · mobile menu
+     JAVASCRIPT
      ════════════════════════════════════════════════════════════ -->
 <script>
 (function () {
@@ -809,11 +933,7 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
 
     document.addEventListener('keydown', function (e) {
       if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
-      if (e.key === 'Escape') {
-        closeSearch();
-        var nm = document.getElementById('nazar-quarters-modal');
-        if (nm) nm.classList.remove('open');
-      }
+      if (e.key === 'Escape') { closeSearch(); }
     });
 
     if (input) {
@@ -953,7 +1073,7 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
       });
     });
 
-  }); /* end DOMContentLoaded */
+  });
 }());
 </script>
 
