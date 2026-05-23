@@ -24,7 +24,7 @@ lang:         "en"
 
 logo_text_prefix: "The"
 logo_text_accent:  "Kural"
-logo:              "https://i.ibb.co/BKZGrftN/logo.png"
+logo:              "https://i.ibb.co/0jLzx6j7/logo.png"
 favicon:           "https://i.ibb.co/xK8XVXTn/logoo.png"
 
 icon_light: "https://i.ibb.co/xK8XVXTn/logoo.png"   # header icon for light mode
@@ -102,7 +102,7 @@ body_colors:
 # footer_logo_height controls how tall the logo image renders.
  
 use_logo_in_footer:  true
-footer_logo_height:  100px"
+footer_logo_height:  60px"
  
 footer_colors:
   light:
@@ -131,7 +131,7 @@ footer_colors:
 author:
   name:   "The Kural"
   bio:    "Voices & Perceptions"
-  avatar: "https://i.ibb.co/BKZGrftN/logo.png"
+  avatar: "https://i.ibb.co/0jLzx6j7/logo.png"
 
 
 # ─── NAVIGATION ────────────────────────────────────────────────
