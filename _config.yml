@@ -49,12 +49,12 @@ header_colors:
     bg:     "#223143"   # nav bar background
     text:   "#efefef"   # logo + nav text
     muted:  "#6b7c93"   # secondary nav items
-    border: "#dde3eb"   # bottom border line
+    # border: "#dde3eb"   # bottom border line
   dark:
     bg:     "rgba(17,29,43,0.92)"
     text:   "#e8eef4"
     muted:  "#8fa5bc"
-    border: "#2d4159"
+    # border: "#2d4159"
 
 # ─── HEADER IMAGE BACKGROUND BANDS ────────────────────────────
 # Each band needs: color, from (%), to (%)
@@ -79,17 +79,17 @@ header_bg_bands:
  
 body_colors:
   light:
-    bg:         "#ffffff"
+    bg:         "#efefef"
     surface:    "#f4f6f8"
-    text:       "#1a2535"
+    text:       "#223143"
     text_muted: "#6b7c93"
-    border:     "#dde3eb"
+    # border:     "#dde3eb"
   dark:
     bg:         "#111d2b"
     surface:    "#1a2b3d"
     text:       "#e8eef4"
     text_muted: "#8fa5bc"
-    border:     "#2d4159"
+    # border:     "#2d4159"
 
 # ─── FOOTER IMAGE ──────────────────────────────────────────────
 # footer_image_light: "https://i.ibb.co/G4yxKJ9v/Gemini-Generated-Image-ld6y4ald6y4ald6y.png"
