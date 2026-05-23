@@ -107,15 +107,15 @@ sections:
 # footer        = footer background
 
 colors:
-  primary:      "#4A4A4A"
-  primary_dark: "#2E2E2E"
-  bg:           "#FFFFFF"
-  surface:      "#F5F5F5"
-  text:         "#1A1A1A"
-  text_muted:   "#8A8A8A"
-  border:       "#E0E0E0"
-  accent:       "#BDBDBD"
-  footer:       "#000000"
+  primary:      "#223143"
+  primary_dark: "#1a2535"
+  bg:           "#ffffff"
+  surface:      "#f4f6f8"
+  text:         "#1a2535"
+  text_muted:   "#6b7c93"
+  border:       "#dde3eb"
+  accent:       "#a8b8cc"
+  footer:       "#223143"
 
 
 # ─── DARK MODE COLORS ──────────────────────────────────────────
