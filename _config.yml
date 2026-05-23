@@ -43,12 +43,12 @@ header_image_dark:  "https://thethirdeyeportal.in/wp-content/uploads/2025/12/sav
 header_bg_bands:
   light:
     - color: "#223143"
-      to: 83
+      to: 83.5
     - color: "#efefef"
       to: 100
   dark:
     - color: "#223143"
-      to: 83
+      to: 83.5
     - color: "#efefef"
       to: 100
 
