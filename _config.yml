@@ -28,11 +28,11 @@ logo:              "/assets/images/logo.png"
 favicon:           "https://i.ibb.co/xK8XVXTn/logoo.png"
 
 
-# ─── FOOTER IMAGE ──────────────────────────────────────────────
-# Full-width decorative image shown between content and footer.
-# Leave blank ("") to hide it.
-
 # ─── HEADER IMAGE ──────────────────────────────────────────────
+
+header_image_height: "40vh"
+
+# Leave blank ("") to hide it.
 header_image_light: "https://thethirdeyeportal.in/wp-content/uploads/2025/12/savitribai-graphics-4-1200.avif"
 header_image_dark:  "https://thethirdeyeportal.in/wp-content/uploads/2025/12/savitribai-graphics-4-1200.avif"
 

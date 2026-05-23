@@ -206,7 +206,6 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
 /* ── SITE HEADER IMAGE ── */
 .site-header-img-wrap {
   position: relative;
-  height: 40vh;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -593,7 +592,7 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
 </header>
 
 {% if page.url == "/" %}
-<div class="site-header-img-wrap">
+<div class="site-header-img-wrap" data-max-height="{{ site.header_image_height }}">
   <img id="header-img-light" src="{{ site.header_image_light }}" alt="" />
   <img id="header-img-dark"  src="{{ site.header_image_dark }}"  alt="" style="display:none;" />
 </div>
@@ -738,7 +737,40 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
       var fd = document.getElementById('footer-img-dark');
       if (fl) fl.style.display = isDark ? 'none'  : 'block';
       if (fd) fd.style.display = isDark ? 'block' : 'none';
+
+      fitHeaderImage(); // ← re-check fit after swap
     }
+
+    /* ── HEADER IMAGE FIT ─────────────────────────────── */
+    function fitHeaderImage() {
+      var wrap = document.querySelector('.site-header-img-wrap');
+      if (!wrap) return;
+
+      var maxHeight = wrap.dataset.maxHeight || '20vh';
+
+      var activeImg = null;
+      wrap.querySelectorAll('img').forEach(function(img) {
+        if (img.style.display !== 'none') activeImg = img;
+      });
+      if (!activeImg || !activeImg.naturalWidth) return;
+
+      if (activeImg.naturalWidth <= window.innerWidth) {
+        wrap.style.height  = 'auto';
+        activeImg.style.width  = '100vw';
+        activeImg.style.height = 'auto';
+      } else {
+        wrap.style.height  = maxHeight;   // ← uses config value
+        activeImg.style.width  = 'auto';
+        activeImg.style.height = '100%';
+      }
+    }
+
+    // run on load and on resize
+    wrap && document.querySelectorAll('.site-header-img-wrap img').forEach(function(img) {
+      img.addEventListener('load', fitHeaderImage);
+      if (img.complete) fitHeaderImage();
+    });
+    window.addEventListener('resize', fitHeaderImage);
 
     /* ── 2. SEARCH ───────────────────────────────────────── */
     var overlay   = document.getElementById('search-overlay');
@@ -926,7 +958,7 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
       });
     });
 
-  }); /* end DOMContentLoaded */
+  });
 }());
 </script>
 
