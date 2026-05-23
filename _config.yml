@@ -102,7 +102,7 @@ body_colors:
 # footer_logo_height controls how tall the logo image renders.
  
 use_logo_in_footer:  true
-footer_logo_height:  "48px"
+footer_logo_height:  100px"
  
 footer_colors:
   light:
