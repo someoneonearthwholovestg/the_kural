@@ -53,8 +53,8 @@ header_bg_bands:
       to: 100
 
 # ─── FOOTER IMAGE ──────────────────────────────────────────────
-footer_image_light: "https://i.ibb.co/G4yxKJ9v/Gemini-Generated-Image-ld6y4ald6y4ald6y.png"
-footer_image_dark:  "https://i.ibb.co/G4yxKJ9v/Gemini-Generated-Image-ld6y4ald6y4ald6y.png"
+# footer_image_light: "https://i.ibb.co/G4yxKJ9v/Gemini-Generated-Image-ld6y4ald6y4ald6y.png"
+# footer_image_dark:  "https://i.ibb.co/G4yxKJ9v/Gemini-Generated-Image-ld6y4ald6y4ald6y.png"
 
 
 # ─── AUTHOR ────────────────────────────────────────────────────
@@ -105,7 +105,6 @@ sections:
 # border        = dividers, card borders
 # accent        = subtle tint (used in gradients)
 # footer        = footer background
-
 colors:
   primary:      "#223143"
   primary_dark: "#1a2535"
@@ -120,17 +119,16 @@ colors:
 
 # ─── DARK MODE COLORS ──────────────────────────────────────────
 # Applied automatically when the user toggles dark mode.
-
 dark_colors:
-  primary:      "#FFD54F"
-  primary_dark: "#FFCA28"
-  bg:           "#1A1405"
-  surface:      "#241B08"
-  text:         "#FFF6D6"
-  text_muted:   "#C9B458"
-  border:       "#4A3A10"
-  accent:       "#FFE082"
-  footer:       "#000000"
+  primary:      "#7ba3c8"
+  primary_dark: "#9bbad5"
+  bg:           "#111d2b"
+  surface:      "#1a2b3d"
+  text:         "#e8eef4"
+  text_muted:   "#8fa5bc"
+  border:       "#2d4159"
+  accent:       "#3d5a78"
+  footer:       "#0d1620"
 
 
 # ─── TYPOGRAPHY ────────────────────────────────────────────────
