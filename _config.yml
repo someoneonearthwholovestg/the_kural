@@ -24,7 +24,7 @@ lang:         "en"
 
 logo_text_prefix: "The"
 logo_text_accent:  "Kural"
-logo:              "/assets/images/logo.png"
+logo:              "https://i.ibb.co/BKZGrftN/logo.png"
 favicon:           "https://i.ibb.co/xK8XVXTn/logoo.png"
 
 icon_light: "https://i.ibb.co/xK8XVXTn/logoo.png"   # header icon for light mode
