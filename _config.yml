@@ -36,8 +36,8 @@ icon_dark:  "https://i.ibb.co/xK8XVXTn/logoo.png"   # header icon for dark  mode
 header_image_height: "35vh"
 
 # Leave blank ("") to hide it.
-header_image_light: "https://i.ibb.co/JR1MXHb3/IMG-20260717-204257-125.jpg"
-header_image_dark:  "https://i.ibb.co/ccfQGf1V/IMG-20260717-204823-131.jpg"
+header_image_light: "https://i.ibb.co/7tqSd0K4/IMG-20260717-210908-554.jpg"
+header_image_dark:  "https://i.ibb.co/SDsyJJXr/2.jpg"
 
 
 # ─── HEADER COLORS ─────────────────────────────────────────────
@@ -61,12 +61,12 @@ header_colors:
 # All bands must start at 0 and end at 100 combined.
 header_bg_bands:
   light:
-    - color: "#ffffff"
+    - color: "#efefef"
       to: 100
 #    - color: "#efefef"
 #      to: 100
   dark:
-    - color: "#ffffff"
+    - color: "#0A0A0A"
       to: 100
 #    - color: "#efefef"
 #      to: 100
