@@ -46,13 +46,13 @@ header_image_dark:  "https://i.ibb.co/SDsyJJXr/2.jpg"
 # header_border_*    – bottom border of the sticky bar
 header_colors:
   light:
-    bg:     "#223143"   # nav bar background
-    text:   "#efefef"   # logo + nav text
+    bg:     "#efefef"   # nav bar background
+    text:   "#0A0A0A"   # logo + nav text
     muted:  "#6b7c93"   # secondary nav items
     # border: "#dde3eb"   # bottom border line
   dark:
-    bg:     "rgba(17,29,43,0.92)"
-    text:   "#e8eef4"
+    bg:     "#0A0A0A"
+    text:   "#efefef"
     muted:  "#8fa5bc"
     # border: "#2d4159"
 
@@ -85,7 +85,7 @@ body_colors:
     text_muted: "#6b7c93"
     # border:     "#dde3eb"
   dark:
-    bg:         "#111d2b"
+    bg:         "0A0A0A"
     surface:    "#1a2b3d"
     text:       "#e8eef4"
     text_muted: "#8fa5bc"
