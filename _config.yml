@@ -61,15 +61,15 @@ header_colors:
 # All bands must start at 0 and end at 100 combined.
 header_bg_bands:
   light:
-    - color: "#223143"
-      to: 83.5
-    - color: "#efefef"
+    - color: "#ffffff"
       to: 100
+#    - color: "#efefef"
+#      to: 100
   dark:
-    - color: "#223143"
-      to: 83.5
-    - color: "#efefef"
+    - color: "#ffffff"
       to: 100
+#    - color: "#efefef"
+#      to: 100
 
 # ─── BODY COLORS (LIGHT MODE) ──────────────────────────────────
 # bg            = overall page background
