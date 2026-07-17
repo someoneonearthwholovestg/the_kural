@@ -36,8 +36,8 @@ icon_dark:  "https://i.ibb.co/xK8XVXTn/logoo.png"   # header icon for dark  mode
 header_image_height: "35vh"
 
 # Leave blank ("") to hide it.
-header_image_light: "https://thethirdeyeportal.in/wp-content/uploads/2025/12/savitribai-graphics-4-1200.avif"
-header_image_dark:  "https://thethirdeyeportal.in/wp-content/uploads/2025/12/savitribai-graphics-4-1200.avif"
+header_image_light: "https://i.ibb.co/JR1MXHb3/IMG-20260717-204257-125.jpg"
+header_image_dark:  "https://i.ibb.co/ccfQGf1V/IMG-20260717-204823-131.jpg"
 
 
 # ─── HEADER COLORS ─────────────────────────────────────────────
