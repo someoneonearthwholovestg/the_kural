@@ -80,13 +80,13 @@ header_bg_bands:
 body_colors:
   light:
     bg:         "#efefef"
-    surface:    "#f4f6f8"
+    surface:    "#efefef"
     text:       "#223143"
     text_muted: "#6b7c93"
     # border:     "#dde3eb"
   dark:
-    bg:         "0A0A0A"
-    surface:    "#1a2b3d"
+    bg:         "#0A0A0A"
+    surface:    "#0A0A0A"
     text:       "#e8eef4"
     text_muted: "#8fa5bc"
     # border:     "#2d4159"
