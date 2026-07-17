@@ -22,7 +22,7 @@ lang:         "en"
 # logo_text_accent  – the coloured part            (e.g. "Kural")
 # favicon           – path or absolute URL to a .png/.ico
 
-logo_text_prefix: "The"
+logo_text_prefix:  "The"
 logo_text_accent:  "Kural"
 logo:              "https://i.ibb.co/XfkZXyCv/logo.png"
 favicon:           "https://i.ibb.co/xK8XVXTn/logoo.png"
@@ -46,13 +46,13 @@ header_image_dark:  "https://i.ibb.co/SDsyJJXr/2.jpg"
 # header_border_*    – bottom border of the sticky bar
 header_colors:
   light:
-    bg:     "#efefef"   # nav bar background
-    text:   "#0A0A0A"   # logo + nav text
+    bg:     "#ffffff"   # nav bar background
+    text:   "#000000"   # logo + nav text
     muted:  "#6b7c93"   # secondary nav items
     # border: "#dde3eb"   # bottom border line
   dark:
-    bg:     "#0A0A0A"
-    text:   "#efefef"
+    bg:     "#000000"
+    text:   "#ffffff"
     muted:  "#8fa5bc"
     # border: "#2d4159"
 
@@ -61,12 +61,12 @@ header_colors:
 # All bands must start at 0 and end at 100 combined.
 header_bg_bands:
   light:
-    - color: "#efefef"
+    - color: "#ffffff"
       to: 100
 #    - color: "#efefef"
 #      to: 100
   dark:
-    - color: "#0A0A0A"
+    - color: "#000000"
       to: 100
 #    - color: "#efefef"
 #      to: 100
@@ -79,14 +79,14 @@ header_bg_bands:
  
 body_colors:
   light:
-    bg:         "#efefef"
-    surface:    "#efefef"
+    bg:         "#ffffff"
+    surface:    "#ffffff"
     text:       "#223143"
     text_muted: "#6b7c93"
     # border:     "#dde3eb"
   dark:
-    bg:         "#0A0A0A"
-    surface:    "#0A0A0A"
+    bg:         "#000000"
+    surface:    "#000000"
     text:       "#e8eef4"
     text_muted: "#8fa5bc"
     # border:     "#2d4159"
@@ -106,7 +106,7 @@ footer_logo_height:  60px"
  
 footer_colors:
   light:
-    bg:          "#223143"
+    bg:          "#000000"
     text:        "#ffffff"
     text_muted:  "#9aafc5"
     link:        "#c2d4e8"
@@ -116,8 +116,8 @@ footer_colors:
     social_hover: "rgba(255,255,255,0.15)"
     copy:        "#556a82"
   dark:
-    bg:          "#0d1620"
-    text:        "#e8eef4"
+    bg:          "#000000"
+    text:        "#ffffff"
     text_muted:  "#8fa5bc"
     link:        "#7ba3c8"
     link_hover:  "#e8eef4"
