@@ -917,13 +917,17 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
     var searchIndex   = null;
     var searchLoading = false;
 
-    function loadSearchIndex() {
-      if (searchIndex || searchLoading) return;
+    function loadSearchIndex(then) {
+      if (searchIndex) { if (then) then(); return; }
+      if (searchLoading) return;
       searchLoading = true;
-      fetch('/search.json')
+      fetch('{{ "/search.json" | relative_url }}')
         .then(function (r) { return r.json(); })
-        .then(function (data) { searchIndex = data; searchLoading = false; })
-        .catch(function () { searchLoading = false; });
+        .then(function (data) { searchIndex = data; searchLoading = false; if (then) then(); })
+        .catch(function () {
+          searchLoading = false;
+          if (results) results.innerHTML = '<div class="search-empty">Couldn\'t load search index.</div>';
+        });
     }
 
     function openSearch() {
@@ -956,7 +960,11 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
       input.addEventListener('input', function () {
         var q = input.value.trim().toLowerCase();
         if (!q) { if (results) results.innerHTML = hint ? hint.outerHTML : ''; if (window.lucide) lucide.createIcons(); return; }
-        if (!searchIndex) { if (results) results.innerHTML = '<div class="search-empty">Loading\u2026</div>'; loadSearchIndex(); return; }
+        if (!searchIndex) {
+          if (results) results.innerHTML = '<div class="search-empty">Loading\u2026</div>';
+          loadSearchIndex(function () { input.dispatchEvent(new Event('input')); });
+          return;
+        }
 
         var hits = searchIndex
           .map(function (post) {
