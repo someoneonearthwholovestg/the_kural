@@ -33,7 +33,7 @@ icon_dark:  "https://i.ibb.co/xK8XVXTn/logoo.png"   # header icon for dark  mode
 
 # ─── HEADER IMAGE ──────────────────────────────────────────────
 
-header_image_height: "10vh"
+header_image_height: "20vh"
 
 # Leave blank ("") to hide it.
 header_image_light: "https://i.ibb.co/yF0thCTb/IMG-20260717-214001-025.jpg"
