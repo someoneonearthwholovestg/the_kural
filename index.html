@@ -82,7 +82,7 @@ permalink: /
     </div>
 
     <!-- ── BOOK REVIEWS ── -->
-    {% assign book_reviews = site['book-review'] %}
+    {% assign book_reviews = site.pages | where_exp: "p", "p.url contains '/book-review/'" | where_exp: "p", "p.layout == 'post'" %}
     {% if book_reviews and book_reviews.size > 0 %}
     <section style="margin:3rem 0;">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
