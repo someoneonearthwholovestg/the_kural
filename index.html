@@ -93,7 +93,7 @@ permalink: /
       </div>
 
       <div class="posts-grid">
-        {% for book in book_reviews limit: 6 %}
+        {% for book in book_reviews limit: 4 %}
         <a href="{{ book.url | relative_url }}" class="post-card fade-in" style="text-decoration:none;">
 
           {% if book.image %}
