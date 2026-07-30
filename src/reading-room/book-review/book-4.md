@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Maths OPEN elective"
-author: "Nabil A Navab"
+author: "nabil"
 year: 2001
 permalink: /book-review/post-4/
 image: "https://picsum.photos/seed/book1/400/600"
