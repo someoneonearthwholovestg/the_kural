@@ -35,11 +35,21 @@ layout: default
           <div ...>{{ author.name | slice: 0 }}</div>   <!-- circle with author's first letter -->
         {% endif %}
         <span>{{ author.name }}</span>
-        <span>·</span>
-        <span>{{ page.date | date: "%B %d, %Y" }}</span>
+
+        <span style="display:flex;align-items:center;gap:.4rem;">
+          <span style="width:20px;height:20px;border-radius:50%;background:color-mix(in srgb, var(--c-primary) 15%, var(--c-surface));display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <i data-lucide="calendar" style="width:11px;height:11px;color:var(--c-primary);"></i>
+          </span>
+          {{ page.date | date: "%B %d, %Y" }}
+        </span>
+
         {% if site.show_reading_time %}
-          <span>·</span>
+        <span style="display:flex;align-items:center;gap:.4rem;">
+          <span style="width:20px;height:20px;border-radius:50%;background:color-mix(in srgb, var(--c-primary) 15%, var(--c-surface));display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <i data-lucide="clock" style="width:11px;height:11px;color:var(--c-primary);"></i>
+          </span>
           <span id="reading-time">— min read</span>
+        </span>
         {% endif %}
       </div>
 
