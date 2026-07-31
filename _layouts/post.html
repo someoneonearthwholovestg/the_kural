@@ -32,9 +32,9 @@ layout: default
           <img src="{{ author.avatar }}" alt="{{ author.name }}"
             style="width:clamp(24px,4vw,36px);height:clamp(24px,4vw,36px);border-radius:50%;object-fit:cover;flex-shrink:0;"
             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
-          <div style="width:clamp(24px,4vw,36px);height:clamp(24px,4vw,36px);border-radius:50%;background:color-mix(in srgb,var(--c-primary) 20%,var(--c-surface));display:flex;align-items:center;justify-content:center;border:2px solid var(--c-primary);font-family:var(--font-heading);font-size:clamp(.7rem,2vw,1rem);font-weight:700;color:var(--c-primary);flex-shrink:0;">{{ author.name | slice: 0 }}</div>
+          <div style="width:clamp(24px,4vw,36px);height:clamp(24px,4vw,36px);border-radius:50%;background:color-mix(in srgb,var(--c-primary) 20%,var(--c-surface));display:none;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:clamp(.7rem,2vw,1rem);font-weight:700;color:var(--c-primary);flex-shrink:0;">{{ author.name | slice: 0 }}</div>
         {% else %}
-          <div style="width:clamp(24px,4vw,36px);height:clamp(24px,4vw,36px);border-radius:50%;background:color-mix(in srgb,var(--c-primary) 20%,var(--c-surface));display:flex;align-items:center;justify-content:center;border:2px solid var(--c-primary);font-family:var(--font-heading);font-size:clamp(.7rem,2vw,1rem);font-weight:700;color:var(--c-primary);flex-shrink:0;">{{ author.name | slice: 0 }}</div>
+          <div style="width:clamp(24px,4vw,36px);height:clamp(24px,4vw,36px);border-radius:50%;background:color-mix(in srgb,var(--c-primary) 20%,var(--c-surface));display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:clamp(.7rem,2vw,1rem);font-weight:700;color:var(--c-primary);flex-shrink:0;">{{ author.name | slice: 0 }}</div>
         {% endif %}
         <span>{{ author.name }}</span>
 
@@ -54,6 +54,8 @@ layout: default
         </span>
         {% endif %}
       </div>
+
+    </div>
 
     <!-- Cover image -->
     {% if page.image %}
@@ -77,18 +79,20 @@ layout: default
     {% endif %}
 
     <div class="divider"></div>
+
     <!-- Author card -->
     {% if author %}
     <div class="post-author">
       {% if author.avatar %}
         <img src="{{ author.avatar }}" alt="{{ author.name }}"
-          style="width:clamp(24px,4vw,36px);height:clamp(24px,4vw,36px);border-radius:50%;object-fit:cover;border:2px solid var(--c-primary);"
+          style="width:clamp(44px,8vw,64px);height:clamp(44px,8vw,64px);border-radius:50%;object-fit:cover;flex-shrink:0;"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
-        <div style="width:clamp(24px,4vw,36px);height:clamp(24px,4vw,36px);border-radius:50%;background:color-mix(in srgb,var(--c-primary) 20%,var(--c-surface));display:none;align-items:center;justify-content:center;border:2px solid var(--c-primary);font-family:var(--font-heading);font-size:clamp(.7rem,2vw,1rem);font-weight:700;color:var(--c-primary);">{{ author.name | slice: 0 }}</div>
+        <div style="width:clamp(44px,8vw,64px);height:clamp(44px,8vw,64px);border-radius:50%;background:color-mix(in srgb,var(--c-primary) 20%,var(--c-surface));display:none;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:clamp(1rem,3vw,1.6rem);font-weight:700;color:var(--c-primary);flex-shrink:0;">{{ author.name | slice: 0 }}</div>
       {% else %}
-        <div style="width:clamp(24px,4vw,36px);height:clamp(24px,4vw,36px);border-radius:50%;background:color-mix(in srgb,var(--c-primary) 20%,var(--c-surface));display:flex;align-items:center;justify-content:center;border:2px solid var(--c-primary);font-family:var(--font-heading);font-size:clamp(.7rem,2vw,1rem);font-weight:700;color:var(--c-primary);">{{ author.name | slice: 0 }}</div>
+        <div style="width:clamp(44px,8vw,64px);height:clamp(44px,8vw,64px);border-radius:50%;background:color-mix(in srgb,var(--c-primary) 20%,var(--c-surface));display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:clamp(1rem,3vw,1.6rem);font-weight:700;color:var(--c-primary);flex-shrink:0;">{{ author.name | slice: 0 }}</div>
       {% endif %}
-      <span>{{ author.name }}</span>
+      <div>
+        <div class="author-name">{{ author.name }}</div>
         <div class="author-bio">{{ author.bio }}</div>
       </div>
     </div>
