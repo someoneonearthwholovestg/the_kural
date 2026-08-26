@@ -263,8 +263,10 @@ collections:
   criticulture:
     output: true
     permalink: /criticulture/:title/
-
-
+  interviews:
+    output: true
+    permalink: /interviews/:title/
+    
 # ─── JEKYLL CORE ───────────────────────────────────────────────
 markdown:    kramdown
 highlighter: rouge
