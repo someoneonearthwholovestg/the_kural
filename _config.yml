@@ -234,7 +234,7 @@ nav:
   - label: Reading Room
     url: "#"
     children:
-      - label: Nazar
+      - label: Nazar (Photo Essay)
         url: /nazar
       - label: Interviews
         url: /interviews
