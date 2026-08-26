@@ -205,13 +205,19 @@ dark_colors:
 # Font names must match exactly what Google Fonts serves.
 # Change the name here and the stylesheet updates automatically.
 # use : https://fonts.google.com/
+# fonts:
+#   post_heading:    "Playwrite Argentina Guides" #"Caveat"
+#   post_subheading: "Playfair Display" #"Kalam"
+#   body:            "PT Serif" #"Patrick Hand"
+#   ui:              "Source Serif 4" #"Architects Daughter"
+#   mono:            "IBM Plex Mono" #"JetBrains Mono"
 fonts:
-  post_heading:    "Playwrite Argentina Guides" #"Caveat"
-  post_subheading: "Playfair Display" #"Kalam"
-  body:            "PT Serif" #"Patrick Hand"
-  ui:              "Source Serif 4" #"Architects Daughter"
-  mono:            "IBM Plex Mono" #"JetBrains Mono"
-
+  post_heading:    "Domine" #"Caveat"
+  post_subheading: "Domine" #"Kalam"
+  body:            "Domine" #"Patrick Hand"
+  ui:              "Domine" #"Architects Daughter"
+  mono:            "Domine" #"JetBrains Mono"
+  
 font_sizes:
   post_heading: "3.4rem"
   card_heading: "1.45rem"
