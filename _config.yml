@@ -236,17 +236,18 @@ nav:
     children:
       - label: Nazar
         url: /nazar
-      - label: Book Review
-        url: /book-review
+      - label: Interviews
+        url: /interviews
       - label: Keywords
         url: /keywords
       - label: Criticulture
         url: /criticulture
-  - label: Submit
+      - label: Book Reviews
+        url: /book-review
+  - label: Submission
     url: /submission
   - label: About
     url: /about
-
 
 collections_dir: src/reading-room
 collections:
