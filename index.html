@@ -51,7 +51,7 @@ permalink: /
     {% assign latest_quarter = all_quarters | first %}
 
     {% if latest_quarter %}
-    <section style="margin:3rem 0;">
+    <!-- <section style="margin:3rem 0;">
       <div class="section-label">Nazar — Visual Journal</div>
       {% assign q_posts = nazar_docs | where_exp: "p", "p.url contains latest_quarter.key" %}
       <div class="post-card" onclick="document.getElementById('nazar-quarters-modal').classList.add('open')"
@@ -67,6 +67,14 @@ permalink: /
           <span class="read-more-arrow">Browse Quarters <i data-lucide="layers"
               style="width:13px;height:13px;"></i></span>
         </div>
+      </div>
+    </section> -->
+    <!-- ── NAZAR — Visual Journal ── -->
+    <section style="margin:3rem 0;">
+      <div class="section-label">Nazar — Visual Journal</div>
+      <div class="teaser-box">
+        <p class="teaser-desc">Nazar is a quarterly photo essay series shaped around a shared theme. It brings together visual narratives that attend to the textures of everyday life, without claiming neutrality. What is shown here is as much about framing as it is about what enters the frame.</p>
+        <a href="{{ '/nazar/' | relative_url }}" class="teaser-cta">VOLUME 1 — coming soon</a>
       </div>
     </section>
 
