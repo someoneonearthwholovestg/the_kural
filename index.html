@@ -22,9 +22,33 @@ permalink: /
   <div class="container">
 
     <!-- ── NAZAR SECTION ── -->
-    {% assign all_quarters = site.pages | where_exp: "p", "p.key != nil" | where_exp: "p", "p.url contains '/nazar/'" | sort: "key" | reverse %}
+    {%- comment -%}
+      Nazar privacy rule:
+      - Nazar .md files whose source filename starts with "-" are private.
+      - Private Nazar files are excluded from all public Nazar UI.
+      - If there are no public Nazar quarter pages, show the fallback teaser.
+    {%- endcomment -%}
+
+    {% assign all_nazar_pages = site.pages | where_exp: "p", "p.url contains '/nazar/'" %}
+    {% assign all_quarters = "" | split: "" %}
+    {% assign nazar_docs = "" | split: "" %}
+
+    {% for p in all_nazar_pages %}
+      {% assign source_name = p.path | split: "/" | last %}
+      {% assign first_char = source_name | slice: 0, 1 %}
+
+      {% if first_char != "-" %}
+        {% if p.key != nil %}
+          {% assign all_quarters = all_quarters | push: p %}
+        {% endif %}
+        {% if p.layout == "post" %}
+          {% assign nazar_docs = nazar_docs | push: p %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+
+    {% assign all_quarters = all_quarters | sort: "key" | reverse %}
     {% assign latest_quarter = all_quarters | first %}
-    {% assign nazar_docs = site.pages | where_exp: "p", "p.layout == 'post'" | where_exp: "p", "p.url contains '/nazar/'" %}
 
     {% if latest_quarter %}
     <section style="margin:3rem 0;">
@@ -43,6 +67,16 @@ permalink: /
           <span class="read-more-arrow">Browse Quarters <i data-lucide="layers"
               style="width:13px;height:13px;"></i></span>
         </div>
+      </div>
+    </section>
+
+    {% else %}
+    <!-- ── NAZAR FALLBACK ── -->
+    <section style="margin:3rem 0;">
+      <div class="section-label">Nazar — Visual Journal</div>
+      <div class="teaser-box">
+        <p class="teaser-desc">Nazar is a quarterly photo essay series shaped around a shared theme. It brings together visual narratives that attend to the textures of everyday life, without claiming neutrality. What is shown here is as much about framing as it is about what enters the frame.</p>
+        <a href="{{ '/nazar/' | relative_url }}" class="teaser-cta">VOLUME 1 — coming soon</a>
       </div>
     </section>
     {% endif %}
