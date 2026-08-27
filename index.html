@@ -78,6 +78,40 @@ permalink: /
       </div>
     </section>
 
+    <!-- ── INTERVIEWS ── -->
+    {% assign interviews = site.interviews | sort: "date" | reverse %}
+    {% assign latest_interview = interviews | first %}
+    {% if latest_interview %}
+    <section style="margin:3rem 0;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+        <div class="section-label" style="margin:0;">Interviews</div>
+        <a href="{{ '/interviews/' | relative_url }}" class="read-more-arrow" style="font-size:0.82rem;">
+          View all <i data-lucide="arrow-right" style="width:13px;height:13px;"></i>
+        </a>
+      </div>
+    
+      <a href="{{ latest_interview.url | relative_url }}" class="interview-feature">
+        <div class="interview-feature-img">
+          {% if latest_interview.image %}
+            <img src="{{ latest_interview.image }}" alt="{{ latest_interview.title }}" loading="lazy" />
+          {% else %}
+            <div class="interview-feature-img-placeholder">
+              <i data-lucide="mic" style="width:32px;height:32px;color:var(--c-primary);opacity:.4;"></i>
+            </div>
+          {% endif %}
+        </div>
+        <div class="interview-feature-body">
+          {% if latest_interview.interviewer %}
+            <p class="interview-eyebrow">{{ latest_interview.interviewer | upcase }}</p>
+          {% endif %}
+          <h2 class="interview-quote">&ldquo;{{ latest_interview.title }}&rdquo;</h2>
+          <p class="interview-desc">{{ latest_interview.description }}</p>
+          <span class="read-more-arrow">Browse Chapters <i data-lucide="arrow-right" style="width:13px;height:13px;"></i></span>
+        </div>
+      </a>
+    </section>
+    {% endif %}
+
     {% else %}
     <!-- ── NAZAR FALLBACK ── -->
     <section style="margin:3rem 0;">
