@@ -21,7 +21,6 @@ permalink: /
 <section>
   <div class="container">
 
-    <!-- ── NAZAR SECTION ── -->
     {%- comment -%}
       Nazar privacy rule:
       - Nazar .md files whose source filename starts with "-" are private.
@@ -50,32 +49,32 @@ permalink: /
     {% assign all_quarters = all_quarters | sort: "key" | reverse %}
     {% assign latest_quarter = all_quarters | first %}
 
-    {% if latest_quarter %}
-    <!-- <section style="margin:3rem 0;">
-      <div class="section-label">Nazar — Visual Journal</div>
-      {% assign q_posts = nazar_docs | where_exp: "p", "p.url contains latest_quarter.key" %}
-      <div class="post-card" onclick="document.getElementById('nazar-quarters-modal').classList.add('open')"
-        style="cursor:pointer;text-decoration:none;display:flex;flex-direction:row;max-width:700px;margin:0 auto;border-radius:30px 80px 30px 80px;">
-        <div class="post-card-img"
-          style="width:40%;flex-shrink:0;aspect-ratio:auto;border-radius:30px 0 0 80px;overflow:hidden;">
-          <img src="{{ latest_quarter.image | relative_url }}" alt="{{ latest_quarter.label }}" />
-        </div>
-        <div class="post-card-body">
-          <div class="post-card-meta"><span>{{ q_posts.size }} stories</span></div>
-          <h2 class="post-card-title">{{ latest_quarter.label | default: latest_quarter.title }}</h2>
-          <p class="post-card-excerpt">{{ latest_quarter.description }}</p>
-          <span class="read-more-arrow">Browse Quarters <i data-lucide="layers"
-              style="width:13px;height:13px;"></i></span>
-        </div>
-      </div>
-    </section> -->
     <!-- ── NAZAR — Visual Journal ── -->
     <section style="margin:3rem 0;">
       <div class="section-label">Nazar — Visual Journal</div>
-      <div class="teaser-box">
-        <p class="teaser-desc">Nazar is a quarterly photo essay series shaped around a shared theme. It brings together visual narratives that attend to the textures of everyday life, without claiming neutrality. What is shown here is as much about framing as it is about what enters the frame.</p>
-        <a href="{{ '/nazar/' | relative_url }}" class="teaser-cta">VOLUME 1 — coming soon</a>
-      </div>
+
+      {% if latest_quarter %}
+        {% assign q_posts = nazar_docs | where_exp: "p", "p.url contains latest_quarter.key" %}
+        <div class="post-card" onclick="document.getElementById('nazar-quarters-modal').classList.add('open')"
+          style="cursor:pointer;text-decoration:none;display:flex;flex-direction:row;max-width:700px;margin:0 auto;border-radius:30px 80px 30px 80px;">
+          <div class="post-card-img"
+            style="width:40%;flex-shrink:0;aspect-ratio:auto;border-radius:30px 0 0 80px;overflow:hidden;">
+            <img src="{{ latest_quarter.image | relative_url }}" alt="{{ latest_quarter.label }}" />
+          </div>
+          <div class="post-card-body">
+            <div class="post-card-meta"><span>{{ q_posts.size }} stories</span></div>
+            <h2 class="post-card-title">{{ latest_quarter.label | default: latest_quarter.title }}</h2>
+            <p class="post-card-excerpt">{{ latest_quarter.description }}</p>
+            <span class="read-more-arrow">Browse Quarters <i data-lucide="layers"
+                style="width:13px;height:13px;"></i></span>
+          </div>
+        </div>
+      {% else %}
+        <div class="teaser-box">
+          <p class="teaser-desc">Nazar is a quarterly photo essay series shaped around a shared theme. It brings together visual narratives that attend to the textures of everyday life, without claiming neutrality. What is shown here is as much about framing as it is about what enters the frame.</p>
+          <a href="{{ '/nazar/' | relative_url }}" class="teaser-cta">VOLUME 1 — coming soon</a>
+        </div>
+      {% endif %}
     </section>
 
     <!-- ── INTERVIEWS ── -->
@@ -89,7 +88,7 @@ permalink: /
           View all <i data-lucide="arrow-right" style="width:13px;height:13px;"></i>
         </a>
       </div>
-    
+
       <a href="{{ latest_interview.url | relative_url }}" class="interview-feature">
         <div class="interview-feature-img">
           {% if latest_interview.image %}
@@ -109,17 +108,6 @@ permalink: /
           <span class="read-more-arrow">Browse Chapters <i data-lucide="arrow-right" style="width:13px;height:13px;"></i></span>
         </div>
       </a>
-    </section>
-    {% endif %}
-
-    {% else %}
-    <!-- ── NAZAR FALLBACK ── -->
-    <section style="margin:3rem 0;">
-      <div class="section-label">Nazar — Visual Journal</div>
-      <div class="teaser-box">
-        <p class="teaser-desc">Nazar is a quarterly photo essay series shaped around a shared theme. It brings together visual narratives that attend to the textures of everyday life, without claiming neutrality. What is shown here is as much about framing as it is about what enters the frame.</p>
-        <a href="{{ '/nazar/' | relative_url }}" class="teaser-cta">VOLUME 1 — coming soon</a>
-      </div>
     </section>
     {% endif %}
 
@@ -247,6 +235,15 @@ permalink: /
 
     </section>
     {% endif %}
+
+    <!-- ── KEYWORD DIGEST ── -->
+    <section style="margin:3rem 0;">
+      <div class="section-label">Keyword Digest</div>
+      <div class="teaser-box">
+        <p class="teaser-desc">Keyword entries engage with terms that shape how we think across disciplines. Rather than offering fixed definitions, submissions should trace how a term is used, contested, and reworked across contexts. Entries should attend to the histories and tensions of the term, while remaining accessible to a broad readership.</p>
+        <a href="{{ '/submission/' | relative_url }}" class="teaser-cta">Call for Entries</a>
+      </div>
+    </section>
 
   </div>
 </section>
@@ -423,6 +420,58 @@ permalink: /
     margin: 0 0 .3rem;
   }
 
+  /* ── Interview Feature Card ── */
+  .interview-feature {
+    display: flex;
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .interview-feature:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--c-primary);
+  }
+  .interview-feature-img {
+    width: 220px;
+    flex-shrink: 0;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--c-primary) 10%, var(--c-surface));
+  }
+  .interview-feature-img img { width: 100%; height: 100%; object-fit: cover; }
+  .interview-feature-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+  .interview-feature-body { padding: 1.8rem 2.2rem; display: flex; flex-direction: column; justify-content: center; gap: .6rem; }
+  .interview-eyebrow { font-family: var(--font-ui); font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--c-text-muted); }
+  .interview-quote { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; line-height: 1.3; color: var(--c-text); }
+  .interview-desc { font-size: .92rem; color: var(--c-text-muted); line-height: 1.65; }
+
+  /* ── Teaser Box (Nazar fallback / Keyword Digest) ── */
+  .teaser-box {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: 16px;
+    padding: 2.2rem 2.5rem;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .teaser-desc { font-size: .95rem; color: var(--c-text-muted); line-height: 1.75; margin-bottom: 1.2rem; }
+  .teaser-cta {
+    display: inline-block;
+    font-family: var(--font-ui); font-size: .78rem; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase;
+    color: var(--c-primary);
+    border-bottom: 1px solid var(--c-primary);
+    padding-bottom: .15rem;
+    transition: color var(--transition);
+  }
+  .teaser-cta:hover { color: var(--c-primary-dark); }
+
   /* ── Carousel ── */
   .carousel-wrapper {
     position: relative;
@@ -553,6 +602,11 @@ permalink: /
     .nazar-modal-grid {
       grid-template-columns: 1fr;
     }
+  }
+
+  @media (max-width: 640px) {
+    .interview-feature { flex-direction: column; }
+    .interview-feature-img { width: 100%; aspect-ratio: 16/9; }
   }
 </style>
 
