@@ -1,0 +1,41 @@
+---
+layout: default
+title: "Interviews"
+permalink: /interviews/
+---
+
+<div class="book-review-page">
+  <div class="page-header">
+    <h1>Interviews</h1>
+    <p class="page-subtitle">Conversations with thinkers, writers, and practitioners</p>
+  </div>
+
+  <div class="book-list">
+    {% assign interviews = site.interviews | sort: "date" | reverse %}
+    {% if interviews.size > 0 %}
+      {% for iv in interviews %}
+        <a href="{{ iv.url | relative_url }}" class="book-row {% cycle 'row-left', 'row-right' %}" style="text-decoration:none;color:inherit;">
+          <div class="book-row-image">
+            {% if iv.image %}
+              <img src="{{ iv.image }}" alt="{{ iv.title }}" loading="lazy">
+            {% else %}
+              <div class="book-row-placeholder"><span>{{ iv.title | slice: 0 }}</span></div>
+            {% endif %}
+          </div>
+          <div class="book-row-content">
+            {% if iv.interviewer %}<p class="book-row-meta">{{ iv.interviewer }}</p>{% endif %}
+            <h2 class="book-row-title">{{ iv.title }}</h2>
+            <p class="book-row-desc">{{ iv.description }}</p>
+            <span class="read-more-arrow">Browse Chapters <i data-lucide="arrow-right" style="width:13px;height:13px;"></i></span>
+          </div>
+        </a>
+      {% endfor %}
+    {% else %}
+      <p class="empty-state">No interviews yet.</p>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+/* copy the .book-review-page / .book-row block from book-review/index.html here */
+</style>
