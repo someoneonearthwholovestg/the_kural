@@ -146,7 +146,7 @@ permalink: /
         </a>
       </div>
 
-      <div class="posts-grid">
+      <div class="posts-grid book-review-grid">
         {% for book in book_reviews limit: 4 %}
         <a href="{{ book.url | relative_url }}" class="post-card fade-in" style="text-decoration:none;">
 
@@ -461,6 +461,34 @@ permalink: /
     transition: color var(--transition);
   }
   .teaser-cta:hover { color: var(--c-primary-dark); }
+
+  /* ── Book Review Grid (homepage) ── */
+  .book-review-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+  }
+  .book-review-grid .post-card-img {
+    aspect-ratio: 3 / 2;
+  }
+  .book-review-grid .post-card-body {
+    padding: 1rem 1.1rem 1.2rem;
+  }
+  .book-review-grid .post-card-title {
+    font-size: 1.1rem;
+  }
+  .book-review-grid .post-card-excerpt {
+    font-size: 0.85rem;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  @media (max-width: 900px) {
+    .book-review-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .book-review-grid { grid-template-columns: 1fr; }
+  }
 
   /* ── Carousel ── */
   .carousel-wrapper {
