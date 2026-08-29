@@ -467,8 +467,21 @@ permalink: /
     grid-template-columns: repeat(4, 1fr);
     gap: 1.2rem;
   }
-  .book-review-grid .post-card-img {
+    .book-review-grid .post-card-img,
+  .book-review-grid .post-card:first-child .post-card-img {
     aspect-ratio: 3 / 2;
+    width: auto;
+  }
+  .book-review-grid .post-card:first-child {
+    grid-column: auto;
+    flex-direction: column;
+  }
+  .book-review-grid .post-card:first-child .post-card-title {
+    font-size: 1.1rem;
+  }
+  .book-review-grid .post-card:first-child .post-card-body {
+    padding: 1rem 1.1rem 1.2rem;
+    justify-content: flex-start;
   }
   .book-review-grid .post-card-body {
     padding: 1rem 1.1rem 1.2rem;
