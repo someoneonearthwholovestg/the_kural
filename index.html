@@ -539,20 +539,20 @@ permalink: /
   }
   .book-review-rest { display: contents; }
 
-  .book-review-rest .post-card:first-child {
-    grid-column: auto;
-    flex-direction: column;
+  .book-review-rest a.post-card:first-child {
+    grid-column: auto !important;
+    flex-direction: column !important;
   }
-  .book-review-rest .post-card:first-child .post-card-img {
-    width: auto;
-    aspect-ratio: 3 / 2;
+  .book-review-rest a.post-card:first-child .post-card-img {
+    width: auto !important;
+    aspect-ratio: 3 / 2 !important;
   }
-  .book-review-rest .post-card:first-child .post-card-title {
-    font-size: 1.1rem;
+  .book-review-rest a.post-card:first-child .post-card-title {
+    font-size: 1.1rem !important;
   }
-  .book-review-rest .post-card:first-child .post-card-body {
-    padding: 1rem 1.1rem 1.2rem;
-    justify-content: flex-start;
+  .book-review-rest a.post-card:first-child .post-card-body {
+    padding: 1rem 1.1rem 1.2rem !important;
+    justify-content: flex-start !important;
   }
 
   @media (max-width: 900px) {
@@ -579,6 +579,8 @@ permalink: /
       gap: 1rem;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       padding: 0.3rem 0.1rem 0.6rem;
       margin-top: 0.2rem;
@@ -740,30 +742,36 @@ permalink: /
     track.scrollBy({ left: dir * 260, behavior: 'smooth' });
   }
 
-  // Auto-advance the book-review mobile row every 5s
-  (function () {
+    // Auto-advance the book-review mobile row every 5s
+  document.addEventListener('DOMContentLoaded', function () {
     const row = document.getElementById('book-review-rest');
     if (!row) return;
     let timer = null;
+    let resumeTimer = null;
 
     function tick() {
       if (window.innerWidth > 640) return;
-      const cardWidth = row.firstElementChild ? row.firstElementChild.offsetWidth + 16 : 260;
+      const first = row.querySelector('.post-card');
+      const cardWidth = first ? first.getBoundingClientRect().width + 16 : 260;
       const atEnd = row.scrollLeft + row.clientWidth >= row.scrollWidth - 5;
       row.scrollTo({ left: atEnd ? 0 : row.scrollLeft + cardWidth, behavior: 'smooth' });
     }
 
     function start() {
-      stop();
-      timer = setInterval(tick, 5000);
+      clearInterval(timer);
+      if (window.innerWidth <= 640) {
+        timer = setInterval(tick, 5000);
+      }
     }
-    function stop() {
-      if (timer) clearInterval(timer);
+    function pauseThenResume() {
+      clearInterval(timer);
+      clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(start, 4000);
     }
 
     start();
-    row.addEventListener('touchstart', stop, { passive: true });
-    row.addEventListener('mousedown', stop);
+    row.addEventListener('touchstart', pauseThenResume, { passive: true });
+    row.addEventListener('mousedown', pauseThenResume);
     window.addEventListener('resize', start);
-  })();
+  });
 </script>
