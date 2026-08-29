@@ -28,8 +28,8 @@ permalink: /
       - If there are no public Nazar quarter pages, show the fallback teaser.
     {%- endcomment -%}
 
-    {% assign all_nazar_pages = site.pages | where_exp: "p", "p.url contains '/nazar/'" %}
-    {% assign all_quarters = "" | split: "" %}
+      {% assign all_nazar_pages = site.pages | where_exp: "p", "p.url contains '/nazar/'" %}
+    {% assign raw_quarters = "" | split: "" %}
     {% assign nazar_docs = "" | split: "" %}
 
     {% for p in all_nazar_pages %}
@@ -38,7 +38,7 @@ permalink: /
 
       {% if first_char != "-" %}
         {% if p.key != nil %}
-          {% assign all_quarters = all_quarters | push: p %}
+          {% assign raw_quarters = raw_quarters | push: p %}
         {% endif %}
         {% if p.layout == "post" %}
           {% assign nazar_docs = nazar_docs | push: p %}
@@ -46,7 +46,16 @@ permalink: /
       {% endif %}
     {% endfor %}
 
-    {% assign all_quarters = all_quarters | sort: "key" | reverse %}
+    {% assign raw_quarters = raw_quarters | sort: "key" | reverse %}
+
+    {% assign all_quarters = "" | split: "" %}
+    {% for quarter in raw_quarters %}
+      {% assign qp = nazar_docs | where_exp: "p", "p.url contains quarter.key" %}
+      {% if qp.size > 0 %}
+        {% assign all_quarters = all_quarters | push: quarter %}
+      {% endif %}
+    {% endfor %}
+
     {% assign latest_quarter = all_quarters | first %}
 
     <!-- ── INTERVIEWS ── -->
