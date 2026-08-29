@@ -2,6 +2,7 @@
 layout: post
 title: "Part I - Who Gets to Imagine the Future?"
 interviewer: "Naila Alavi"
+date: 2026-01-15
 permalink: /interviews/part-i-who-gets-to-imagine-the-future/
 image: "https://i.ibb.co/pBbcVy1n/Peter-Mc-Laren.jpg"
 description: "The first of a three-part conversation with Peter McLaren, tracing the global assault on academic spaces and the political anxiety authoritarian movements hold toward classrooms, critical thought, and the imagination of the child."
