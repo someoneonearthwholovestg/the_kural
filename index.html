@@ -48,9 +48,11 @@ permalink: /
 
     {% assign all_quarters = all_quarters | sort: "key" | reverse %}
     {% assign latest_quarter = all_quarters | first %}
+
     <!-- ── INTERVIEWS ── -->
-    {% assign interviews = site.interviews | sort: "date" | reverse %}
+    {% assign interviews = site.interviews | where_exp: "p", "p.layout == 'post'" | sort: "date" | reverse %}
     {% assign latest_interview = interviews | first %}
+    
     {% if latest_interview %}
     <section style="margin:3rem 0;">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
