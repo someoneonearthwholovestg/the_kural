@@ -16,8 +16,18 @@ image: "https://i.ibb.co/pBbcVy1n/Peter-Mc-Laren.jpg"
     <p>Spring dispatches. Quiet observations from January through March.</p>
   </div>
 
+    {% assign all_posts = site.pages | where_exp: "p", "p.url contains '/nazar/2026-Q1/'" | where_exp: "p", "p.layout == 'post'" %}
+  {% assign posts = "" | split: "" %}
+  {% for p in all_posts %}
+    {% assign source_name = p.path | split: "/" | last %}
+    {% assign first_char = source_name | slice: 0, 1 %}
+    {% if first_char != "-" %}
+      {% assign posts = posts | push: p %}
+    {% endif %}
+  {% endfor %}
+
+  {% if posts.size > 0 %}
   <div class="posts-grid">
-    {% assign posts = site.pages | where_exp: "p", "p.url contains '/nazar/2026-Q1/'" | where_exp: "p", "p.layout == 'post'" %}
     {% for post in posts %}
       <a href="{{ post.url | relative_url }}" class="post-card">
         {% if post.image %}
@@ -34,6 +44,11 @@ image: "https://i.ibb.co/pBbcVy1n/Peter-Mc-Laren.jpg"
       </a>
     {% endfor %}
   </div>
+  {% else %}
+  <div class="teaser-box">
+    <p class="teaser-desc">Coming soon.</p>
+  </div>
+  {% endif %}
 </div>
 
 <style>
@@ -118,10 +133,25 @@ image: "https://i.ibb.co/pBbcVy1n/Peter-Mc-Laren.jpg"
     margin: 0 0 0.4rem;
   }
 
-  .post-card-content p {
+    .post-card-content p {
     font-size: 0.825rem;
     color: #666;
     margin: 0;
     line-height: 1.5;
+  }
+
+  .teaser-box {
+    background: var(--c-surface, #fff);
+    border: 1px solid var(--c-border, #eee);
+    border-radius: 16px;
+    padding: 2.2rem 2.5rem;
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .teaser-desc {
+    font-size: .95rem;
+    color: var(--c-text-muted, #888);
+    margin: 0;
   }
 </style>
