@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Part I — Who Gets to Imagine the Future?"
+title: "Part I - Who Gets to Imagine the Future?"
 interviewer: "Naila Alavi"
 permalink: /interviews/part-i-who-gets-to-imagine-the-future/
 image: "https://i.ibb.co/pBbcVy1n/Peter-Mc-Laren.jpg"
