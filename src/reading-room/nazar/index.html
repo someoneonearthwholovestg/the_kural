@@ -11,8 +11,25 @@ permalink: /nazar/
   </div>
 
   
-  <section class="quarters-grid">
-    {% assign quarters = site.pages | where_exp: "p", "p.url contains '/nazar/'" | where_exp: "p", "p.key != nil" | sort: "key" | reverse %}
+    <section class="quarters-grid">
+    {% assign all_quarters = site.pages | where_exp: "p", "p.url contains '/nazar/'" | where_exp: "p", "p.key != nil" | sort: "key" | reverse %}
+    {% assign all_nazar_posts = site.pages | where_exp: "p", "p.url contains '/nazar/'" | where_exp: "p", "p.layout == 'post'" %}
+
+    {% assign quarters = "" | split: "" %}
+    {% for quarter in all_quarters %}
+      {% assign public_count = 0 %}
+      {% for p in all_nazar_posts %}
+        {% assign source_name = p.path | split: "/" | last %}
+        {% assign first_char = source_name | slice: 0, 1 %}
+        {% if p.url contains quarter.key and first_char != "-" %}
+          {% assign public_count = public_count | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+      {% if public_count > 0 %}
+        {% assign quarters = quarters | push: quarter %}
+      {% endif %}
+    {% endfor %}
+
     {% if quarters and quarters.size > 0 %}
       {% for quarter in quarters %}
         <a href="{{ quarter.url | relative_url }}" class="quarter-card">
@@ -30,7 +47,9 @@ permalink: /nazar/
         </a>
       {% endfor %}
     {% else %}
-      <p class="empty-state">No quarters found.</p>
+      <div class="teaser-box">
+        <p class="teaser-desc">Coming soon.</p>
+      </div>
     {% endif %}
   </section>
 </div>
@@ -114,9 +133,25 @@ permalink: /nazar/
     line-height: 1.5;
   }
 
-  .empty-state {
+    .empty-state {
     text-align: center;
     color: #aaa;
     font-size: 0.9rem;
+  }
+
+  .teaser-box {
+    background: var(--c-surface, #fff);
+    border: 1px solid var(--c-border, #eee);
+    border-radius: 16px;
+    padding: 2.2rem 2.5rem;
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+    grid-column: 1 / -1;
+  }
+  .teaser-desc {
+    font-size: .95rem;
+    color: var(--c-text-muted, #888);
+    margin: 0;
   }
 </style>
