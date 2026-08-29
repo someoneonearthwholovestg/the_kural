@@ -11,7 +11,7 @@ permalink: /interviews/
   </div>
 
   <div class="book-list">
-    {% assign interviews = site.interviews | sort: "date" | reverse %}
+    {% assign interviews = site.interviews | where_exp: "p", "p.layout == 'post'" | sort: "date" | reverse %}
     {% if interviews.size > 0 %}
       {% for iv in interviews %}
         <a href="{{ iv.url | relative_url }}" class="book-row {% cycle 'row-left', 'row-right' %}" style="text-decoration:none;color:inherit;">
