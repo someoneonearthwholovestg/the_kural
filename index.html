@@ -467,21 +467,24 @@ permalink: /
     grid-template-columns: repeat(4, 1fr);
     gap: 1.2rem;
   }
-    .book-review-grid .post-card-img,
-  .book-review-grid .post-card:first-child .post-card-img {
+  .book-review-grid .post-card-img {
     aspect-ratio: 3 / 2;
-    width: auto;
   }
   .book-review-grid .post-card:first-child {
-    grid-column: auto;
-    flex-direction: column;
+    grid-column: 1 / -1;
+    flex-direction: row;
+  }
+  .book-review-grid .post-card:first-child .post-card-img {
+    width: 32%;
+    aspect-ratio: 3 / 2;
+    flex-shrink: 0;
   }
   .book-review-grid .post-card:first-child .post-card-title {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
   }
   .book-review-grid .post-card:first-child .post-card-body {
-    padding: 1rem 1.1rem 1.2rem;
-    justify-content: flex-start;
+    padding: 1.2rem 1.5rem;
+    justify-content: center;
   }
   .book-review-grid .post-card-body {
     padding: 1rem 1.1rem 1.2rem;
