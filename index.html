@@ -179,7 +179,10 @@ permalink: /
         </a>
         {% endfor %}
 
-        <div class="book-review-rest">
+        <div class="book-review-scroll-hint">
+          <i data-lucide="move-horizontal" style="width:14px;height:14px;"></i> Swipe
+        </div>
+        <div class="book-review-rest" id="book-review-rest">
           {% assign rest_books = book_reviews | offset: 1 | limit: 3 %}
           {% for book in rest_books %}
           <a href="{{ book.url | relative_url }}" class="post-card fade-in" style="text-decoration:none;">
@@ -536,12 +539,40 @@ permalink: /
   }
   .book-review-rest { display: contents; }
 
+  .book-review-rest .post-card:first-child {
+    grid-column: auto;
+    flex-direction: column;
+  }
+  .book-review-rest .post-card:first-child .post-card-img {
+    width: auto;
+    aspect-ratio: 3 / 2;
+  }
+  .book-review-rest .post-card:first-child .post-card-title {
+    font-size: 1.1rem;
+  }
+  .book-review-rest .post-card:first-child .post-card-body {
+    padding: 1rem 1.1rem 1.2rem;
+    justify-content: flex-start;
+  }
+
   @media (max-width: 900px) {
     .book-review-grid { grid-template-columns: repeat(2, 1fr); }
     .book-review-grid > a.post-card:first-child { grid-column: 1 / -1; }
   }
+    .book-review-scroll-hint {
+    display: none;
+    align-items: center;
+    gap: 0.3rem;
+    font-family: var(--font-ui);
+    font-size: 0.72rem;
+    color: var(--c-text-muted);
+    margin: 0.4rem 0 0.2rem;
+  }
+
   @media (max-width: 640px) {
     .book-review-grid { grid-template-columns: 1fr; }
+
+    .book-review-scroll-hint { display: flex; }
 
     .book-review-rest {
       display: flex;
@@ -704,8 +735,35 @@ permalink: /
     }
   });
 
-  function scrollCarousel(dir) {
+    function scrollCarousel(dir) {
     const track = document.getElementById('carousel-track');
     track.scrollBy({ left: dir * 260, behavior: 'smooth' });
   }
+
+  // Auto-advance the book-review mobile row every 5s
+  (function () {
+    const row = document.getElementById('book-review-rest');
+    if (!row) return;
+    let timer = null;
+
+    function tick() {
+      if (window.innerWidth > 640) return;
+      const cardWidth = row.firstElementChild ? row.firstElementChild.offsetWidth + 16 : 260;
+      const atEnd = row.scrollLeft + row.clientWidth >= row.scrollWidth - 5;
+      row.scrollTo({ left: atEnd ? 0 : row.scrollLeft + cardWidth, behavior: 'smooth' });
+    }
+
+    function start() {
+      stop();
+      timer = setInterval(tick, 5000);
+    }
+    function stop() {
+      if (timer) clearInterval(timer);
+    }
+
+    start();
+    row.addEventListener('touchstart', stop, { passive: true });
+    row.addEventListener('mousedown', stop);
+    window.addEventListener('resize', start);
+  })();
 </script>
