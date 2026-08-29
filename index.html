@@ -146,8 +146,8 @@ permalink: /
         </a>
       </div>
 
-      <div class="posts-grid book-review-grid">
-        {% for book in book_reviews limit: 4 %}
+            <div class="posts-grid book-review-grid">
+        {% for book in book_reviews limit: 1 %}
         <a href="{{ book.url | relative_url }}" class="post-card fade-in" style="text-decoration:none;">
 
           {% if book.image %}
@@ -178,6 +178,41 @@ permalink: /
 
         </a>
         {% endfor %}
+
+        <div class="book-review-rest">
+          {% assign rest_books = book_reviews | offset: 1 | limit: 3 %}
+          {% for book in rest_books %}
+          <a href="{{ book.url | relative_url }}" class="post-card fade-in" style="text-decoration:none;">
+
+            {% if book.image %}
+            <div class="post-card-img">
+              <img src="{{ book.image }}" alt="{{ book.title }}" loading="lazy" />
+            </div>
+            {% else %}
+            <div class="post-card-img"
+              style="background:linear-gradient(145deg,color-mix(in srgb,var(--c-primary) 15%,var(--c-surface)),color-mix(in srgb,var(--c-accent) 10%,var(--c-surface)));display:flex;align-items:center;justify-content:center;">
+              <i data-lucide="book-open" style="width:38px;height:38px;color:var(--c-primary);opacity:.4;"></i>
+            </div>
+            {% endif %}
+
+            <div class="post-card-body">
+              <div class="post-card-meta">
+                <span>{{ book.author }}</span>
+                {% if book.year %}
+                <span class="dot"></span>
+                <span>{{ book.year }}</span>
+                {% endif %}
+              </div>
+              <h2 class="post-card-title">{{ book.title }}</h2>
+              <p class="post-card-excerpt">{{ book.description }}</p>
+              <div class="post-card-footer">
+                <span class="read-more-arrow">Read Review <i data-lucide="arrow-right" style="width:13px;height:13px;"></i></span>
+              </div>
+            </div>
+
+          </a>
+          {% endfor %}
+        </div>
       </div>
     </section>
     {% endif %}
@@ -499,11 +534,29 @@ permalink: /
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+  .book-review-rest { display: contents; }
+
   @media (max-width: 900px) {
     .book-review-grid { grid-template-columns: repeat(2, 1fr); }
+    .book-review-grid > a.post-card:first-child { grid-column: 1 / -1; }
   }
   @media (max-width: 640px) {
     .book-review-grid { grid-template-columns: 1fr; }
+
+    .book-review-rest {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      padding: 0.3rem 0.1rem 0.6rem;
+      margin-top: 0.2rem;
+    }
+    .book-review-rest::-webkit-scrollbar { display: none; }
+    .book-review-rest .post-card {
+      flex: 0 0 70%;
+      scroll-snap-align: start;
+    }
   }
 
   /* ── Carousel ── */
