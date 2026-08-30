@@ -622,18 +622,17 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
   align-self: flex-start;
   padding-top: .1rem;
 }
-
 @media (max-width: 640px) {
   .footer-nav {
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
     gap: 1.2rem;
   }
-  .footer-nav-group { min-width: 0; width: auto; align-items: center; }
-  .footer-nav-toggle { justify-content: center; padding-bottom: 0; }
-  .footer-nav-children { align-items: center; }
+  .footer-nav-group { min-width: 0; width: auto; align-items: flex-start; }
+  .footer-nav-toggle { justify-content: flex-start; padding-bottom: 0; }
+  .footer-nav-children { align-items: flex-start; }
   .footer-nav > a.footer-nav-link { padding-top: 0; }
 }
 .footer-bottom {
