@@ -581,8 +581,32 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 1rem;
+  gap: 0;
+  position: relative;
+  padding-right: 1.6rem;
+  border-right: 2px solid color-mix(in srgb, var(--c-primary) 40%, transparent);
 }
+.footer-nav > * { position: relative; }
+
+/* Branch connector — horizontal tick from the trunk line to each node */
+.footer-nav > a.footer-nav-link::after,
+.footer-nav-toggle::after {
+  content: '';
+  position: absolute;
+  top: 50%; right: -1.6rem;
+  width: 1.2rem; height: 2px;
+  background: color-mix(in srgb, var(--c-primary) 40%, transparent);
+}
+
+.footer-nav > a.footer-nav-link {
+  align-self: flex-end;
+  padding: .55rem 0;
+  font-family: var(--font-ui); font-size: .88rem; font-weight: 500;
+  color: var(--c-footer-link) !important;
+  transition: color var(--transition), transform var(--transition);
+}
+.footer-nav > a.footer-nav-link:hover { color: var(--c-footer-link-h) !important; transform: translateX(4px); }
+
 .footer-nav-group {
   display: flex;
   flex-direction: column;
@@ -595,48 +619,45 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
   font-family: var(--font-ui); font-size: .88rem; font-weight: 500;
   letter-spacing: normal; text-transform: none; color: var(--c-footer-link) !important;
   background: none; border: none; cursor: pointer;
-  padding: 0;
+  padding: .55rem 0;
   transition: color var(--transition);
 }
 .footer-nav-toggle svg { width: 10px; height: 10px; flex-shrink: 0; transition: transform .3s ease; color: currentColor; }
 .footer-nav-group.open .footer-nav-toggle svg { transform: rotate(180deg); }
 .footer-nav-toggle:hover { color: var(--c-footer-link-h) !important; }
 
+/* Sub-tree — its own trunk line branching further right, nodes ticking off it */
 .footer-nav-children {
   max-height: 0;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   transition: max-height .4s cubic-bezier(.4,0,.2,1), opacity .3s ease;
   opacity: 0;
+  margin-top: .2rem;
+  padding-left: 1.6rem;
+  border-left: 2px solid color-mix(in srgb, var(--c-primary) 30%, transparent);
 }
 .footer-nav-group.open .footer-nav-children {
   max-height: 400px;
   opacity: 1;
 }
-.footer-nav-link {
-  font-family: var(--font-ui); font-size: .88rem; font-weight: 500;
-  color: var(--c-footer-link) !important;
-  padding: .3rem 0;
+.footer-nav-child {
+  position: relative;
+  font-size: .82rem; color: var(--c-footer-muted) !important;
+  padding: .34rem 0 .34rem 1rem;
   transition: color var(--transition), transform var(--transition);
 }
-.footer-nav-link:hover { color: var(--c-footer-link-h) !important; transform: translateX(2px); }
-.footer-nav-child {
-  font-size: .82rem; color: var(--c-footer-muted) !important;
-  padding: .32rem 0;
-  display: flex; align-items: center; gap: .4rem;
-  transition: color var(--transition), transform var(--transition);
+.footer-nav-child::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: -1.6rem;
+  width: 1.6rem; height: 2px;
+  background: color-mix(in srgb, var(--c-primary) 30%, transparent);
 }
 .footer-nav-child:hover { color: var(--c-footer-link-h) !important; transform: translateX(4px); }
-.footer-nav-dot { color: var(--c-primary); font-size: .6rem; opacity: .7; flex-shrink: 0; }
-
-/* Top-level nav items without children align as their own group */
-/* Top-level nav items without children align as their own group */
-.footer-nav > a.footer-nav-link {
-  align-self: flex-end;
-  padding-top: 0;
-}
+.footer-nav-dot { display: none; }
 @media (max-width: 640px) {
   .footer-nav {
     justify-content: center;
@@ -900,11 +921,9 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
                   <path d="m1 1 4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </button>
-              <div class="footer-nav-children">
+               <div class="footer-nav-children">
                 {% for child in item.children %}
-                  <a href="{{ child.url | relative_url }}" class="footer-nav-link footer-nav-child">
-                    <span class="footer-nav-dot">·</span> {{ child.label }}
-                  </a>
+                  <a href="{{ child.url | relative_url }}" class="footer-nav-link footer-nav-child">{{ child.label }}</a>
                 {% endfor %}
               </div>
             </div>
