@@ -536,7 +536,7 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
    FOOTER  —  all colors via --c-footer-* variables
    ───────────────────────────────────────────────────────────── */
 .site-footer { background: var(--c-footer); padding: 3rem 0 0; }
-.footer-grid { display: grid; grid-template-columns: 0.9fr 2fr; gap: 2rem; padding-bottom: 3rem; border-bottom: 1px solid var(--c-footer-border); align-items: start; }
+.footer-grid { display: grid; grid-template-columns: 1.1fr 1.4fr; gap: 3rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--c-footer-border); align-items: start; }
 .footer-brand { display: flex; flex-direction: column; gap: .75rem; align-items: flex-start; text-align: left; }
 
 /* Footer logo: image if use_logo_in_footer + logo set, else text */
@@ -563,68 +563,81 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
   letter-spacing: .14em; text-transform: uppercase; color: var(--c-text-muted);
 }
 .footer-desc { font-family: var(--font-ui); font-size: .84rem; color: var(--c-footer-muted); line-height: 1.7; max-width: 320px; text-align: left; }
-
 .footer-nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
   align-items: flex-start;
-  gap: 0 3.5rem;
+  gap: 2.5rem 3.5rem;
   position: relative;
 }
+
+/* ── Reading Room block (has children) — the anchor/featured template ── */
 .footer-nav-group {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  min-width: 110px;
+  padding-left: 1.4rem;
+  border-left: 2px solid color-mix(in srgb, var(--c-primary) 45%, transparent);
+  min-width: 170px;
 }
-.footer-nav-group:nth-child(odd)  { margin-top: 0; }
-.footer-nav-group:nth-child(even) { margin-top: 1.6rem; }
-.footer-nav-group:nth-child(3n)   { margin-top: 0.4rem; }
-
 .footer-nav-label {
-  font-family: var(--font-heading); font-style: italic; font-weight: 700;
-  font-size: 1.15rem; letter-spacing: 0;
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: 1.4rem; letter-spacing: -.01em;
   text-transform: none;
   color: var(--c-footer-text);
-  opacity: .9;
-  margin-bottom: .7rem;
+  margin-bottom: .3rem;
+  line-height: 1.15;
 }
-.footer-nav-link {
-  font-family: var(--font-ui); font-size: .86rem; font-weight: 400;
-  color: var(--c-footer-link) !important;
-  padding: .32rem 0;
-  letter-spacing: .01em;
-  transition: color var(--transition), letter-spacing var(--transition);
+.footer-nav-group-sub {
+  font-family: var(--font-ui); font-size: .68rem; font-weight: 600;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: var(--c-primary);
+  opacity: .85;
+  margin-bottom: 1rem;
 }
-.footer-nav-link:hover { color: var(--c-footer-link-h) !important; letter-spacing: .04em; }
-
 .footer-nav-child {
-  font-family: var(--font-ui); font-size: .8rem; font-weight: 400;
+  font-family: var(--font-ui); font-size: .84rem; font-weight: 400;
   color: var(--c-footer-muted) !important;
-  padding: .26rem 0;
+  padding: .3rem 0;
   letter-spacing: .01em;
-  transition: color var(--transition), letter-spacing var(--transition);
+  display: inline-block;
+  transition: color var(--transition), transform var(--transition);
 }
-.footer-nav-child:hover { color: var(--c-footer-link-h) !important; letter-spacing: .04em; }
+.footer-nav-child:hover { color: var(--c-footer-link-h) !important; transform: translateX(3px); }
 .footer-nav-dot { display: none; }
 
-/* Standalone top-level links (no children) get their own staggered slot */
+/* ── Standalone links (Home, Submission, About) — light, staggered, secondary ── */
 .footer-nav > a.footer-nav-link {
-  font-family: var(--font-heading); font-style: italic; font-weight: 700;
-  font-size: 1.15rem;
-  color: var(--c-footer-text) !important;
-  opacity: .9;
+  font-family: var(--font-ui); font-size: .9rem; font-weight: 500;
+  color: var(--c-footer-link) !important;
   align-self: flex-start;
-  margin-top: 0.9rem;
-  padding: 0;
+  padding: .2rem 0;
+  letter-spacing: .02em;
+  transition: color var(--transition), letter-spacing var(--transition);
 }
+.footer-nav > a.footer-nav-link:nth-of-type(1) { margin-top: 0.3rem; }
+.footer-nav > a.footer-nav-link:nth-of-type(2) { margin-top: 1.5rem; }
+.footer-nav > a.footer-nav-link:nth-of-type(3) { margin-top: 0.6rem; }
 .footer-nav > a.footer-nav-link:hover {
-  color: var(--c-primary) !important;
-  opacity: 1;
-  letter-spacing: 0;
+  color: var(--c-footer-link-h) !important;
+  letter-spacing: .05em;
 }
 
+@media (max-width: 640px) {
+  .footer-nav { justify-content: center; gap: 2rem; }
+  .footer-nav-group {
+    border-left: none;
+    border-top: 2px solid color-mix(in srgb, var(--c-primary) 45%, transparent);
+    padding-left: 0;
+    padding-top: 1rem;
+    align-items: center;
+    text-align: center;
+    min-width: 0;
+    width: 100%;
+  }
+  .footer-nav > a.footer-nav-link { margin-top: 0 !important; }
+}
 .footer-bottom {
   display: flex; align-items: center; justify-content: space-between;
   padding: 1.25rem 0; gap: 1rem; flex-wrap: wrap;
@@ -675,8 +688,6 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
   .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .footer-brand { align-items: center; text-align: center; }
   .footer-desc { text-align: center; margin: 0 auto; }
-  .footer-nav { justify-content: center; text-align: center; }
-  .footer-nav-group { align-items: center; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
 }
 @media (max-width: 600px) { .explore-grid { grid-template-columns: 1fr; } }
@@ -853,10 +864,9 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
           {% if item.children %}
             <div class="footer-nav-group">
               <span class="footer-nav-label">{{ item.label }}</span>
+              <span class="footer-nav-group-sub">Explore the sections</span>
               {% for child in item.children %}
-                <a href="{{ child.url | relative_url }}" class="footer-nav-link footer-nav-child">
-                  <span class="footer-nav-dot">·</span> {{ child.label }}
-                </a>
+                <a href="{{ child.url | relative_url }}" class="footer-nav-child">{{ child.label }}</a>
               {% endfor %}
             </div>
           {% else %}
