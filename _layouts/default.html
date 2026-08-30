@@ -568,75 +568,65 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
   flex-wrap: wrap;
   justify-content: flex-end;
   align-items: flex-start;
-  gap: 2.5rem 3.5rem;
-  position: relative;
+  gap: 2.5rem 3rem;
 }
-
-/* ── Reading Room block (has children) — the anchor/featured template ── */
 .footer-nav-group {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding-left: 1.4rem;
-  border-left: 2px solid color-mix(in srgb, var(--c-primary) 45%, transparent);
-  min-width: 170px;
+  min-width: 150px;
 }
-.footer-nav-label {
-  font-family: var(--font-heading); font-weight: 700;
-  font-size: 1.4rem; letter-spacing: -.01em;
-  text-transform: none;
-  color: var(--c-footer-text);
-  margin-bottom: .3rem;
-  line-height: 1.15;
+.footer-nav-toggle {
+  display: flex; align-items: center; gap: .4rem;
+  font-family: var(--font-ui); font-size: .82rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--c-footer-text) !important;
+  background: none; border: none; cursor: pointer;
+  padding: 0 0 .6rem;
 }
-.footer-nav-group-sub {
-  font-family: var(--font-ui); font-size: .68rem; font-weight: 600;
-  letter-spacing: .16em; text-transform: uppercase;
-  color: var(--c-primary);
-  opacity: .85;
-  margin-bottom: 1rem;
+.footer-nav-toggle svg { width: 12px; height: 12px; flex-shrink: 0; transition: transform .3s ease; color: var(--c-primary); }
+.footer-nav-group.open .footer-nav-toggle svg { transform: rotate(180deg); }
+.footer-nav-toggle:hover { color: var(--c-primary) !important; }
+
+.footer-nav-children {
+  max-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  transition: max-height .4s cubic-bezier(.4,0,.2,1), opacity .3s ease;
+  opacity: 0;
 }
-.footer-nav-child {
-  font-family: var(--font-ui); font-size: .84rem; font-weight: 400;
-  color: var(--c-footer-muted) !important;
+.footer-nav-group.open .footer-nav-children {
+  max-height: 400px;
+  opacity: 1;
+}
+.footer-nav-link {
+  font-family: var(--font-ui); font-size: .88rem; font-weight: 500;
+  color: var(--c-footer-link) !important;
   padding: .3rem 0;
-  letter-spacing: .01em;
-  display: inline-block;
   transition: color var(--transition), transform var(--transition);
 }
-.footer-nav-child:hover { color: var(--c-footer-link-h) !important; transform: translateX(3px); }
-.footer-nav-dot { display: none; }
-
-/* ── Standalone links (Home, Submission, About) — light, staggered, secondary ── */
-.footer-nav > a.footer-nav-link {
-  font-family: var(--font-ui); font-size: .9rem; font-weight: 500;
-  color: var(--c-footer-link) !important;
-  align-self: flex-start;
-  padding: .2rem 0;
-  letter-spacing: .02em;
-  transition: color var(--transition), letter-spacing var(--transition);
+.footer-nav-link:hover { color: var(--c-footer-link-h) !important; transform: translateX(2px); }
+.footer-nav-child {
+  font-size: .82rem; color: var(--c-footer-muted) !important;
+  padding: .32rem 0;
+  display: flex; align-items: center; gap: .4rem;
+  transition: color var(--transition), transform var(--transition);
 }
-.footer-nav > a.footer-nav-link:nth-of-type(1) { margin-top: 0.3rem; }
-.footer-nav > a.footer-nav-link:nth-of-type(2) { margin-top: 1.5rem; }
-.footer-nav > a.footer-nav-link:nth-of-type(3) { margin-top: 0.6rem; }
-.footer-nav > a.footer-nav-link:hover {
-  color: var(--c-footer-link-h) !important;
-  letter-spacing: .05em;
+.footer-nav-child:hover { color: var(--c-footer-link-h) !important; transform: translateX(4px); }
+.footer-nav-dot { color: var(--c-primary); font-size: .6rem; opacity: .7; flex-shrink: 0; }
+
+/* Top-level nav items without children align as their own group */
+.footer-nav > a.footer-nav-link {
+  align-self: flex-start;
+  padding-top: .1rem;
 }
 
 @media (max-width: 640px) {
-  .footer-nav { justify-content: center; gap: 2rem; }
-  .footer-nav-group {
-    border-left: none;
-    border-top: 2px solid color-mix(in srgb, var(--c-primary) 45%, transparent);
-    padding-left: 0;
-    padding-top: 1rem;
-    align-items: center;
-    text-align: center;
-    min-width: 0;
-    width: 100%;
-  }
-  .footer-nav > a.footer-nav-link { margin-top: 0 !important; }
+  .footer-nav { justify-content: flex-start; }
+  .footer-nav-group { min-width: 0; width: 100%; align-items: center; }
+  .footer-nav-toggle { justify-content: center; }
+  .footer-nav-children { align-items: center; }
 }
 .footer-bottom {
   display: flex; align-items: center; justify-content: space-between;
@@ -859,15 +849,23 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
         <p class="footer-desc">{{ site.description }}</p>
       </div>
 
-      <nav class="footer-nav">
+     <nav class="footer-nav">
         {% for item in site.nav %}
           {% if item.children %}
             <div class="footer-nav-group">
-              <span class="footer-nav-label">{{ item.label }}</span>
-              <span class="footer-nav-group-sub">Explore the sections</span>
-              {% for child in item.children %}
-                <a href="{{ child.url | relative_url }}" class="footer-nav-child">{{ child.label }}</a>
-              {% endfor %}
+              <button class="footer-nav-toggle" type="button">
+                {{ item.label }}
+                <svg viewBox="0 0 10 6" fill="none">
+                  <path d="m1 1 4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <div class="footer-nav-children">
+                {% for child in item.children %}
+                  <a href="{{ child.url | relative_url }}" class="footer-nav-link footer-nav-child">
+                    <span class="footer-nav-dot">·</span> {{ child.label }}
+                  </a>
+                {% endfor %}
+              </div>
             </div>
           {% else %}
             <a href="{{ item.url | relative_url }}" class="footer-nav-link">{{ item.label }}</a>
@@ -1165,6 +1163,15 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
     document.addEventListener('click', function (e) {
       if (!e.target.closest('.nav-dropdown'))
         document.querySelectorAll('.nav-dropdown.open').forEach(function (d) { d.classList.remove('open'); });
+    });
+
+    /* ── 4b. FOOTER DROPDOWN ──────────────────────────────── */
+    document.querySelectorAll('.footer-nav-group').forEach(function (group) {
+      var toggle = group.querySelector('.footer-nav-toggle');
+      if (!toggle) return;
+      toggle.addEventListener('click', function () {
+        group.classList.toggle('open');
+      });
     });
 
     /* ── 5. MOBILE MENU ──────────────────────────────────── */
