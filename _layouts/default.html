@@ -370,11 +370,24 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
 }
 .mobile-nav-link:hover { color: var(--c-text) !important; background: var(--c-surface-hover); }
 .mobile-nav-group { margin-top: .5rem; }
-.mobile-nav-group-label {
-  font-family: var(--font-ui); font-size: .65rem; font-weight: 700;
-  letter-spacing: .14em; text-transform: uppercase; color: var(--c-primary);
-  padding: .3rem .5rem;
+.mobile-nav-group-toggle {
+  display: flex; align-items: center; justify-content: space-between; width: 100%;
+  font-family: var(--font-ui); font-size: .9rem; font-weight: 500;
+  color: var(--c-text-muted) !important;
+  background: none; border: none; cursor: pointer;
+  padding: .55rem .5rem; border-radius: 6px;
+  transition: background var(--transition), color var(--transition);
 }
+.mobile-nav-group-toggle:hover { color: var(--c-text) !important; background: var(--c-surface-hover); }
+.mobile-nav-group-toggle svg { width: 11px; height: 11px; transition: transform .3s ease; color: var(--c-primary); }
+.mobile-nav-group.open .mobile-nav-group-toggle svg { transform: rotate(180deg); }
+.mobile-nav-group-children {
+  max-height: 0; overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: max-height .35s cubic-bezier(.4,0,.2,1), opacity .3s ease;
+  opacity: 0;
+}
+.mobile-nav-group.open .mobile-nav-group-children { max-height: 400px; opacity: 1; }
 .mobile-nav-child { padding-left: 1rem; }
 @media (max-width: 640px) { #desktop-nav { display: none; } #mobile-menu-toggle { display: flex !important; } }
 /* ── SEARCH OVERLAY ── */
@@ -783,10 +796,17 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
       {% for item in site.nav %}
         {% if item.children %}
           <div class="mobile-nav-group">
-            <div class="mobile-nav-group-label">{{ item.label }}</div>
-            {% for child in item.children %}
-              <a href="{{ child.url | relative_url }}" class="mobile-nav-link mobile-nav-child">{{ child.label }}</a>
-            {% endfor %}
+            <button class="mobile-nav-group-toggle" type="button">
+              {{ item.label }}
+              <svg viewBox="0 0 10 6" fill="none">
+                <path d="m1 1 4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="mobile-nav-group-children">
+              {% for child in item.children %}
+                <a href="{{ child.url | relative_url }}" class="mobile-nav-link mobile-nav-child">{{ child.label }}</a>
+              {% endfor %}
+            </div>
           </div>
         {% else %}
           <a href="{{ item.url | relative_url }}" class="mobile-nav-link">{{ item.label }}</a>
@@ -1189,6 +1209,15 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
     /* ── 4b. FOOTER DROPDOWN ──────────────────────────────── */
     document.querySelectorAll('.footer-nav-group').forEach(function (group) {
       var toggle = group.querySelector('.footer-nav-toggle');
+      if (!toggle) return;
+      toggle.addEventListener('click', function () {
+        group.classList.toggle('open');
+      });
+    });
+
+        /* ── 4c. MOBILE HEADER NAV DROPDOWN ───────────────────── */
+    document.querySelectorAll('.mobile-nav-group').forEach(function (group) {
+      var toggle = group.querySelector('.mobile-nav-group-toggle');
       if (!toggle) return;
       toggle.addEventListener('click', function () {
         group.classList.toggle('open');
