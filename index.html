@@ -98,9 +98,20 @@ permalink: /
       <div class="section-label">Nazar — Visual Journal</div>
 
       {% if latest_quarter %}
-        <div class="teaser-box" onclick="document.getElementById('nazar-quarters-modal').classList.add('open')" style="cursor:pointer;">
-          <p class="teaser-desc">{{ latest_quarter.description }}</p>
-          <span class="teaser-cta">{{ latest_quarter.label | default: latest_quarter.title }} — Browse Quarters</span>
+        {% assign q_posts = nazar_docs | where_exp: "p", "p.url contains latest_quarter.key" %}
+        <div class="post-card" onclick="document.getElementById('nazar-quarters-modal').classList.add('open')"
+          style="cursor:pointer;text-decoration:none;display:flex;flex-direction:row;max-width:700px;margin:0 auto;border-radius:30px 80px 30px 80px;">
+          <div class="post-card-img"
+            style="width:40%;flex-shrink:0;aspect-ratio:auto;border-radius:30px 0 0 80px;overflow:hidden;">
+            <img src="{{ latest_quarter.image | relative_url }}" alt="{{ latest_quarter.label | default: latest_quarter.title }}" />
+          </div>
+          <div class="post-card-body">
+            <div class="post-card-meta"><span>{{ q_posts.size }} stories</span></div>
+            <h2 class="post-card-title">{{ latest_quarter.label | default: latest_quarter.title }}</h2>
+            <p class="post-card-excerpt">{{ latest_quarter.description }}</p>
+            <span class="read-more-arrow">Browse Quarters <i data-lucide="layers"
+                style="width:13px;height:13px;"></i></span>
+          </div>
         </div>
       {% else %}
         <div class="teaser-box">
@@ -224,9 +235,10 @@ permalink: /
 
   .nazar-modal {
     background: var(--c-bg);
-    box-shadow: 6px 6px 0 rgba(0,0,0,0.15);
+    border: 1px solid var(--c-border);
     border-radius: 24px;
-    width: min(960px, 96vw);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, .25);
+    width: min(680px, 96vw);
     max-height: 85vh;
     overflow-y: auto;
     transform: scale(.92) translateY(20px);
@@ -251,6 +263,7 @@ permalink: /
     top: 0;
     background: var(--c-bg);
     z-index: 2;
+    border-bottom: 1px solid var(--c-border);
   }
 
   .nazar-modal-title {
@@ -272,10 +285,10 @@ permalink: /
   .nazar-modal-close {
     width: 36px;
     height: 36px;
-    box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 1px solid var(--c-border);
     border-radius: 10px;
     background: transparent;
     color: var(--c-text-muted);
@@ -287,6 +300,7 @@ permalink: /
   .nazar-modal-close:hover {
     background: var(--c-surface);
     color: var(--c-text);
+    border-color: var(--c-primary);
   }
 
   .nazar-modal-grid {
@@ -299,9 +313,9 @@ permalink: /
   .nazar-quarter-card {
     display: flex;
     flex-direction: row;
-    box-shadow: 3px 3px 0 rgba(0,0,0,0.08);
     gap: 0;
     background: var(--c-surface);
+    border: 1px solid var(--c-border);
     border-radius: 16px;
     overflow: hidden;
     text-decoration: none;
@@ -312,10 +326,11 @@ permalink: /
   .nazar-quarter-card:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
+    border-color: var(--c-primary);
   }
 
   .nazar-quarter-img {
-    width: 28%;
+    width: 35%;
     flex-shrink: 0;
     overflow: hidden;
     background: color-mix(in srgb, var(--c-primary) 10%, var(--c-surface));
@@ -333,7 +348,7 @@ permalink: /
   }
 
   .nazar-quarter-body {
-    padding: 0.7rem 1rem;
+    padding: 1.2rem 1.4rem;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -352,7 +367,7 @@ permalink: /
 
   .nazar-quarter-title {
     font-family: var(--font-heading);
-    font-size: 1rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: var(--c-text);
     margin-bottom: .35rem;
@@ -365,10 +380,10 @@ permalink: /
   }
 
   .nazar-quarter-desc {
-    font-size: .8rem;
+    font-size: .88rem;
     color: var(--c-text-muted);
-    line-height: 1.4;
-    margin: 0 0 .3rem;
+    line-height: 1.55;
+    margin: 0 0 .6rem;
   }
 
 
