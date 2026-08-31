@@ -61,8 +61,7 @@ permalink: /
     <!-- ── INTERVIEWS ── -->
     {% assign interviews = site.pages | where_exp: "p", "p.url contains '/interviews/'" | where_exp: "p", "p.layout == 'post'" | sort: "date" | reverse %}
     {% assign latest_interview = interviews | first %}
-    
-    {% if latest_interview %}
+        {% if interviews.size > 0 %}
     <section style="margin:3rem 0;">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
         <div class="section-label" style="margin:0;">Interviews</div>
@@ -71,25 +70,27 @@ permalink: /
         </a>
       </div>
 
-      <a href="{{ latest_interview.url | relative_url }}" class="interview-feature">
-        <div class="interview-feature-img">
-          {% if latest_interview.image %}
-            <img src="{{ latest_interview.image }}" alt="{{ latest_interview.title }}" loading="lazy" />
-          {% else %}
-            <div class="interview-feature-img-placeholder">
-              <i data-lucide="mic" style="width:32px;height:32px;color:var(--c-primary);opacity:.4;"></i>
-            </div>
-          {% endif %}
-        </div>
-        <div class="interview-feature-body">
-          {% if latest_interview.interviewer %}
-            <p class="interview-eyebrow">{{ latest_interview.interviewer | upcase }}</p>
-          {% endif %}
-          <h2 class="interview-quote">&ldquo;{{ latest_interview.title }}&rdquo;</h2>
-          <p class="interview-desc">{{ latest_interview.description }}</p>
-          <span class="read-more-arrow">Browse Chapters <i data-lucide="arrow-right" style="width:13px;height:13px;"></i></span>
-        </div>
-      </a>
+      <div class="interview-grid interview-grid-home">
+        {% for iv in interviews limit: 4 %}
+        <a href="{{ iv.url | relative_url }}" class="interview-card">
+          <div class="interview-card-img">
+            {% if iv.image %}
+              <img src="{{ iv.image }}" alt="{{ iv.title }}" loading="lazy" />
+            {% else %}
+              <div class="interview-card-img-placeholder">
+                <i data-lucide="mic" style="width:28px;height:28px;color:#000;opacity:.35;"></i>
+              </div>
+            {% endif %}
+          </div>
+          <div class="interview-card-caption">
+            <h3 class="interview-card-title">{{ iv.title }}</h3>
+            {% if iv.interviewer %}
+              <p class="interview-card-author">{{ iv.interviewer }}</p>
+            {% endif %}
+          </div>
+        </a>
+        {% endfor %}
+      </div>
     </section>
     {% endif %}
 
@@ -371,37 +372,61 @@ permalink: /
     line-height: 1.4;
     margin: 0 0 .3rem;
   }
-
-  /* ── Interview Feature Card ── */
-  .interview-feature {
+  /* ── Interview Cards (yellow-caption grid) ── */
+  .interview-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.3rem;
+  }
+  .interview-grid-home { justify-content: center; }
+  .interview-card {
     display: flex;
-    background: var(--c-surface);
-    border: 1px solid var(--c-border);
-    border-radius: 16px;
-    overflow: hidden;
+    flex-direction: column;
     text-decoration: none;
     color: inherit;
-    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-  }
-  .interview-feature:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--c-primary);
-  }
-  .interview-feature-img {
-    width: 220px;
-    flex-shrink: 0;
-    aspect-ratio: 3/4;
+    border-radius: 4px;
     overflow: hidden;
-    background: color-mix(in srgb, var(--c-primary) 10%, var(--c-surface));
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+    transition: transform .25s ease, box-shadow .25s ease;
   }
-  .interview-feature-img img { width: 100%; height: 100%; object-fit: cover; }
-  .interview-feature-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
-  .interview-feature-body { padding: 1.8rem 2.2rem; display: flex; flex-direction: column; justify-content: center; gap: .6rem; }
-  .interview-eyebrow { font-family: var(--font-ui); font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--c-text-muted); }
-  .interview-quote { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; line-height: 1.3; color: var(--c-text); }
-  .interview-desc { font-size: .92rem; color: var(--c-text-muted); line-height: 1.65; }
+  .interview-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 5px 5px 0 rgba(0,0,0,0.15);
+  }
+  .interview-card-img {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: #111;
+  }
+  .interview-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+  .interview-card:hover .interview-card-img img { transform: scale(1.05); }
+  .interview-card-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #eee; }
+  .interview-card-caption {
+    background: #F5C518;
+    padding: 1rem 1.1rem 1.2rem;
+    flex: 1;
+  }
+  .interview-card-title {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1rem;
+    line-height: 1.3;
+    color: #111;
+    margin-bottom: .5rem;
+  }
+  .interview-card-author {
+    font-family: var(--font-ui);
+    font-size: .8rem;
+    font-weight: 500;
+    color: #3a3220;
+  }
 
+  @media (max-width: 900px) {
+    .interview-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 500px) {
+    .interview-grid { grid-template-columns: 1fr; }
+  }
   /* ── Teaser Box (Nazar fallback / Keyword Digest) ── */
   .teaser-box {
     background: var(--c-surface);
