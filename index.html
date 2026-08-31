@@ -63,55 +63,44 @@ permalink: /
     {% assign latest_interview = interviews | first %}
     
     {% if latest_interview %}
-    <section style="margin:3rem 0;">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
-        <div class="section-label" style="margin:0;">Interviews</div>
-        <a href="{{ '/interviews/' | relative_url }}" class="read-more-arrow" style="font-size:0.82rem;">
-          View all <i data-lucide="arrow-right" style="width:13px;height:13px;"></i>
+      <section style="margin:3rem 0;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+          <div class="section-label" style="margin:0;">Interviews</div>
+          <a href="{{ '/interviews/' | relative_url }}" class="read-more-arrow" style="font-size:0.82rem;">
+            View all <i data-lucide="arrow-right" style="width:13px;height:13px;"></i>
+          </a>
+        </div>
+      
+        <a href="{{ latest_interview.url | relative_url }}" class="interview-feature">
+          <div class="interview-feature-img">
+            {% if latest_interview.image %}
+              <img src="{{ latest_interview.image }}" alt="{{ latest_interview.title }}" loading="lazy" />
+            {% else %}
+              <div class="interview-feature-img-placeholder">
+                <i data-lucide="mic" style="width:32px;height:32px;color:var(--c-primary);opacity:.4;"></i>
+              </div>
+            {% endif %}
+          </div>
+          <div class="interview-feature-body">
+            {% if latest_interview.interviewer %}
+              <p class="interview-eyebrow">{{ latest_interview.interviewer | upcase }}</p>
+            {% endif %}
+            <h2 class="interview-quote">&ldquo;{{ latest_interview.title }}&rdquo;</h2>
+            <p class="interview-desc">{{ latest_interview.description }}</p>
+            <span class="read-more-arrow">Browse Chapters <i data-lucide="arrow-right" style="width:13px;height:13px;"></i></span>
+          </div>
         </a>
-      </div>
-
-      <a href="{{ latest_interview.url | relative_url }}" class="interview-feature">
-        <div class="interview-feature-img">
-          {% if latest_interview.image %}
-            <img src="{{ latest_interview.image }}" alt="{{ latest_interview.title }}" loading="lazy" />
-          {% else %}
-            <div class="interview-feature-img-placeholder">
-              <i data-lucide="mic" style="width:32px;height:32px;color:var(--c-primary);opacity:.4;"></i>
-            </div>
-          {% endif %}
-        </div>
-        <div class="interview-feature-body">
-          {% if latest_interview.interviewer %}
-            <p class="interview-eyebrow">{{ latest_interview.interviewer | upcase }}</p>
-          {% endif %}
-          <h2 class="interview-quote">&ldquo;{{ latest_interview.title }}&rdquo;</h2>
-          <p class="interview-desc">{{ latest_interview.description }}</p>
-          <span class="read-more-arrow">Browse Chapters <i data-lucide="arrow-right" style="width:13px;height:13px;"></i></span>
-        </div>
-      </a>
-    </section>
-    {% endif %}
+      </section>
+      {% endif %}
 
     <!-- ── NAZAR — Visual Journal ── -->
     <section style="margin:3rem 0;">
       <div class="section-label">Nazar — Visual Journal</div>
 
       {% if latest_quarter %}
-        {% assign q_posts = nazar_docs | where_exp: "p", "p.url contains latest_quarter.key" %}
-        <div class="post-card" onclick="document.getElementById('nazar-quarters-modal').classList.add('open')"
-          style="cursor:pointer;text-decoration:none;display:flex;flex-direction:row;max-width:700px;margin:0 auto;border-radius:30px 80px 30px 80px;">
-          <div class="post-card-img"
-            style="width:40%;flex-shrink:0;aspect-ratio:auto;border-radius:30px 0 0 80px;overflow:hidden;">
-            <img src="{{ latest_quarter.image | relative_url }}" alt="{{ latest_quarter.label | default: latest_quarter.title }}" />
-          </div>
-          <div class="post-card-body">
-            <div class="post-card-meta"><span>{{ q_posts.size }} stories</span></div>
-            <h2 class="post-card-title">{{ latest_quarter.label | default: latest_quarter.title }}</h2>
-            <p class="post-card-excerpt">{{ latest_quarter.description }}</p>
-            <span class="read-more-arrow">Browse Quarters <i data-lucide="layers"
-                style="width:13px;height:13px;"></i></span>
-          </div>
+        <div class="teaser-box" onclick="document.getElementById('nazar-quarters-modal').classList.add('open')" style="cursor:pointer;">
+          <p class="teaser-desc">{{ latest_quarter.description }}</p>
+          <span class="teaser-cta">{{ latest_quarter.label | default: latest_quarter.title }} — Browse Quarters</span>
         </div>
       {% else %}
         <div class="teaser-box">
@@ -235,10 +224,9 @@ permalink: /
 
   .nazar-modal {
     background: var(--c-bg);
-    border: 1px solid var(--c-border);
+    box-shadow: 6px 6px 0 rgba(0,0,0,0.15);
     border-radius: 24px;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, .25);
-    width: min(680px, 96vw);
+    width: min(960px, 96vw);
     max-height: 85vh;
     overflow-y: auto;
     transform: scale(.92) translateY(20px);
@@ -263,7 +251,6 @@ permalink: /
     top: 0;
     background: var(--c-bg);
     z-index: 2;
-    border-bottom: 1px solid var(--c-border);
   }
 
   .nazar-modal-title {
@@ -285,10 +272,10 @@ permalink: /
   .nazar-modal-close {
     width: 36px;
     height: 36px;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid var(--c-border);
     border-radius: 10px;
     background: transparent;
     color: var(--c-text-muted);
@@ -300,7 +287,6 @@ permalink: /
   .nazar-modal-close:hover {
     background: var(--c-surface);
     color: var(--c-text);
-    border-color: var(--c-primary);
   }
 
   .nazar-modal-grid {
@@ -313,9 +299,9 @@ permalink: /
   .nazar-quarter-card {
     display: flex;
     flex-direction: row;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.08);
     gap: 0;
     background: var(--c-surface);
-    border: 1px solid var(--c-border);
     border-radius: 16px;
     overflow: hidden;
     text-decoration: none;
@@ -326,11 +312,10 @@ permalink: /
   .nazar-quarter-card:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
-    border-color: var(--c-primary);
   }
 
   .nazar-quarter-img {
-    width: 35%;
+    width: 28%;
     flex-shrink: 0;
     overflow: hidden;
     background: color-mix(in srgb, var(--c-primary) 10%, var(--c-surface));
@@ -348,7 +333,7 @@ permalink: /
   }
 
   .nazar-quarter-body {
-    padding: 1.2rem 1.4rem;
+    padding: 0.7rem 1rem;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -367,7 +352,7 @@ permalink: /
 
   .nazar-quarter-title {
     font-family: var(--font-heading);
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--c-text);
     margin-bottom: .35rem;
@@ -380,47 +365,40 @@ permalink: /
   }
 
   .nazar-quarter-desc {
-    font-size: .88rem;
+    font-size: .8rem;
     color: var(--c-text-muted);
-    line-height: 1.55;
-    margin: 0 0 .6rem;
+    line-height: 1.4;
+    margin: 0 0 .3rem;
   }
 
-
-  /* ── Interview Feature Card ── */
+  /* ── Interview Feature Card — Nazar-style ── */
   .interview-feature {
     display: flex;
     background: var(--c-surface);
-    border: 1px solid var(--c-border);
 
-    /* Two opposite curved corners */
-    border-radius: 20px 4px 20px 4px;
+    /* Nazar asymmetric corners */
+    border-radius: 30px 80px 30px 80px;
 
     overflow: hidden;
     text-decoration: none;
     color: inherit;
 
-    /* Reference-image style shadow */
-    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.08);
-
     transition:
       transform .25s ease,
-      box-shadow .25s ease,
-      border-color .25s ease;
+      box-shadow .25s ease;
   }
 
   .interview-feature:hover {
     transform: translateY(-2px);
 
-    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.12);
-
-    border-color: var(--c-primary);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   }
 
   .interview-feature-img {
-    width: 220px;
+    width: 40%;
     flex-shrink: 0;
-    aspect-ratio: 3/4;
+    aspect-ratio: auto;
+    border-radius: 30px 0 0 80px;
     overflow: hidden;
     background: color-mix(
       in srgb,
@@ -769,14 +747,13 @@ permalink: /
   @media (max-width: 640px) {
     .interview-feature {
       flex-direction: column;
-
-      /* Same two opposite curved corners on mobile */
-      border-radius: 20px 4px 20px 4px;
+      border-radius: 30px 30px 30px 30px;
     }
 
     .interview-feature-img {
       width: 100%;
       aspect-ratio: 16/9;
+      border-radius: 30px 30px 0 0;
     }
   }
 </style>
