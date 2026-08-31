@@ -394,22 +394,25 @@ permalink: /
   @media (max-width: 500px) {
     .interview-grid-home .interview-card { width: 100%; }
   }
-   .interview-card {
+  .interview-card {
     display: flex;
     flex-direction: column;
     text-decoration: none;
     color: inherit;
     border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+    overflow: visible;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
     transition: transform .25s ease, box-shadow .25s ease;
   }
+  .interview-card-img,
+  .interview-card-caption { overflow: hidden; }
+  .interview-card-img { border-radius: 4px 4px 0 0; }
   .interview-card-caption {
     border-radius: 0 0 22px 0;
   }
   .interview-card:hover {
     transform: translateY(-4px);
-    box-shadow: 5px 5px 0 rgba(0,0,0,0.15);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.18);
   }
   .interview-card-img {
     aspect-ratio: 4/3;
