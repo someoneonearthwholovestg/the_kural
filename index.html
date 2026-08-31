@@ -372,22 +372,29 @@ permalink: /
     margin: 0 0 .3rem;
   }
 
-  /* ── Interview Feature Card ── */
-  .interview-feature {
-    display: flex;
-    background: var(--c-surface);
-    border: 1px solid var(--c-border);
-    border-radius: 16px;
-    overflow: hidden;
-    text-decoration: none;
-    color: inherit;
-    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-  }
-  .interview-feature:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--c-primary);
-  }
+    .interview-feature {
+      display: flex;
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      border-radius: 14px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+    
+      /* Screenshot-style shadow */
+      box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.08);
+    
+      transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+    }
+    
+    .interview-feature:hover {
+      transform: translateY(-2px);
+      box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.12);
+      border-color: var(--c-primary);
+    }
   .interview-feature-img {
     width: 220px;
     flex-shrink: 0;
