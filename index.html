@@ -199,7 +199,6 @@ permalink: /
 
   </div>
 </section>
-
 <style>
   /* ── Nazar Modal ── */
   .nazar-modal-overlay {
@@ -372,42 +371,94 @@ permalink: /
     margin: 0 0 .3rem;
   }
 
-    .interview-feature {
-      display: flex;
-      background: var(--c-surface);
-      border: 1px solid var(--c-border);
-      border-radius: 14px;
-      overflow: hidden;
-      text-decoration: none;
-      color: inherit;
-    
-      /* Screenshot-style shadow */
-      box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.08);
-    
-      transition:
-        transform .25s ease,
-        box-shadow .25s ease,
-        border-color .25s ease;
-    }
-    
-    .interview-feature:hover {
-      transform: translateY(-2px);
-      box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.12);
-      border-color: var(--c-primary);
-    }
+
+  /* ── Interview Feature Card ── */
+  .interview-feature {
+    display: flex;
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+
+    /* Two opposite curved corners */
+    border-radius: 20px 4px 20px 4px;
+
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+
+    /* Reference-image style shadow */
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.08);
+
+    transition:
+      transform .25s ease,
+      box-shadow .25s ease,
+      border-color .25s ease;
+  }
+
+  .interview-feature:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.12);
+
+    border-color: var(--c-primary);
+  }
+
   .interview-feature-img {
     width: 220px;
     flex-shrink: 0;
     aspect-ratio: 3/4;
     overflow: hidden;
-    background: color-mix(in srgb, var(--c-primary) 10%, var(--c-surface));
+    background: color-mix(
+      in srgb,
+      var(--c-primary) 10%,
+      var(--c-surface)
+    );
   }
-  .interview-feature-img img { width: 100%; height: 100%; object-fit: cover; }
-  .interview-feature-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
-  .interview-feature-body { padding: 1.8rem 2.2rem; display: flex; flex-direction: column; justify-content: center; gap: .6rem; }
-  .interview-eyebrow { font-family: var(--font-ui); font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--c-text-muted); }
-  .interview-quote { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; line-height: 1.3; color: var(--c-text); }
-  .interview-desc { font-size: .92rem; color: var(--c-text-muted); line-height: 1.65; }
+
+  .interview-feature-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .interview-feature-img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .interview-feature-body {
+    padding: 1.8rem 2.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .6rem;
+  }
+
+  .interview-eyebrow {
+    font-family: var(--font-ui);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--c-text-muted);
+  }
+
+  .interview-quote {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--c-text);
+  }
+
+  .interview-desc {
+    font-size: .92rem;
+    color: var(--c-text-muted);
+    line-height: 1.65;
+  }
+
 
   /* ── Teaser Box (Nazar fallback / Keyword Digest) ── */
   .teaser-box {
@@ -419,48 +470,70 @@ permalink: /
     max-width: 700px;
     margin: 0 auto;
   }
-  .teaser-desc { font-size: .95rem; color: var(--c-text-muted); line-height: 1.75; margin-bottom: 1.2rem; }
+
+  .teaser-desc {
+    font-size: .95rem;
+    color: var(--c-text-muted);
+    line-height: 1.75;
+    margin-bottom: 1.2rem;
+  }
+
   .teaser-cta {
     display: inline-block;
-    font-family: var(--font-ui); font-size: .78rem; font-weight: 700;
-    letter-spacing: .1em; text-transform: uppercase;
+    font-family: var(--font-ui);
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
     color: var(--c-primary);
     border-bottom: 1px solid var(--c-primary);
     padding-bottom: .15rem;
     transition: color var(--transition);
   }
-  .teaser-cta:hover { color: var(--c-primary-dark); }
+
+  .teaser-cta:hover {
+    color: var(--c-primary-dark);
+  }
+
 
   /* ── Book Review Grid (homepage) ── */
   .book-review-grid {
     grid-template-columns: repeat(4, 1fr);
     gap: 1.2rem;
   }
+
   .book-review-grid .post-card-img {
     aspect-ratio: 3 / 2;
   }
+
   .book-review-grid .post-card:first-child {
     grid-column: 1 / -1;
     flex-direction: row;
   }
+
   .book-review-grid .post-card:first-child .post-card-img {
     width: 32%;
     aspect-ratio: 3 / 2;
     flex-shrink: 0;
   }
+
   .book-review-grid .post-card:first-child .post-card-title {
     font-size: 1.3rem;
   }
+
   .book-review-grid .post-card:first-child .post-card-body {
     padding: 1.2rem 1.5rem;
     justify-content: center;
   }
+
   .book-review-grid .post-card-body {
     padding: 1rem 1.1rem 1.2rem;
   }
+
   .book-review-grid .post-card-title {
     font-size: 1.1rem;
   }
+
   .book-review-grid .post-card-excerpt {
     font-size: 0.85rem;
     -webkit-line-clamp: 2;
@@ -468,29 +541,41 @@ permalink: /
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  .book-review-rest { display: contents; }
+
+  .book-review-rest {
+    display: contents;
+  }
 
   .book-review-rest a.post-card:first-child {
     grid-column: auto !important;
     flex-direction: column !important;
   }
+
   .book-review-rest a.post-card:first-child .post-card-img {
     width: auto !important;
     aspect-ratio: 3 / 2 !important;
   }
+
   .book-review-rest a.post-card:first-child .post-card-title {
     font-size: 1.1rem !important;
   }
+
   .book-review-rest a.post-card:first-child .post-card-body {
     padding: 1rem 1.1rem 1.2rem !important;
     justify-content: flex-start !important;
   }
 
   @media (max-width: 900px) {
-    .book-review-grid { grid-template-columns: repeat(2, 1fr); }
-    .book-review-grid > a.post-card:first-child { grid-column: 1 / -1; }
+    .book-review-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .book-review-grid > a.post-card:first-child {
+      grid-column: 1 / -1;
+    }
   }
-    .book-review-scroll-hint {
+
+  .book-review-scroll-hint {
     display: none;
     align-items: center;
     gap: 0.3rem;
@@ -501,9 +586,13 @@ permalink: /
   }
 
   @media (max-width: 640px) {
-    .book-review-grid { grid-template-columns: 1fr; }
+    .book-review-grid {
+      grid-template-columns: 1fr;
+    }
 
-    .book-review-scroll-hint { display: flex; }
+    .book-review-scroll-hint {
+      display: flex;
+    }
 
     .book-review-rest {
       display: flex;
@@ -516,12 +605,17 @@ permalink: /
       padding: 0.3rem 0.1rem 0.6rem;
       margin-top: 0.2rem;
     }
-    .book-review-rest::-webkit-scrollbar { display: none; }
+
+    .book-review-rest::-webkit-scrollbar {
+      display: none;
+    }
+
     .book-review-rest .post-card {
       flex: 0 0 70%;
       scroll-snap-align: start;
     }
   }
+
 
   /* ── Carousel ── */
   .carousel-wrapper {
@@ -630,6 +724,8 @@ permalink: /
     color: #fff;
   }
 
+
+  /* ── Responsive ── */
   @media (max-width: 500px) {
     .nazar-modal-grid {
       padding: 1rem;
@@ -656,11 +752,19 @@ permalink: /
   }
 
   @media (max-width: 640px) {
-    .interview-feature { flex-direction: column; }
-    .interview-feature-img { width: 100%; aspect-ratio: 16/9; }
+    .interview-feature {
+      flex-direction: column;
+
+      /* Same two opposite curved corners on mobile */
+      border-radius: 20px 4px 20px 4px;
+    }
+
+    .interview-feature-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+    }
   }
 </style>
-
 <script>
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
