@@ -378,7 +378,22 @@ permalink: /
     grid-template-columns: repeat(4, 1fr);
     gap: 1.3rem;
   }
-  .interview-grid-home { justify-content: center; max-width: 1000px; margin: 0 auto; }
+  .interview-grid-home {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.3rem;
+  }
+  .interview-grid-home .interview-card {
+    width: calc(25% - 1rem);
+    flex-shrink: 0;
+  }
+  @media (max-width: 900px) {
+    .interview-grid-home .interview-card { width: calc(50% - .65rem); }
+  }
+  @media (max-width: 500px) {
+    .interview-grid-home .interview-card { width: 100%; }
+  }
   .interview-card {
     display: flex;
     flex-direction: column;
