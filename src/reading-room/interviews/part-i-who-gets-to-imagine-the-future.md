@@ -55,7 +55,7 @@ At a moment when militarism, economic precarity, ecological devastation, and res
 
 The central question facing us today is therefore not whether schools should transmit values. They always will. The real question is this: Will education prepare people to participate critically in democratic life, or will it train them to accept increasingly authoritarian forms of rule? The answer to that question will shape not only the future of education but the future of democracy itself.
 
-### 3. Many right-wing movements speak obsessively about protecting children — from books, from gender, from sexuality, from 'anti-national' ideas, from critical race theory, from dissent. Why do authoritarian movements so often construct the child as a site of moral panic? What does the political struggle over the imagination of the child reveal about the future a regime wants to produce?
+### *3. Many right-wing movements speak obsessively about protecting children — from books, from gender, from sexuality, from 'anti-national' ideas, from critical race theory, from dissent. Why do authoritarian movements so often construct the child as a site of moral panic? What does the political struggle over the imagination of the child reveal about the future a regime wants to produce?*
 
 **McLaren:** The child has always occupied a sacred place in the political imagination. The child is tomorrow's citizen, tomorrow's worker, tomorrow's believer, tomorrow's dissenter. The child embodies the future in its most vulnerable and unfinished form. For that reason, every struggle over the child is ultimately a struggle over history itself.
 
