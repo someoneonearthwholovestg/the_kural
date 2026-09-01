@@ -5,6 +5,7 @@ interviewer: "Naila Alavi"
 permalink: /interviews/part-iii-where-does-critical-pedagogy-live-now/
 image: "https://i.ibb.co/pBbcVy1n/Peter-Mc-Laren.jpg"
 date: 2026-01-29
+author: "naila"
 description: "The final part of a three-part conversation with Peter McLaren, on critical pedagogy in the age of algorithms, digital spectacle, and post-digital fascism."
 ---
 
