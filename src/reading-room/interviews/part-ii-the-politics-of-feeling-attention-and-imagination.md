@@ -43,7 +43,7 @@ Hope, in this sense, is not a sentiment. It is a political force. It is the refu
 
 For this reason, the struggle over education is inseparable from the struggle over collective emotions. Whoever shapes how people feel about the past, the present, and the future exercises enormous influence over political life itself. The battle is not only over institutions or resources. It is also over fear and hope, memory and imagination, despair and possibility. Ultimately, it is a struggle over how people understand themselves as historical agents capable of shaping the world they inhabit.
 
-### 2. Historically, authoritarian regimes burned books because they feared dangerous ideas. Today, however, power often does not need to ban knowledge outright; it simply floods society with distraction, exhaustion, speed, and endless information. Do you think the contemporary crisis is no longer censorship in the classical sense, but the production of a population too overstimulated to think historically, ethically, or collectively at all?
+### *2. Historically, authoritarian regimes burned books because they feared dangerous ideas. Today, however, power often does not need to ban knowledge outright; it simply floods society with distraction, exhaustion, speed, and endless information. Do you think the contemporary crisis is no longer censorship in the classical sense, but the production of a population too overstimulated to think historically, ethically, or collectively at all?*
 
 **McLaren:** I would answer that question in the affirmative. We live in an age saturated by distraction, but distraction is not simply an accidental by-product of contemporary media culture. It increasingly functions as a political strategy.
 
