@@ -31,19 +31,18 @@ layout: default
         {% if author.avatar %}
           <img src="{{ author.avatar }}" alt="{{ author.name }}"
             style="width:clamp(24px,4vw,36px);height:clamp(24px,4vw,36px);border-radius:50%;object-fit:cover;flex-shrink:0;"
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
-          <div style="width:clamp(24px,4vw,36px);height:clamp(24px,4vw,36px);border-radius:50%;background:color-mix(in srgb,var(--c-primary) 20%,var(--c-surface));display:none;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:clamp(.7rem,2vw,1rem);font-weight:700;color:var(--c-primary);flex-shrink:0;">{{ author.name | slice: 0 }}</div>
-        {% else %}
-          <div style="width:clamp(24px,4vw,36px);height:clamp(24px,4vw,36px);border-radius:50%;background:color-mix(in srgb,var(--c-primary) 20%,var(--c-surface));display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:clamp(.7rem,2vw,1rem);font-weight:700;color:var(--c-primary);flex-shrink:0;">{{ author.name | slice: 0 }}</div>
+            onerror="this.style.display='none';" />
         {% endif %}
-        <span>{{ author.name }}</span>
+        {% if author.name %}<span>{{ author.name }}</span>{% endif %}
 
+        {% if page.date %}
         <span style="display:flex;align-items:center;gap:.4rem;">
           <span style="width:20px;height:20px;border-radius:50%;background:color-mix(in srgb, var(--c-primary) 15%, var(--c-surface));display:flex;align-items:center;justify-content:center;flex-shrink:0;">
             <i data-lucide="calendar" style="width:11px;height:11px;color:var(--c-primary);"></i>
           </span>
           {{ page.date | date: "%B %d, %Y" }}
         </span>
+        {% endif %}
 
         {% if site.show_reading_time %}
         <span style="display:flex;align-items:center;gap:.4rem;">
@@ -86,14 +85,11 @@ layout: default
       {% if author.avatar %}
         <img src="{{ author.avatar }}" alt="{{ author.name }}"
           style="width:clamp(44px,8vw,64px);height:clamp(44px,8vw,64px);border-radius:50%;object-fit:cover;flex-shrink:0;"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
-        <div style="width:clamp(44px,8vw,64px);height:clamp(44px,8vw,64px);border-radius:50%;background:color-mix(in srgb,var(--c-primary) 20%,var(--c-surface));display:none;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:clamp(1rem,3vw,1.6rem);font-weight:700;color:var(--c-primary);flex-shrink:0;">{{ author.name | slice: 0 }}</div>
-      {% else %}
-        <div style="width:clamp(44px,8vw,64px);height:clamp(44px,8vw,64px);border-radius:50%;background:color-mix(in srgb,var(--c-primary) 20%,var(--c-surface));display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:clamp(1rem,3vw,1.6rem);font-weight:700;color:var(--c-primary);flex-shrink:0;">{{ author.name | slice: 0 }}</div>
+          onerror="this.style.display='none';" />
       {% endif %}
       <div>
-        <div class="author-name">{{ author.name }}</div>
-        <div class="author-bio">{{ author.bio }}</div>
+        {% if author.name %}<div class="author-name">{{ author.name }}</div>{% endif %}
+        {% if author.bio %}<div class="author-bio">{{ author.bio }}</div>{% endif %}
       </div>
     </div>
     {% endif %}
