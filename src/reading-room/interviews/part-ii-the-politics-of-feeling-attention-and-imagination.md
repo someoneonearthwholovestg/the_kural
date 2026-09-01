@@ -9,7 +9,7 @@ author: "naila"
 description: "The second of a three-part conversation with Peter McLaren, exploring how power operates through the management of collective emotion, distraction, and imagination itself."
 ---
 
-**A Note to Readers**
+*A Note to Readers*
 
 These questions emerge from a larger concern surrounding the contemporary global assault on academic spaces such as universities, classrooms, libraries, curricula, and traditions of critical inquiry. Across different political contexts, educational institutions have increasingly become sites of political contestation, subject to efforts to discipline, defund, rewrite, surveil, or ideologically reorganize them. Many of these struggles have emerged alongside the rise of contemporary right-wing and authoritarian movements, raising broader questions about the relationship between power, knowledge, and critical thought. This conversation, therefore, is not merely about policy changes within education, but about a deeper political anxiety: why do authoritarian and right-wing projects so often perceive critical thought, collective learning, historical consciousness, and intellectual dissent as existential threats? Drawing from the work of Peter McLaren, these questions attempt to explore education not as a neutral institution, but as a contested terrain where power struggles over memory, imagination, morality, identity, and the possibility of collective emancipation unfold.
 
@@ -17,7 +17,7 @@ We have divided this interview into three sections, each following a different t
 
 ## The Politics of Feeling, Attention, and Imagination
 
-### 1. You have written extensively about capitalism's influence on education. Yet many contemporary struggles over universities and curricula seem to be framed less through economic arguments than through narratives of humiliation, cultural decline, national injury, moral corruption, or the feeling that a way of life is under threat. How do you understand the relationship between these emotional narratives and broader structures of political and economic power? To what extent do projects of domination operate through the management of collective emotions as much as through material conditions?
+### *1. You have written extensively about capitalism's influence on education. Yet many contemporary struggles over universities and curricula seem to be framed less through economic arguments than through narratives of humiliation, cultural decline, national injury, moral corruption, or the feeling that a way of life is under threat. How do you understand the relationship between these emotional narratives and broader structures of political and economic power? To what extent do projects of domination operate through the management of collective emotions as much as through material conditions?*
 
 **McLaren:** For many years I have argued that capitalism exerts a profound influence on education, shaping not only what schools teach but also how societies define knowledge, success, citizenship, and human worth. Yet it would be a mistake to assume that systems of domination operate primarily through economic mechanisms alone. Political and economic power must also work through culture, identity, memory, and emotion. Human beings do not live by material interests alone. We live through stories, fears, aspirations, resentments, and hopes.
 
