@@ -8,7 +8,7 @@ date: 2026-01-29
 description: "The final part of a three-part conversation with Peter McLaren, on critical pedagogy in the age of algorithms, digital spectacle, and post-digital fascism."
 ---
 
-**A Note to Readers**
+*A Note to Readers*
 
 These questions emerge from a larger concern surrounding the contemporary global assault on academic spaces such as universities, classrooms, libraries, curricula, and traditions of critical inquiry. Across different political contexts, educational institutions have increasingly become sites of political contestation, subject to efforts to discipline, defund, rewrite, surveil, or ideologically reorganize them. Many of these struggles have emerged alongside the rise of contemporary right-wing and authoritarian movements, raising broader questions about the relationship between power, knowledge, and critical thought. This conversation, therefore, is not merely about policy changes within education, but about a deeper political anxiety: why do authoritarian and right-wing projects so often perceive critical thought, collective learning, historical consciousness, and intellectual dissent as existential threats? Drawing from the work of Peter McLaren, these questions attempt to explore education not as a neutral institution, but as a contested terrain where power struggles over memory, imagination, morality, identity, and the possibility of collective emancipation unfold.
 
