@@ -19,6 +19,7 @@ We have divided this interview into three sections, each following a different t
 
 ### *1. Critical pedagogy has long imagined the classroom as a space of emancipation. But many young people today encounter politics primarily through algorithms, short-form outrage, influencer culture, and digital propaganda rather than classrooms. In such a world, where does critical pedagogy live now? Can the classroom still compete with the emotional machinery of the internet?*
 
+
 **McLaren:** Critical pedagogy has traditionally imagined the classroom as a space where students learn to question assumptions, interrogate power, and develop the critical capacities necessary for democratic citizenship. But we must recognize that the educational terrain has changed dramatically. Today, many young people encounter politics less through classrooms than through algorithms, influencers, social media feeds, digital spectacles, and what I have elsewhere called the emerging culture of post-digital fascism.
 
 The crucial question is therefore not whether the classroom can compete with the internet. The question is whether critical pedagogy can expand beyond the classroom and confront the new pedagogical forces shaping consciousness in the digital age.
