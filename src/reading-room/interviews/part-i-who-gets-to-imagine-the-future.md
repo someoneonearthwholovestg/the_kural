@@ -5,10 +5,11 @@ interviewer: "Naila Alavi"
 date: 2026-01-15
 permalink: /interviews/part-i-who-gets-to-imagine-the-future/
 image: "https://i.ibb.co/pBbcVy1n/Peter-Mc-Laren.jpg"
+author: "naila"
 description: "The first of a three-part conversation with Peter McLaren, tracing the global assault on academic spaces and the political anxiety authoritarian movements hold toward classrooms, critical thought, and the imagination of the child."
 ---
 
-**A Note to Readers**
+*A Note to Readers*
 
 These questions emerge from a larger concern surrounding the contemporary global assault on academic spaces such as universities, classrooms, libraries, curricula, and traditions of critical inquiry. Across different political contexts, educational institutions have increasingly become sites of political contestation, subject to efforts to discipline, defund, rewrite, surveil, or ideologically reorganize them. Many of these struggles have emerged alongside the rise of contemporary right-wing and authoritarian movements, raising broader questions about the relationship between power, knowledge, and critical thought. This conversation, therefore, is not merely about policy changes within education, but about a deeper political anxiety: why do authoritarian and right-wing projects so often perceive critical thought, collective learning, historical consciousness, and intellectual dissent as existential threats? Drawing from the work of Peter McLaren, these questions attempt to explore education not as a neutral institution, but as a contested terrain where power struggles over memory, imagination, morality, identity, and the possibility of collective emancipation unfold.
 
@@ -16,7 +17,7 @@ We have divided this interview into three sections, each following a different t
 
 ## Who Gets to Imagine the Future?
 
-### 1. Across the world, authoritarian politics increasingly begins its cultural project by attacking universities, rewriting textbooks, banning words, policing teachers, and dismantling spaces where people gather to think critically. Why does power fear classrooms so deeply? What is it about collective thinking itself that becomes dangerous to right-wing projects?
+### *1. Across the world, authoritarian politics increasingly begins its cultural project by attacking universities, rewriting textbooks, banning words, policing teachers, and dismantling spaces where people gather to think critically. Why does power fear classrooms so deeply? What is it about collective thinking itself that becomes dangerous to right-wing projects?*
 
 **McLaren:** When my name appeared on Professor Watchlist, a project created by Turning Point USA under the leadership of the recently assassinated Charlie Kirk, I was reminded of a lesson that authoritarian movements have understood for centuries: if you want to control a society, you must first shape how it remembers, how it thinks, and how it learns. Kirk was one of the most influential figures within the contemporary American right, a close ally of Donald Trump, and a leading advocate of a form of Christian nationalism that sought to fuse religious identity with an increasingly authoritarian political vision. His organization devoted considerable energy to targeting educators, students, and academic institutions deemed insufficiently loyal to conservative values. The purpose of Professor Watchlist was ostensibly to expose professors accused of promoting "radical" ideas. In reality, it functioned as part of a broader campaign to intimidate critical educators and portray intellectual inquiry itself as a threat. I was hardly alone. Hundreds of professors found themselves publicly targeted. Yet the existence of such a project raises an important question: if classrooms are politically insignificant, why devote so much effort to policing them?
 
