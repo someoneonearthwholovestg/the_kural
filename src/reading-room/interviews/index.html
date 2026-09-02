@@ -10,7 +10,7 @@ permalink: /interviews/
     <p class="page-subtitle">Conversations with thinkers, writers, and practitioners</p>
   </div>
 
-  {% assign interviews = site.pages | where_exp: "p", "p.url contains '/interviews/'" | where_exp: "p", "p.layout == 'post'" | sort: "date" | reverse %}
+{% assign interviews = site.pages | where_exp: "p", "p.url contains '/interviews/'" | where_exp: "p", "p.layout == 'post'" | sort: "title" %}
   {% if interviews.size > 0 %}
     <div class="interview-grid">
       {% for iv in interviews %}
