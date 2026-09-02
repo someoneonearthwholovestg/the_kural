@@ -122,6 +122,24 @@ layout: default
         {% endif %}
       </div>
       <div class="divider"></div>
+
+      <!-- Desktop sticky side panels -->
+      {% if prev_interview %}
+        <a href="{{ prev_interview.url | relative_url }}" class="interview-pager-side interview-pager-side-left">
+          <span class="interview-pager-label">
+            <i data-lucide="arrow-left" style="width:13px;height:13px;"></i> Previous
+          </span>
+          <span class="interview-pager-title">{{ prev_interview.title }}</span>
+        </a>
+      {% endif %}
+      {% if next_interview %}
+        <a href="{{ next_interview.url | relative_url }}" class="interview-pager-side interview-pager-side-right">
+          <span class="interview-pager-label">
+            Next <i data-lucide="arrow-right" style="width:13px;height:13px;"></i>
+          </span>
+          <span class="interview-pager-title">{{ next_interview.title }}</span>
+        </a>
+      {% endif %}
       {% endif %}
     {% endif %}
 
