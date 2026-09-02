@@ -836,6 +836,41 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
 }
 .footer-wave svg { width: 100%; display: block; }
 
+/* ── Scroll to top (glass) ── */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 2rem; right: 2rem;
+  z-index: 500;
+  width: 46px; height: 46px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: color-mix(in srgb, var(--c-surface) 55%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-md);
+  color: var(--c-text);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity .3s ease, transform .3s ease, border-color .3s ease;
+}
+.scroll-top-btn.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+.scroll-top-btn:hover {
+  border-color: var(--c-primary);
+  color: var(--c-primary);
+}
+.scroll-top-btn svg { width: 20px; height: 20px; }
+
+@media (max-width: 640px) {
+  .scroll-top-btn { bottom: 1.2rem; right: 1.2rem; width: 42px; height: 42px; }
+}
+
 </style>
 
 {{ page.extra_css }}
@@ -982,6 +1017,11 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
     "/>
   </svg>
 </div>
+
+<!-- Scroll to top -->
+<button id="scroll-top-btn" class="scroll-top-btn" aria-label="Scroll to top">
+  <i data-lucide="arrow-up"></i>
+</button>
 
 <!-- ════════════════════════════════════════════════════════════
      FOOTER
@@ -1334,6 +1374,32 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
         group.classList.toggle('open');
       });
     });
+
+    /* ── 4d. SCROLL TO TOP (shows on scroll up) ───────────── */
+    var scrollTopBtn = document.getElementById('scroll-top-btn');
+    var lastScrollY = window.scrollY;
+
+    if (scrollTopBtn) {
+      window.addEventListener('scroll', function () {
+        var currentY = window.scrollY;
+        var scrolledUp = currentY < lastScrollY;
+        var pastThreshold = currentY > 400;
+
+        if (scrolledUp && pastThreshold) {
+          scrollTopBtn.classList.add('visible');
+        } else if (currentY <= 200) {
+          scrollTopBtn.classList.remove('visible');
+        } else if (!scrolledUp) {
+          scrollTopBtn.classList.remove('visible');
+        }
+
+        lastScrollY = currentY;
+      }, { passive: true });
+
+      scrollTopBtn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
 
     /* ── 5. MOBILE MENU ──────────────────────────────────── */
     var mobileToggle  = document.getElementById('mobile-menu-toggle');
