@@ -59,7 +59,8 @@ permalink: /
     {% assign latest_quarter = all_quarters | first %}
 
     <!-- ── INTERVIEWS ── -->
-    {% assign interviews = site.pages | where_exp: "p", "p.url contains '/interviews/'" | where_exp: "p", "p.layout == 'post'" | sort: "date" | reverse %}
+    <!-- {% assign interviews = site.pages | where_exp: "p", "p.url contains '/interviews/'" | where_exp: "p", "p.layout == 'post'" | sort: "date" | reverse %} -->
+    {% assign interviews = site.pages | where_exp: "p", "p.url contains '/interviews/'" | where_exp: "p", "p.layout == 'post'" | sort: "title" %}
     {% assign latest_interview = interviews | first %}
     
     {% if latest_interview %}
