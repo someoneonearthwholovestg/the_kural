@@ -839,7 +839,8 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
 /* ── Scroll to top (glass) ── */
 .scroll-top-btn {
   position: fixed;
-  bottom: 2rem; right: 2rem;
+  bottom: 2rem; left: 50%;
+  transform: translateX(-50%) translateY(12px);
   z-index: 500;
   width: 46px; height: 46px;
   display: flex; align-items: center; justify-content: center;
@@ -858,7 +859,7 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
 }
 .scroll-top-btn.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(-50%) translateY(0);
   pointer-events: all;
 }
 .scroll-top-btn:hover {
@@ -868,7 +869,7 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
 .scroll-top-btn svg { width: 20px; height: 20px; }
 
 @media (max-width: 640px) {
-  .scroll-top-btn { bottom: 1.2rem; right: 1.2rem; width: 42px; height: 42px; }
+  .scroll-top-btn { bottom: 1.2rem; width: 42px; height: 42px; }
 }
 
 </style>
