@@ -2,6 +2,31 @@
 layout: default
 ---
 
+<div class="post-page-grid">
+
+  {% assign interviews = site.pages | where_exp: "p", "p.url contains '/interviews/'" | where_exp: "p", "p.layout == 'post'" | sort: "title" %}
+  {% assign iv_count = interviews.size %}
+  {% for iv in interviews %}
+    {% if iv.url == page.url %}
+      {% assign iv_index = forloop.index0 %}
+    {% endif %}
+  {% endfor %}
+  {% assign prev_index = iv_index | minus: 1 %}
+  {% assign next_index = iv_index | plus: 1 %}
+  {% if prev_index >= 0 %}{% assign prev_interview = interviews[prev_index] %}{% endif %}
+  {% if next_index < iv_count %}{% assign next_interview = interviews[next_index] %}{% endif %}
+
+  {% if page.url contains '/interviews/' and prev_interview %}
+    <a href="{{ prev_interview.url | relative_url }}" class="interview-pager-side interview-pager-side-left">
+      <span class="interview-pager-label">
+        <i data-lucide="arrow-left" style="width:13px;height:13px;"></i> Previous
+      </span>
+      <span class="interview-pager-title">{{ prev_interview.title }}</span>
+    </a>
+  {% else %}
+    <div></div>
+  {% endif %}
+
 <div class="container-narrow">
   <article>
 
@@ -79,25 +104,8 @@ layout: default
 
     <div class="divider"></div>
 
-    <!-- Prev / Next Interview navigation -->
-    {% if page.url contains '/interviews/' %}
-      {% assign interviews = site.pages | where_exp: "p", "p.url contains '/interviews/'" | where_exp: "p", "p.layout == 'post'" | sort: "title" %}
-      {% assign iv_count = interviews.size %}
-      {% for iv in interviews %}
-        {% if iv.url == page.url %}
-          {% assign iv_index = forloop.index0 %}
-        {% endif %}
-      {% endfor %}
-      {% assign prev_index = iv_index | minus: 1 %}
-      {% assign next_index = iv_index | plus: 1 %}
-      {% if prev_index >= 0 %}
-        {% assign prev_interview = interviews[prev_index] %}
-      {% endif %}
-      {% if next_index < iv_count %}
-        {% assign next_interview = interviews[next_index] %}
-      {% endif %}
-
-      {% if prev_interview or next_interview %}
+    <!-- Prev / Next Interview navigation (inline, narrow screens) -->
+    {% if page.url contains '/interviews/' and prev_interview or next_interview %}
       <div class="interview-pager">
         {% if prev_interview %}
           <a href="{{ prev_interview.url | relative_url }}" class="interview-pager-link interview-pager-prev">
@@ -122,25 +130,6 @@ layout: default
         {% endif %}
       </div>
       <div class="divider"></div>
-
-      <!-- Desktop sticky side panels -->
-      {% if prev_interview %}
-        <a href="{{ prev_interview.url | relative_url }}" class="interview-pager-side interview-pager-side-left">
-          <span class="interview-pager-label">
-            <i data-lucide="arrow-left" style="width:13px;height:13px;"></i> Previous
-          </span>
-          <span class="interview-pager-title">{{ prev_interview.title }}</span>
-        </a>
-      {% endif %}
-      {% if next_interview %}
-        <a href="{{ next_interview.url | relative_url }}" class="interview-pager-side interview-pager-side-right">
-          <span class="interview-pager-label">
-            Next <i data-lucide="arrow-right" style="width:13px;height:13px;"></i>
-          </span>
-          <span class="interview-pager-title">{{ next_interview.title }}</span>
-        </a>
-      {% endif %}
-      {% endif %}
     {% endif %}
 
     <!-- Author card -->
@@ -158,8 +147,21 @@ layout: default
     </div>
     {% endif %}
 
-  </article>
+    </article>
 </div>
+
+  {% if page.url contains '/interviews/' and next_interview %}
+    <a href="{{ next_interview.url | relative_url }}" class="interview-pager-side interview-pager-side-right">
+      <span class="interview-pager-label">
+        Next <i data-lucide="arrow-right" style="width:13px;height:13px;"></i>
+      </span>
+      <span class="interview-pager-title">{{ next_interview.title }}</span>
+    </a>
+  {% else %}
+    <div></div>
+  {% endif %}
+
+</div><!-- /.post-page-grid -->
 
 <script>
   // Reading time
