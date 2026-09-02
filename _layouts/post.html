@@ -132,7 +132,7 @@ layout: default
       <div class="divider"></div>
     {% endif %}
 
-    <!-- Author card -->
+    <!-- Author card (inline — shown on narrow screens) -->
     {% if author %}
     <div class="post-author">
       {% if author.avatar %}
@@ -150,16 +150,29 @@ layout: default
     </article>
 </div>
 
-  {% if page.url contains '/interviews/' and next_interview %}
+  <div class="post-side-right">
+    {% if author %}
+    <div class="post-author-side">
+      {% if author.avatar %}
+        <img src="{{ author.avatar }}" alt="{{ author.name }}" class="post-author-side-avatar"
+          onerror="this.style.display='none';" />
+      {% endif %}
+      <div>
+        {% if author.name %}<div class="author-name">{{ author.name }}</div>{% endif %}
+        {% if author.bio %}<div class="author-bio">{{ author.bio }}</div>{% endif %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% if page.url contains '/interviews/' and next_interview %}
     <a href="{{ next_interview.url | relative_url }}" class="interview-pager-side interview-pager-side-right">
       <span class="interview-pager-label">
         Next <i data-lucide="arrow-right" style="width:13px;height:13px;"></i>
       </span>
       <span class="interview-pager-title">{{ next_interview.title }}</span>
     </a>
-  {% else %}
-    <div></div>
-  {% endif %}
+    {% endif %}
+  </div>
 
 </div><!-- /.post-page-grid -->
 
