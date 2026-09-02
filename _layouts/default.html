@@ -577,13 +577,30 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
 /* Desktop sticky side panels — hidden by default, shown only on wide screens */
 .post-page-grid { display: block; }
 .interview-pager-side { display: none; }
-.post-author-side {
+.post-author-side { display: none; }
+
+@media (min-width: 1300px) {
+  .interview-pager { display: none; } /* inline version hidden, side panels take over */
+
+     .post-author { display: none; } /* moves to sidebar on wide screens */
+     
+     .post-side-right {
        display: flex;
        flex-direction: column;
+       gap: 1rem;
+       position: sticky;
+       bottom: 5vh;
+       align-self: end;
+       width: 100%;
+       max-width: 320px;
+       justify-self: start;
+     }
+     
+     .post-author-side {
+       display: flex;
        align-items: center;
-       text-align: center;
-       gap: .6rem;
-       padding: 1.4rem 1.4rem 1.5rem;
+       gap: 1rem;
+       padding: 1.2rem 1.4rem;
        border: 1px solid var(--c-border);
        border-radius: var(--radius);
        background: var(--c-bg);
@@ -593,16 +610,12 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
        border-color: var(--c-primary);
      }
      .post-author-side-avatar {
-       width: 64px; height: 64px; border-radius: 50%;
+       width: 52px; height: 52px; border-radius: 50%;
        object-fit: cover; border: 2px solid var(--c-primary); flex-shrink: 0;
      }
-     .post-author-side .author-name { font-size: 1rem; text-align: center; }
-     .post-author-side .author-bio  {
-       font-size: .82rem;
-       line-height: 1.55;
-       text-align: justify;
-       text-justify: inter-word;
-     }
+     .post-author-side .author-name { font-size: 1rem; }
+     .post-author-side .author-bio  { font-size: .82rem; line-height: 1.5; }
+
   .post-page-grid {
     display: grid;
     grid-template-columns: minmax(180px, 1fr) 720px minmax(180px, 1fr);
