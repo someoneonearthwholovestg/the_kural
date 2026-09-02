@@ -583,6 +583,9 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
   .interview-pager { display: none; } /* inline pager hidden — side panels take over */
   .post-author { display: none; }     /* inline author hidden — sidebar version takes over */
 
+  .post-author { display: none; }     /* inline author hidden on wide screens */
+  .interview-pager { display: none; } /* inline pager hidden on wide screens */
+
   .post-page-grid {
     display: grid;
     grid-template-columns: minmax(180px, 1fr) 720px minmax(180px, 1fr);
@@ -649,9 +652,42 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
     display: flex; align-items: center; gap: .3rem;
   }
   .interview-pager-side-right .interview-pager-label { flex-direction: row-reverse; }
-  .interview-pager-side .interview-pager-title {
+    .interview-pager-side .interview-pager-title {
     font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700;
     color: var(--c-text); line-height: 1.35;
+  }
+
+  .post-author-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: .6rem;
+    padding: 1.4rem 1.4rem 1.5rem;
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    background: var(--c-bg);
+    transition: border-color var(--transition), transform var(--transition);
+  }
+  .post-author-side:hover {
+    border-color: var(--c-primary);
+  }
+  .post-author-side-avatar {
+    width: 64px; height: 64px; border-radius: 50%;
+    object-fit: cover; border: 2px solid var(--c-primary); flex-shrink: 0;
+  }
+  .post-author-side .author-name { font-size: 1rem; text-align: center; }
+  .post-author-side .author-bio  {
+    font-size: .82rem;
+    line-height: 1.55;
+    text-align: justify;
+    text-justify: inter-word;
+  }
+
+  .post-side-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 }
 .post-author {
