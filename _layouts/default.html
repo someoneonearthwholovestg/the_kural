@@ -583,8 +583,8 @@ hr { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
   .interview-pager { display: none; } /* inline pager hidden — side panels take over */
   .post-author { display: none; }     /* inline author hidden — sidebar version takes over */
 
-  .post-author { display: none; }     /* inline author hidden on wide screens */
-  .interview-pager { display: none; } /* inline pager hidden on wide screens */
+  .post-page-grid .post-author { display: none !important; }     /* inline author hidden on wide screens */
+  .post-page-grid .interview-pager { display: none !important; } /* inline pager hidden on wide screens */
 
   .post-page-grid {
     display: grid;
