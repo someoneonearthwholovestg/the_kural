@@ -372,10 +372,10 @@ permalink: /
     margin: 0 0 .3rem;
   }
 
-  /* ── Interview Feature Card — Nazar-style ── */
   .interview-feature {
     display: flex;
     background: var(--c-surface);
+    border: 1px solid color-mix(in srgb, var(--c-text) 15%, var(--c-border));
 
     /* Nazar asymmetric corners */
     border-radius: 30px 80px 30px 80px;
@@ -386,7 +386,8 @@ permalink: /
 
     transition:
       transform .25s ease,
-      box-shadow .25s ease;
+      box-shadow .25s ease,
+      border-color .25s ease;
   }
 
   .interview-feature:hover {
