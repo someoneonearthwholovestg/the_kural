@@ -102,6 +102,8 @@ permalink: /editor
   #gui-editor.hidden { display:none; }
   #gui-editor img { max-width:100%;border-radius:6px;margin:.6rem 0; }
   #gui-editor:empty::before { content:'Write your article… select text to format, or use the toolbar above.';color:var(--c-border);font-style:italic; }
+  #pv-body { outline:none; }
+  #pv-body:focus { box-shadow: 0 0 0 2px color-mix(in srgb, var(--c-primary) 25%, transparent); border-radius: 4px; }
   #pv-body { border:1px solid var(--c-border);border-radius:0 0 7px 7px;padding:1.1rem;min-height:300px;outline:none;transition:border-color var(--transition); }
   #pv-body:focus { border-color:var(--c-primary); }
   #pv-body:empty::before { content:'Start writing here — this edits directly and stays formatted…';color:var(--c-border);font-style:italic; }
@@ -275,12 +277,42 @@ permalink: /editor
       <div class="image-previews" id="image-previews"></div>
     </div>
 
-    <!-- Content (code only, left) -->
+    <!-- Content -->
     <div class="panel-section">
-      <div class="section-label-sm">Content <small style="opacity:.5;font-weight:400;text-transform:none;">(raw markdown — visually edit on the right →)</small></div>
+      <div class="section-label-sm" style="display:flex;align-items:center;justify-content:space-between;">
+        <span>Content</span>
+        <button type="button" class="mode-toggle-btn" id="mode-toggle-btn" onclick="toggleContentMode()">
+          <span id="mode-toggle-icon">🖥️</span> <span id="mode-toggle-label">View Code</span>
+        </button>
+      </div>
+
+      <!-- GUI toolbar -->
+      <div class="gui-toolbar" id="gui-toolbar">
+        <select onmousedown="event.stopPropagation()" onchange="guiFormatBlock(this.value); this.selectedIndex=0;">
+          <option value="">Style…</option>
+          <option value="P">Paragraph</option>
+          <option value="H2">Heading 2</option>
+          <option value="H3">Heading 3</option>
+          <option value="BLOCKQUOTE">Quote</option>
+        </select>
+        <div class="tb-sep"></div>
+        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('insertUnorderedList')">• List</button>
+        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('insertOrderedList')">1. List</button>
+        <div class="tb-sep"></div>
+        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('justifyLeft')">◀ Left</button>
+        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('justifyCenter')">☰ Center</button>
+        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('justifyRight')">▶ Right</button>
+        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('justifyFull')">▤ Justify</button>
+        <div class="tb-sep"></div>
+        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiInsertImage()">🖼️ Image</button>
+        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiInsertLink()">🔗 Link</button>
+        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiUtub()">▶️ Video</button>
+        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('insertHorizontalRule')">— HR</button>
+      </div>
+      <div id="gui-editor" contenteditable="true" class="pv-body"></div>
 
       <!-- Raw markdown toolbar -->
-      <div class="content-toolbar" id="code-toolbar">
+      <div class="content-toolbar hidden" id="code-toolbar">
         <button class="tb-btn" onclick="tbIns('## ','',true)">H2</button>
         <button class="tb-btn" onclick="tbIns('### ','',true)">H3</button>
         <div class="tb-sep"></div>
@@ -298,7 +330,7 @@ permalink: /editor
         <button class="tb-btn" onclick="tbIns('\n---\n','',true)">— hr</button>
         <button class="tb-btn" onclick="tbParagraph()" style="color:var(--c-primary);font-weight:700">+ ¶</button>
       </div>
-    <textarea id="content-area" placeholder="Write your article in Markdown…" oninput="markCodeEdited()" spellcheck="true"></textarea>
+      <textarea id="content-area" class="hidden" placeholder="Write your article in Markdown…" oninput="markCodeEdited()" spellcheck="true"></textarea>
     </div>
 
     <!-- Output -->
@@ -981,13 +1013,31 @@ function debounce(fn, wait) {
 }
 
 function initGuiEditor() {
-  guiEditor = document.getElementById('pv-body');
+  guiEditor = document.getElementById('gui-editor');
   guiEditor.addEventListener('input', debounce(handleGuiInput, 200));
   guiEditor.addEventListener('mouseup', updateBubbleToolbar);
   guiEditor.addEventListener('keyup', updateBubbleToolbar);
   document.addEventListener('mousedown', (e) => {
-    if (!e.target.closest('.bubble-toolbar') && !e.target.closest('#pv-body')) hideBubbleToolbar();
+    if (!e.target.closest('.bubble-toolbar') && !e.target.closest('#gui-editor') && !e.target.closest('#pv-body')) hideBubbleToolbar();
   });
+
+  // Preview panel is also directly editable
+  const pv = document.getElementById('pv-body');
+  pv.addEventListener('input', debounce(handlePvInput, 200));
+  pv.addEventListener('mouseup', updateBubbleToolbarFor(pv));
+  pv.addEventListener('keyup', updateBubbleToolbarFor(pv));
+}
+
+let skipPvRefresh = false;
+
+function handlePvInput() {
+  const pv = document.getElementById('pv-body');
+  skipPvRefresh = true;
+  document.getElementById('content-area').value = guiToMarkdown(pv);
+  // Keep the left GUI editor mirrored too, so switching to it shows the same content
+  document.getElementById('gui-editor').innerHTML = pv.innerHTML;
+  edUpdate();
+  skipPvRefresh = false;
 }
 
 // Typing/formatting in the preview → push back to the code textarea
@@ -1070,18 +1120,21 @@ function guiUtub() {
   setTimeout(()=>document.getElementById('yt-url-input').focus(),50);
 }
 
-// ── Bubble (floating selection) toolbar ──
-function updateBubbleToolbar() {
-  const sel = window.getSelection();
-  const bt = document.getElementById('bubble-toolbar');
-  if (!sel || sel.isCollapsed || !guiEditor.contains(sel.anchorNode)) { bt.classList.remove('show'); return; }
-  const rect = sel.getRangeAt(0).getBoundingClientRect();
-  if (!rect || (rect.width===0 && rect.height===0)) { bt.classList.remove('show'); return; }
-  bt.classList.add('show');
-  const btw = bt.offsetWidth || 220;
-  bt.style.left = Math.max(8, rect.left + rect.width/2 - btw/2) + 'px';
-  bt.style.top  = Math.max(8, rect.top - 46) + 'px';
+// ── Bubble (floating selection) toolbar — works for both gui-editor and pv-body ──
+function updateBubbleToolbarFor(surface) {
+  return function() {
+    const sel = window.getSelection();
+    const bt = document.getElementById('bubble-toolbar');
+    if (!sel || sel.isCollapsed || !surface.contains(sel.anchorNode)) { bt.classList.remove('show'); return; }
+    const rect = sel.getRangeAt(0).getBoundingClientRect();
+    if (!rect || (rect.width===0 && rect.height===0)) { bt.classList.remove('show'); return; }
+    bt.classList.add('show');
+    const btw = bt.offsetWidth || 220;
+    bt.style.left = Math.max(8, rect.left + rect.width/2 - btw/2) + 'px';
+    bt.style.top  = Math.max(8, rect.top - 46) + 'px';
+  };
 }
+function updateBubbleToolbar() { updateBubbleToolbarFor(guiEditor)(); }
 function hideBubbleToolbar() { document.getElementById('bubble-toolbar').classList.remove('show'); }
 function bubbleCmd(cmd) { document.execCommand(cmd); handleGuiInput(); }
 function bubbleColor(color) { wrapSelectionWithStyle('color', color); }
