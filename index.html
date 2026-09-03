@@ -72,7 +72,7 @@ permalink: /
           </a>
         </div>
       
-        <a href="{{ latest_interview.url | relative_url }}" class="interview-feature">
+        <div class="interview-feature" onclick="document.getElementById('interviews-modal').classList.add('open')" style="cursor:pointer;">
           <div class="interview-feature-img">
             {% if latest_interview.image %}
               <img src="{{ latest_interview.image }}" alt="{{ latest_interview.title }}" loading="lazy" />
@@ -90,8 +90,52 @@ permalink: /
             <p class="interview-desc">{{ latest_interview.description }}</p>
             <span class="read-more-arrow">Browse Chapters <i data-lucide="arrow-right" style="width:13px;height:13px;"></i></span>
           </div>
-        </a>
+        </div>
       </section>
+
+      <!-- ── INTERVIEWS MODAL ── -->
+      <div id="interviews-modal" class="nazar-modal-overlay"
+        onclick="if(event.target===this)this.classList.remove('open')">
+        <div class="nazar-modal">
+          <div class="nazar-modal-header">
+            <div>
+              <h2 class="nazar-modal-title">Interviews</h2>
+              <p class="nazar-modal-sub">Conversations with thinkers, writers, and practitioners</p>
+            </div>
+            <button class="nazar-modal-close"
+              onclick="document.getElementById('interviews-modal').classList.remove('open')">
+              <i data-lucide="x" style="width:18px;height:18px;"></i>
+            </button>
+          </div>
+          <div class="interviews-modal-grid">
+            {% assign modal_interviews = interviews | slice: 0, 6 %}
+            {% for iv in modal_interviews %}
+              <a href="{{ iv.url | relative_url }}" class="interview-card">
+                <div class="interview-card-img">
+                  {% if iv.image %}
+                    <img src="{{ iv.image }}" alt="{{ iv.title }}" loading="lazy" />
+                  {% else %}
+                    <div class="interview-card-img-placeholder">
+                      <i data-lucide="mic" style="width:28px;height:28px;color:#000;opacity:.35;"></i>
+                    </div>
+                  {% endif %}
+                </div>
+                <div class="interview-card-caption">
+                  <h3 class="interview-card-title">{{ iv.title }}</h3>
+                  {% if iv.interviewer %}
+                    <p class="interview-card-author">{{ iv.interviewer }}</p>
+                  {% endif %}
+                </div>
+              </a>
+            {% endfor %}
+          </div>
+          <div style="text-align:center;padding:0 2rem 2.2rem;">
+            <a href="{{ '/interviews/' | relative_url }}" class="btn btn-primary" style="display:inline-flex;">
+              View more <i data-lucide="arrow-right" style="width:15px;height:15px;"></i>
+            </a>
+          </div>
+        </div>
+      </div>
       {% endif %}
 
     <!-- ── NAZAR — Visual Journal ── -->
@@ -496,6 +540,43 @@ permalink: /
     color: var(--c-primary-dark);
   }
 
+
+  /* ── Interviews Modal ── */
+  .interviews-modal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+    padding: 1.5rem 2rem 2rem;
+  }
+
+  .interview-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .interview-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 5px 5px 0 rgba(0,0,0,0.15);
+  }
+  .interview-card-img { aspect-ratio: 4/3; overflow: hidden; background: #111; }
+  .interview-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+  .interview-card:hover .interview-card-img img { transform: scale(1.05); }
+  .interview-card-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #eee; }
+  .interview-card-caption { background: #F5C518; padding: 1rem 1.1rem 1.2rem; flex: 1; }
+  .interview-card-title { font-family: var(--font-heading); font-weight: 800; font-size: 1rem; line-height: 1.3; color: #111; margin-bottom: .5rem; }
+  .interview-card-author { font-family: var(--font-ui); font-size: .8rem; font-weight: 500; color: #3a3220; }
+
+  @media (max-width: 900px) {
+    .interviews-modal-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 500px) {
+    .interviews-modal-grid { grid-template-columns: 1fr; }
+  }
 
   /* ── Book Review Grid (homepage) ── */
   .book-review-grid {
