@@ -13,7 +13,7 @@ title:        "TheKural"
 tagline:      "Stories worth telling"
 description:  "A thoughtful space for ideas, stories, and perspectives."
 url:          "https://someoneonearthwholovestg.github.io"
-baseurl:      "/the_kural"
+baseurl:      "/"
 lang:         "en"
 
 
