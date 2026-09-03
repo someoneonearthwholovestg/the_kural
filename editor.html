@@ -1,9 +1,3 @@
----
-layout: default
-title: "Editor"
-permalink: /editor
----
-
 <!-- ════════════════════════════════════════════════════════
      TheKural — Post Editor
      Accessible at /editor (main) or /[section]/editor
@@ -78,46 +72,11 @@ permalink: /editor
   .image-insert-btn:hover { text-decoration:underline; }
 
   .content-toolbar { display:flex;flex-wrap:wrap;gap:.22rem;padding:.5rem .65rem;background:color-mix(in srgb,var(--c-border) 25%,var(--c-bg));border:1px solid var(--c-border);border-bottom:none;border-radius:7px 7px 0 0; }
-  .content-toolbar.hidden { display:none; }
   .tb-btn { font-family:var(--font-ui);font-size:.73rem;font-weight:600;padding:.26rem .52rem;border-radius:5px;border:1px solid transparent;background:transparent;color:var(--c-text-muted);cursor:pointer;transition:all var(--transition);white-space:nowrap;line-height:1.4; }
   .tb-btn:hover { background:var(--c-surface);border-color:var(--c-border);color:var(--c-text); }
   .tb-sep { width:1px;height:16px;background:var(--c-border);margin:0 .2rem;align-self:center; }
   #content-area { width:100%;height:400px;font-family:var(--font-mono);font-size:.88rem;line-height:1.6;color:var(--c-text);background:var(--c-bg);border:1px solid var(--c-border);border-radius:0 0 7px 7px;padding:1.1rem;outline:none;transition:border-color var(--transition);tab-size:2;resize:vertical; }
   #content-area:focus { border-color:var(--c-primary);background:#fff; }
-  #content-area.hidden { display:none; }
-
-  /* ── MODE TOGGLE ── */
-  .mode-toggle-btn { font-family:var(--font-ui);font-size:.72rem;font-weight:600;padding:.32rem .65rem;border-radius:6px;border:1px solid var(--c-border);background:var(--c-surface);color:var(--c-text);cursor:pointer;transition:all var(--transition);display:flex;align-items:center;gap:.35rem; }
-  .mode-toggle-btn:hover { border-color:var(--c-primary);color:var(--c-primary); }
-
-  /* ── GUI TOOLBAR ── */
-  .gui-toolbar { display:flex;flex-wrap:wrap;gap:.22rem;padding:.5rem .65rem;background:color-mix(in srgb,var(--c-border) 25%,var(--c-bg));border:1px solid var(--c-border);border-bottom:none;border-radius:7px 7px 0 0; }
-  .gui-toolbar.hidden { display:none; }
-  .gui-btn { font-family:var(--font-ui);font-size:.73rem;font-weight:600;padding:.26rem .5rem;border-radius:5px;border:1px solid transparent;background:transparent;color:var(--c-text-muted);cursor:pointer;transition:all var(--transition);white-space:nowrap;line-height:1.4;display:inline-flex;align-items:center;gap:.25rem; }
-  .gui-btn:hover { background:var(--c-surface);border-color:var(--c-border);color:var(--c-text); }
-  .gui-toolbar select { font-family:var(--font-ui);font-size:.72rem;color:var(--c-text-muted);background:var(--c-bg);border:1px solid var(--c-border);border-radius:5px;padding:.22rem .4rem;outline:none;cursor:pointer; }
-
-  #gui-editor { min-height:400px;background:var(--c-bg);border:1px solid var(--c-border);border-radius:0 0 7px 7px;padding:1.1rem;outline:none;transition:border-color var(--transition);overflow-y:auto; }
-  #gui-editor:focus { border-color:var(--c-primary);background:#fff; }
-  #gui-editor.hidden { display:none; }
-  #gui-editor img { max-width:100%;border-radius:6px;margin:.6rem 0; }
-  #gui-editor:empty::before { content:'Write your article… select text to format, or use the toolbar above.';color:var(--c-border);font-style:italic; }
-  #pv-body { outline:none; }
-  #pv-body:focus { box-shadow: 0 0 0 2px color-mix(in srgb, var(--c-primary) 25%, transparent); border-radius: 4px; }
-  #pv-body { border:1px solid var(--c-border);border-radius:0 0 7px 7px;padding:1.1rem;min-height:300px;outline:none;transition:border-color var(--transition); }
-  #pv-body:focus { border-color:var(--c-primary); }
-  #pv-body:empty::before { content:'Start writing here — this edits directly and stays formatted…';color:var(--c-border);font-style:italic; }
-  #gui-toolbar { border-radius:7px 7px 0 0; }
-
-  /* ── FLOATING BUBBLE TOOLBAR (GUI selection) ── */
-  .bubble-toolbar { position:fixed;z-index:400;display:none;background:var(--c-text);border-radius:8px;padding:.3rem;box-shadow:var(--shadow-lg);gap:.15rem;align-items:center; }
-  .bubble-toolbar.show { display:flex; }
-  .bubble-btn { background:none;border:none;color:var(--c-bg);font-family:var(--font-ui);font-size:.75rem;font-weight:700;padding:.32rem .5rem;border-radius:5px;cursor:pointer;transition:background .15s ease; }
-  .bubble-btn:hover { background:rgba(255,255,255,.18); }
-  .bubble-sep { width:1px;align-self:stretch;background:rgba(255,255,255,.2);margin:.2rem .1rem; }
-  .bubble-swatch { width:16px;height:16px;border-radius:50%;border:1.5px solid rgba(255,255,255,.5);cursor:pointer;padding:0; }
-  .bubble-color-picker { -webkit-appearance:none;appearance:none;width:18px;height:18px;border:none;border-radius:50%;overflow:hidden;padding:0;background:conic-gradient(red,yellow,lime,cyan,blue,magenta,red);cursor:pointer; }
-  .bubble-toolbar select { background:transparent;border:none;color:#fff;font-family:var(--font-ui);font-size:.72rem;cursor:pointer; }
 
   .output-row { display:grid;grid-template-columns:1fr 1fr;gap:.75rem; }
   .output-card { background:var(--c-bg);border:1px solid var(--c-border);border-radius:8px;padding:.8rem; }
@@ -173,6 +132,17 @@ permalink: /editor
   .ed-popup-actions { display:flex;gap:.5rem;justify-content:flex-end;margin-top:1rem; }
   .ed-toast { position:fixed;bottom:1.5rem;right:1.5rem;background:var(--c-text);color:var(--c-bg);font-family:var(--font-ui);font-size:.8rem;font-weight:500;padding:.58rem .95rem;border-radius:8px;transform:translateY(60px);opacity:0;transition:all .28s cubic-bezier(.4,0,.2,1);z-index:9999;pointer-events:none; }
   .ed-toast.show { transform:translateY(0);opacity:1; }
+
+  #pv-body { outline:none; min-height:200px; }
+  #pv-body:focus { box-shadow: 0 0 0 2px color-mix(in srgb, var(--c-primary) 25%, transparent); border-radius:4px; }
+  #pv-body:empty::before { content:'Start typing here — select text to format it…'; color:var(--c-border); font-style:italic; }
+
+  .bubble-toolbar { position:fixed;z-index:400;display:none;background:var(--c-text);border-radius:8px;padding:.3rem;box-shadow:var(--shadow-lg);gap:.15rem;align-items:center; }
+  .bubble-toolbar.show { display:flex; }
+  .bubble-btn { background:none;border:none;color:var(--c-bg);font-family:var(--font-ui);font-size:.75rem;font-weight:700;padding:.32rem .5rem;border-radius:5px;cursor:pointer;transition:background .15s ease; }
+  .bubble-btn:hover { background:rgba(255,255,255,.18); }
+  .bubble-sep { width:1px;align-self:stretch;background:rgba(255,255,255,.2);margin:.2rem .1rem; }
+  .bubble-toolbar select { background:transparent;border:none;color:#fff;font-family:var(--font-ui);font-size:.72rem;cursor:pointer; }
 
   @media (max-width:860px) { .editor-screen.show { grid-template-columns:1fr; } .pv-panel { display:none; } }
 </style>
@@ -279,40 +249,8 @@ permalink: /editor
 
     <!-- Content -->
     <div class="panel-section">
-      <div class="section-label-sm" style="display:flex;align-items:center;justify-content:space-between;">
-        <span>Content</span>
-        <button type="button" class="mode-toggle-btn" id="mode-toggle-btn" onclick="toggleContentMode()">
-          <span id="mode-toggle-icon">🖥️</span> <span id="mode-toggle-label">View Code</span>
-        </button>
-      </div>
-
-      <!-- GUI toolbar -->
-      <div class="gui-toolbar" id="gui-toolbar">
-        <select onmousedown="event.stopPropagation()" onchange="guiFormatBlock(this.value); this.selectedIndex=0;">
-          <option value="">Style…</option>
-          <option value="P">Paragraph</option>
-          <option value="H2">Heading 2</option>
-          <option value="H3">Heading 3</option>
-          <option value="BLOCKQUOTE">Quote</option>
-        </select>
-        <div class="tb-sep"></div>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('insertUnorderedList')">• List</button>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('insertOrderedList')">1. List</button>
-        <div class="tb-sep"></div>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('justifyLeft')">◀ Left</button>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('justifyCenter')">☰ Center</button>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('justifyRight')">▶ Right</button>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('justifyFull')">▤ Justify</button>
-        <div class="tb-sep"></div>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiInsertImage()">🖼️ Image</button>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiInsertLink()">🔗 Link</button>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiUtub()">▶️ Video</button>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('insertHorizontalRule')">— HR</button>
-      </div>
-      <div id="gui-editor" contenteditable="true" class="pv-body"></div>
-
-      <!-- Raw markdown toolbar -->
-      <div class="content-toolbar hidden" id="code-toolbar">
+      <div class="section-label-sm">Content (Markdown)</div>
+      <div class="content-toolbar">
         <button class="tb-btn" onclick="tbIns('## ','',true)">H2</button>
         <button class="tb-btn" onclick="tbIns('### ','',true)">H3</button>
         <div class="tb-sep"></div>
@@ -330,7 +268,7 @@ permalink: /editor
         <button class="tb-btn" onclick="tbIns('\n---\n','',true)">— hr</button>
         <button class="tb-btn" onclick="tbParagraph()" style="color:var(--c-primary);font-weight:700">+ ¶</button>
       </div>
-      <textarea id="content-area" class="hidden" placeholder="Write your article in Markdown…" oninput="markCodeEdited()" spellcheck="true"></textarea>
+      <textarea id="content-area" placeholder="Write your article in Markdown…" oninput="edUpdate()" spellcheck="true"></textarea>
     </div>
 
     <!-- Output -->
@@ -366,29 +304,6 @@ permalink: /editor
         <span>·</span>
         <span id="pv-rt">— min read</span>
       </div>
-      <!-- GUI toolbar — formats pv-body directly -->
-      <div class="gui-toolbar" id="gui-toolbar">
-        <select onmousedown="event.stopPropagation()" onchange="guiFormatBlock(this.value); this.selectedIndex=0;">
-          <option value="">Style…</option>
-          <option value="P">Paragraph</option>
-          <option value="H2">Heading 2</option>
-          <option value="H3">Heading 3</option>
-          <option value="BLOCKQUOTE">Quote</option>
-        </select>
-        <div class="tb-sep"></div>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('insertUnorderedList')">• List</button>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('insertOrderedList')">1. List</button>
-        <div class="tb-sep"></div>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('justifyLeft')">◀ Left</button>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('justifyCenter')">☰ Center</button>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('justifyRight')">▶ Right</button>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('justifyFull')">▤ Justify</button>
-        <div class="tb-sep"></div>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiInsertImage()">🖼️ Image</button>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiInsertLink()">🔗 Link</button>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiUtub()">▶️ Video</button>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('insertHorizontalRule')">— HR</button>
-      </div>
       <div class="pv-body" id="pv-body" contenteditable="true" spellcheck="true"></div>
       <div id="pv-post-tags" style="display:flex;gap:.4rem;flex-wrap:wrap;margin:1.6rem 0 1.3rem;"></div>
       <div class="pv-author-card">
@@ -401,28 +316,28 @@ permalink: /editor
     </div>
   </div>
 
-</div><!-- /editor-screen -->
-
-<!-- Floating selection toolbar (GUI mode) -->
+<!-- Floating selection toolbar (preview WYSIWYG) -->
 <div class="bubble-toolbar" id="bubble-toolbar">
-  <button type="button" class="bubble-btn" onmousedown="event.preventDefault()" onclick="bubbleCmd('bold')"><b>B</b></button>
-  <button type="button" class="bubble-btn" onmousedown="event.preventDefault()" onclick="bubbleCmd('italic')"><i>I</i></button>
-  <button type="button" class="bubble-btn" onmousedown="event.preventDefault()" onclick="bubbleCmd('underline')" style="text-decoration:underline;">U</button>
-  <div class="bubble-sep"></div>
-  <button type="button" class="bubble-swatch" style="background:var(--c-primary);" onmousedown="event.preventDefault()" onclick="bubbleColor('var(--c-primary)')" title="Primary"></button>
-  <button type="button" class="bubble-swatch" style="background:var(--c-text);" onmousedown="event.preventDefault()" onclick="bubbleColor('var(--c-text)')" title="Default text"></button>
-  <input type="color" class="bubble-color-picker" onmousedown="event.preventDefault()" onchange="bubbleColor(this.value)" title="Custom color"/>
-  <div class="bubble-sep"></div>
-  <select onmousedown="event.preventDefault()" onchange="bubbleFontSize(this.value)">
-    <option value="">Size</option>
-    <option value="0.8em">Small</option>
-    <option value="1em">Normal</option>
-    <option value="1.3em">Large</option>
-    <option value="1.8em">X-Large</option>
+  <select onmousedown="event.preventDefault()" onchange="pvFormatBlock(this.value); this.selectedIndex=0;">
+    <option value="">Style…</option>
+    <option value="P">Paragraph</option>
+    <option value="H2">Heading 2</option>
+    <option value="H3">Heading 3</option>
+    <option value="BLOCKQUOTE">Quote</option>
   </select>
   <div class="bubble-sep"></div>
-  <button type="button" class="bubble-btn" onmousedown="event.preventDefault()" onclick="bubbleLink()">🔗</button>
+  <button type="button" class="bubble-btn" onmousedown="event.preventDefault()" onclick="pvCmd('bold')"><b>B</b></button>
+  <button type="button" class="bubble-btn" onmousedown="event.preventDefault()" onclick="pvCmd('italic')"><i>I</i></button>
+  <button type="button" class="bubble-btn" onmousedown="event.preventDefault()" onclick="pvCmd('underline')" style="text-decoration:underline;">U</button>
+  <div class="bubble-sep"></div>
+  <button type="button" class="bubble-btn" onmousedown="event.preventDefault()" onclick="pvCmd('justifyLeft')">◀</button>
+  <button type="button" class="bubble-btn" onmousedown="event.preventDefault()" onclick="pvCmd('justifyCenter')">☰</button>
+  <button type="button" class="bubble-btn" onmousedown="event.preventDefault()" onclick="pvCmd('justifyRight')">▶</button>
+  <div class="bubble-sep"></div>
+  <button type="button" class="bubble-btn" onmousedown="event.preventDefault()" onclick="pvLink()">🔗</button>
 </div>
+
+</div><!-- /editor-screen -->
 
 <!-- Image caption popup -->
 <div class="ed-popup-overlay" id="img-caption-popup-overlay">
@@ -512,7 +427,7 @@ const AUTHORS = {
     key:    "{{ author[0] }}",
     name:   {{ author[1].name   | jsonify }},
     bio:    {{ author[1].bio    | jsonify }},
-    avatar: {{ author[1].avatar | jsonify }}
+    avatar: {{ author[1].avatar | prepend: site.baseurl | jsonify }}
   }{% unless forloop.last %},{% endunless %}
   {% endfor %}
 };
@@ -523,6 +438,14 @@ let edTags        = [];
 let edImages      = [];
 let coverImageUrl = '';
 let pendingImgUrl = '';
+let lastEditedBy  = 'code'; // 'code' | 'gui' — whichever side was typed in last wins on refresh
+let savedPvRange  = null;
+let pvBody        = null;
+
+function debounce(fn, wait) {
+  let t;
+  return function(...args) { clearTimeout(t); t = setTimeout(()=>fn.apply(this,args), wait); };
+}
 
 // ── HELPERS ──────────────────────────────────────────────────
 function escAttr(s) { return String(s).replace(/'/g,"\\'").replace(/"/g,'&quot;'); }
@@ -603,7 +526,6 @@ function loginSuccess() {
   document.getElementById('login-screen').style.display='none';
   document.getElementById('editor-screen').classList.add('show');
 
-  initGuiEditor();
   populateAuthorDropdown();
   const saved = sessionStorage.getItem('tk-author');
   if (saved && AUTHORS[saved]) document.getElementById('ed-author-select').value=saved;
@@ -632,12 +554,14 @@ function loginSuccess() {
   drop.addEventListener('drop', e=>{ e.preventDefault(); drop.classList.remove('dragover'); handleImages(e.dataTransfer.files); });
 
   // Tab key in textarea → indent
+  document.getElementById('content-area').addEventListener('input', () => { lastEditedBy = 'code'; });
   document.getElementById('content-area').addEventListener('keydown', function(e) {
     if (e.key==='Tab') {
       e.preventDefault();
       const s=this.selectionStart, en=this.selectionEnd;
       this.value=this.value.substring(0,s)+'  '+this.value.substring(en);
       this.selectionStart=this.selectionEnd=s+2;
+      lastEditedBy = 'code';
       edUpdate();
     }
   });
@@ -667,11 +591,108 @@ function doLogout() {
   document.getElementById('pv-body').innerHTML='';
   document.getElementById('ed-title').value='';
   document.getElementById('ed-excerpt').value='';
+  lastEditedBy='code';
 }
 
 document.addEventListener('DOMContentLoaded', ()=>{
+  pvBody = document.getElementById('pv-body');
+  pvBody.addEventListener('input', debounce(handlePvInput, 200));
+  pvBody.addEventListener('mouseup', updateBubbleToolbar);
+  pvBody.addEventListener('keyup', updateBubbleToolbar);
+  document.addEventListener('mousedown', (e) => {
+    if (!e.target.closest('.bubble-toolbar') && !e.target.closest('#pv-body')) hideBubbleToolbar();
+  });
   if (sessionStorage.getItem('cloudinary-key')&&sessionStorage.getItem('cloudinary-secret')) loginSuccess();
 });
+
+// ── PREVIEW = LIVE WYSIWYG EDITOR ─────────────────────────────
+function handlePvInput() {
+  lastEditedBy = 'gui';
+  document.getElementById('content-area').value = guiToMarkdown(pvBody);
+  edUpdate();
+}
+
+function saveGuiSelection() {
+  const sel = window.getSelection();
+  if (sel.rangeCount > 0 && pvBody.contains(sel.anchorNode)) savedPvRange = sel.getRangeAt(0).cloneRange();
+}
+function restoreGuiSelection() {
+  if (!savedPvRange) return;
+  const sel = window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(savedPvRange);
+}
+
+function pvCmd(cmd, val=null) { pvBody.focus(); document.execCommand(cmd, false, val); handlePvInput(); }
+function pvFormatBlock(tag) { if(!tag) return; pvBody.focus(); document.execCommand('formatBlock', false, tag); handlePvInput(); }
+
+function pvLink() {
+  linkTargetIsPv = true;
+  saveGuiSelection();
+  const sel = window.getSelection();
+  document.getElementById('link-text-input').value = sel.toString();
+  document.getElementById('link-url-input').value = '';
+  document.getElementById('link-preview').classList.remove('show');
+  openPopup('link-popup-overlay');
+  setTimeout(()=>document.getElementById(sel.toString()?'link-url-input':'link-text-input').focus(),50);
+}
+
+function updateBubbleToolbar() {
+  const sel = window.getSelection();
+  const bt = document.getElementById('bubble-toolbar');
+  if (!sel || sel.isCollapsed || !pvBody.contains(sel.anchorNode)) { bt.classList.remove('show'); return; }
+  const rect = sel.getRangeAt(0).getBoundingClientRect();
+  if (!rect || (rect.width===0 && rect.height===0)) { bt.classList.remove('show'); return; }
+  bt.classList.add('show');
+  const btw = bt.offsetWidth || 220;
+  bt.style.left = Math.max(8, rect.left + rect.width/2 - btw/2) + 'px';
+  bt.style.top  = Math.max(8, rect.top - 46) + 'px';
+}
+function hideBubbleToolbar() { document.getElementById('bubble-toolbar').classList.remove('show'); }
+
+// ── HTML → Markdown converter (preview → code) ──
+function inlineToMd(node) {
+  let out = '';
+  node.childNodes.forEach(child => {
+    if (child.nodeType === Node.TEXT_NODE) { out += child.textContent; return; }
+    if (child.nodeType !== Node.ELEMENT_NODE) return;
+    const tag = child.tagName.toLowerCase();
+    if (tag==='b'||tag==='strong') out += '**'+inlineToMd(child)+'**';
+    else if (tag==='i'||tag==='em') out += '*'+inlineToMd(child)+'*';
+    else if (tag==='u') out += '<u>'+inlineToMd(child)+'</u>';
+    else if (tag==='a') out += '['+inlineToMd(child)+']('+(child.getAttribute('href')||'')+')';
+    else if (tag==='img') out += '!['+(child.getAttribute('alt')||'')+']('+(child.getAttribute('src')||'')+')';
+    else if (tag==='br') out += '  \n';
+    else if (tag==='code') out += '`'+child.textContent+'`';
+    else out += inlineToMd(child);
+  });
+  return out;
+}
+function guiToMarkdown(root) {
+  const lines = [];
+  root.childNodes.forEach(node => {
+    if (node.nodeType === Node.TEXT_NODE) { const t=node.textContent.trim(); if(t) lines.push(t); return; }
+    if (node.nodeType !== Node.ELEMENT_NODE) return;
+    const tag = node.tagName.toLowerCase();
+    const style = node.getAttribute('style') || '';
+    const hasAlign = /text-align\s*:\s*(center|right|justify)/.test(style);
+
+    if (tag==='h1') lines.push('# '+inlineToMd(node));
+    else if (tag==='h2') lines.push('## '+inlineToMd(node));
+    else if (tag==='h3') lines.push('### '+inlineToMd(node));
+    else if (tag==='blockquote') lines.push('> '+inlineToMd(node));
+    else if (tag==='hr') lines.push('---');
+    else if (tag==='ul') node.querySelectorAll(':scope > li').forEach(li=>lines.push('- '+inlineToMd(li)));
+    else if (tag==='ol') { let n=1; node.querySelectorAll(':scope > li').forEach(li=>{ lines.push(n+'. '+inlineToMd(li)); n++; }); }
+    else if (tag==='figure') lines.push(node.outerHTML);
+    else if (tag==='div' && node.querySelector('iframe')) lines.push(node.outerHTML);
+    else if (tag==='p' || tag==='div') {
+      if (hasAlign) lines.push(`<p style="${style}">`+inlineToMd(node)+'</p>');
+      else { const inner=inlineToMd(node).trim(); if(inner) lines.push(inner); }
+    } else { const inner=inlineToMd(node).trim(); if(inner) lines.push(inner); }
+  });
+  return lines.join('\n\n');
+}
 
 // ── EDITOR UPDATE ─────────────────────────────────────────────
 function edUpdate() {
@@ -699,18 +720,20 @@ function edUpdate() {
   document.getElementById('pv-card-av').innerHTML = av;
 
   if (lastEditedBy !== 'gui') {
-    document.getElementById('pv-body').innerHTML = content ? parseMarkdown(content) : '';
+    document.getElementById('pv-body').innerHTML = content;
   }
-
+     
   const slug = title.toLowerCase().replace(/[^\w\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,'');
-  const dateObj = date ? new Date(date) : new Date();
-  const year = dateObj.getFullYear();
-  const month = dateObj.getMonth() + 1;
-  const quarter = Math.ceil(month / 3);
-  const quarterDir = `${year}-Q${quarter}`;
-
-  const filename = `_posts/${quarterDir}/${date}-${slug}.md`;
-  document.getElementById('out-filename').textContent = (title&&date) ? filename : '—';
+  let filename = '—';
+  if (title && date) {
+    const dateObj = new Date(date);
+    const year = dateObj.getFullYear();
+    const month = dateObj.getMonth() + 1;
+    const quarter = Math.ceil(month / 3);
+    const quarterDir = `${year}-Q${quarter}`;
+    filename = `_posts/${quarterDir}/${date}-${slug}.md`;
+  }
+  document.getElementById('out-filename').textContent = filename;
 
   if (title&&date) {
     let fm = `---\nlayout: post\ntitle: ${JSON.stringify(title)}\ndate: ${date}\nauthor: ${currentAuthor.key}\n`;
@@ -723,8 +746,6 @@ function edUpdate() {
     document.getElementById('out-preview').textContent = '—';
   }
 }
-
-function markCodeEdited() { lastEditedBy = 'code'; edUpdate(); }
 
 function formatDate(d) {
   if (!d) return 'Date';
@@ -817,7 +838,7 @@ function renderImages() {
   });
 }
 
-// ── TOOLBAR (Code mode) ─────────────────────────────────────
+// ── TOOLBAR ──────────────────────────────────────────────────
 function tbIns(before,after,isBlock=false) {
   lastEditedBy = 'code';
   const el=document.getElementById('content-area'), s=el.selectionStart, e=el.selectionEnd, text=el.value, sel=text.substring(s,e);
@@ -841,35 +862,22 @@ function closePopup(id){ document.getElementById(id).classList.remove('open'); }
 
 function openImageCaptionPopup(url) {
   pendingImgUrl=url;
-  popupTargetMode = 'gui';
-  saveGuiSelection();
   document.getElementById('img-caption-input').value='';
   document.getElementById('img-caption-preview-src').textContent=url;
   openPopup('img-caption-popup-overlay');
   setTimeout(()=>document.getElementById('img-caption-input').focus(),50);
 }
-
 function insertImageWithCaption() {
   const cap=document.getElementById('img-caption-input').value.trim();
-  closePopup('img-caption-popup-overlay');
-  if (popupTargetMode === 'gui') {
-    restoreGuiSelection(); guiEditor.focus();
-    const html = cap
-      ? `<figure><img src="${pendingImgUrl}" alt="${cap}" /><figcaption>${cap}</figcaption></figure>`
-      : `<img src="${pendingImgUrl}" alt="" />`;
-    document.execCommand('insertHTML', false, html);
-    handleGuiInput();
-  } else {
-    const md = cap
-      ? `\n<figure>\n  <img src="${pendingImgUrl}" alt="${cap}" />\n  <figcaption>${cap}</figcaption>\n</figure>\n`
-      : `\n![Image](${pendingImgUrl})\n`;
-    tbInsRaw(md);
-  }
-  pendingImgUrl='';
+  const md = cap
+    ? `\n<figure>\n  <img src="${pendingImgUrl}" alt="${cap}" />\n  <figcaption>${cap}</figcaption>\n</figure>\n`
+    : `\n![Image](${pendingImgUrl})\n`;
+  closePopup('img-caption-popup-overlay'); tbInsRaw(md); pendingImgUrl='';
 }
 
+let linkTargetIsPv = false;
 function tbLink() {
-  popupTargetMode = 'code';
+  linkTargetIsPv = false;
   const el=document.getElementById('content-area'), sel=el.value.substring(el.selectionStart,el.selectionEnd);
   document.getElementById('link-text-input').value=sel||'';
   document.getElementById('link-url-input').value='';
@@ -885,17 +893,17 @@ function insertLink() {
   const t=document.getElementById('link-text-input').value.trim(), u=document.getElementById('link-url-input').value.trim();
   if(!u){ showToast('Please enter a URL.'); return; }
   closePopup('link-popup-overlay');
-  if (popupTargetMode === 'gui') {
-    restoreGuiSelection(); guiEditor.focus();
+  if (linkTargetIsPv) {
+    restoreGuiSelection(); pvBody.focus();
     if (window.getSelection().isCollapsed) document.execCommand('insertHTML', false, `<a href="${u}">${t||u}</a>`);
     else document.execCommand('createLink', false, u);
-    handleGuiInput();
+    handlePvInput();
   } else {
     tbInsRaw(`[${t||u}](${u})`);
   }
 }
 
-function tbUtub() { popupTargetMode = 'code'; document.getElementById('yt-url-input').value=''; document.getElementById('yt-preview').classList.remove('show'); openPopup('yt-popup-overlay'); setTimeout(()=>document.getElementById('yt-url-input').focus(),50); }
+function tbUtub() { document.getElementById('yt-url-input').value=''; document.getElementById('yt-preview').classList.remove('show'); openPopup('yt-popup-overlay'); setTimeout(()=>document.getElementById('yt-url-input').focus(),50); }
 function extractYoutubeId(input) {
   input=input.trim();
   for (const p of [/youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})/,/youtu\.be\/([a-zA-Z0-9_-]{11})/,/youtube\.com\/embed\/([a-zA-Z0-9_-]{11})/]) { const m=input.match(p); if(m) return m[1]; }
@@ -905,15 +913,8 @@ function updateYtPreview() { const id=extractYoutubeId(document.getElementById('
 function insertYoutube() {
   const id=extractYoutubeId(document.getElementById('yt-url-input').value);
   if(!id){ showToast('Could not find a valid YouTube video ID.'); return; }
-  const html = `\n<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;margin:2rem 0;">\n  <iframe src="https://www.youtube.com/embed/${id}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>\n</div>\n`;
+  tbInsRaw(`\n<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;margin:2rem 0;">\n  <iframe src="https://www.youtube.com/embed/${id}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>\n</div>\n`);
   closePopup('yt-popup-overlay');
-  if (popupTargetMode === 'gui') {
-    restoreGuiSelection(); guiEditor.focus();
-    document.execCommand('insertHTML', false, html);
-    handleGuiInput();
-  } else {
-    tbInsRaw(html);
-  }
 }
 
 // ── IMPORT ───────────────────────────────────────────────────
@@ -947,7 +948,6 @@ function importPost() {
   if(tags.length) { edTags=tags; renderTags(); }
   if(image) { coverImageUrl=image; renderCoverPreview(); }
   document.getElementById('content-area').value=content;
-  lastEditedBy='code';
   const found=[title&&'title',date&&'date',authorKey&&'author',tags.length&&`${tags.length} tag(s)`,excerpt&&'excerpt',image&&'cover image',content&&'content'].filter(Boolean);
   status.style.color='var(--c-primary)';
   status.textContent=found.length ? `✓ Imported: ${found.join(', ')}` : '✓ Content imported.';
@@ -958,7 +958,7 @@ function importPost() {
 // ── MARKDOWN PARSER ───────────────────────────────────────────
 function parseMarkdown(md) {
   const htmlBlocks=[]; const codeBlocks=[];
-  md=md.replace(/<(figure|div|iframe|p)[^>]*>[\s\S]*?<\/\1>/gi,(m)=>{ const i=htmlBlocks.length; htmlBlocks.push(m); return '\n%%HTMLBLOCK_'+i+'%%\n'; });
+  md=md.replace(/<(figure|div|iframe)[^>]*>[\s\S]*?<\/\1>/gi,(m)=>{ const i=htmlBlocks.length; htmlBlocks.push(m); return '\n%%HTMLBLOCK_'+i+'%%\n'; });
   md=md.replace(/```(\w*)\n?([\s\S]*?)```/g,(_,l,code)=>{ const i=codeBlocks.length; codeBlocks.push('<pre><code>'+escHtml(code.trimEnd())+'</code></pre>'); return '\n%%CODEBLOCK_'+i+'%%\n'; });
   const lines=md.split('\n'), output=[]; let i=0;
   while(i<lines.length) {
@@ -999,202 +999,6 @@ function inlineFmt(text) {
   text=text.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
   text=text.replace(/\*([^*]+)\*/g,'<em>$1</em>');
   return text;
-}
-
-// ── GUI EDITOR (right side — pv-body is the live WYSIWYG surface) ──
-let popupTargetMode = 'gui';
-let guiEditor = null;
-let savedGuiRange = null;
-let lastEditedBy = 'code'; // 'code' | 'gui' — tracks which side to trust on refresh
-
-function debounce(fn, wait) {
-  let t;
-  return function(...args) { clearTimeout(t); t = setTimeout(()=>fn.apply(this,args), wait); };
-}
-
-function initGuiEditor() {
-  guiEditor = document.getElementById('gui-editor');
-  guiEditor.addEventListener('input', debounce(handleGuiInput, 200));
-  guiEditor.addEventListener('mouseup', updateBubbleToolbar);
-  guiEditor.addEventListener('keyup', updateBubbleToolbar);
-  document.addEventListener('mousedown', (e) => {
-    if (!e.target.closest('.bubble-toolbar') && !e.target.closest('#gui-editor') && !e.target.closest('#pv-body')) hideBubbleToolbar();
-  });
-
-  // Preview panel is also directly editable
-  const pv = document.getElementById('pv-body');
-  pv.addEventListener('input', debounce(handlePvInput, 200));
-  pv.addEventListener('mouseup', updateBubbleToolbarFor(pv));
-  pv.addEventListener('keyup', updateBubbleToolbarFor(pv));
-}
-
-let skipPvRefresh = false;
-
-function handlePvInput() {
-  const pv = document.getElementById('pv-body');
-  skipPvRefresh = true;
-  document.getElementById('content-area').value = guiToMarkdown(pv);
-  // Keep the left GUI editor mirrored too, so switching to it shows the same content
-  document.getElementById('gui-editor').innerHTML = pv.innerHTML;
-  edUpdate();
-  skipPvRefresh = false;
-}
-
-// Typing/formatting in the preview → push back to the code textarea
-function handleGuiInput() {
-  lastEditedBy = 'gui';
-  document.getElementById('content-area').value = guiToMarkdown(guiEditor);
-  edUpdate();
-}
-
-function guiCmd(cmd, val=null) { guiEditor.focus(); document.execCommand(cmd, false, val); handleGuiInput(); }
-function guiFormatBlock(tag) { if(!tag) return; guiEditor.focus(); document.execCommand('formatBlock', false, tag); handleGuiInput(); }
-
-function saveGuiSelection() {
-  const sel = window.getSelection();
-  if (sel.rangeCount > 0 && guiEditor.contains(sel.anchorNode)) savedGuiRange = sel.getRangeAt(0).cloneRange();
-}
-function restoreGuiSelection() {
-  if (!savedGuiRange) return;
-  const sel = window.getSelection();
-  sel.removeAllRanges();
-  sel.addRange(savedGuiRange);
-}
-
-function wrapSelectionWithStyle(prop, value) {
-  const sel = window.getSelection();
-  if (!sel || sel.rangeCount===0 || sel.isCollapsed) return;
-  const range = sel.getRangeAt(0);
-  const span = document.createElement('span');
-  span.style[prop] = value;
-  try { range.surroundContents(span); }
-  catch(e) { const frag = range.extractContents(); span.appendChild(frag); range.insertNode(span); }
-  sel.removeAllRanges();
-  const nr = document.createRange(); nr.selectNodeContents(span); sel.addRange(nr);
-  handleGuiInput();
-}
-
-function guiInsertImage() {
-  saveGuiSelection();
-  const inp = document.createElement('input');
-  inp.type = 'file'; inp.accept = 'image/*';
-  inp.onchange = async () => {
-    if (!inp.files.length) return;
-    showToast('Uploading image…');
-    try {
-      const fd = new FormData();
-      fd.append('file', inp.files[0]);
-      fd.append('upload_preset', CLOUDINARY_PRESET);
-      fd.append('folder', `blog/${currentAuthor.key}`);
-      const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`, {method:'POST', body: fd});
-      const data = await res.json();
-      if (data.secure_url) {
-        restoreGuiSelection(); guiEditor.focus();
-        document.execCommand('insertHTML', false, `<img src="${data.secure_url}" alt="" />`);
-        handleGuiInput();
-        showToast('Image inserted!');
-      } else showToast('Upload failed.');
-    } catch(e) { showToast('Upload failed.'); }
-  };
-  inp.click();
-}
-
-function guiInsertLink() {
-  saveGuiSelection();
-  popupTargetMode = 'gui';
-  const sel = window.getSelection();
-  const selText = sel.toString();
-  document.getElementById('link-text-input').value = selText;
-  document.getElementById('link-url-input').value = '';
-  document.getElementById('link-preview').classList.remove('show');
-  openPopup('link-popup-overlay');
-  setTimeout(()=>document.getElementById(selText?'link-url-input':'link-text-input').focus(),50);
-}
-
-function guiUtub() {
-  saveGuiSelection();
-  popupTargetMode = 'gui';
-  document.getElementById('yt-url-input').value='';
-  document.getElementById('yt-preview').classList.remove('show');
-  openPopup('yt-popup-overlay');
-  setTimeout(()=>document.getElementById('yt-url-input').focus(),50);
-}
-
-// ── Bubble (floating selection) toolbar — works for both gui-editor and pv-body ──
-function updateBubbleToolbarFor(surface) {
-  return function() {
-    const sel = window.getSelection();
-    const bt = document.getElementById('bubble-toolbar');
-    if (!sel || sel.isCollapsed || !surface.contains(sel.anchorNode)) { bt.classList.remove('show'); return; }
-    const rect = sel.getRangeAt(0).getBoundingClientRect();
-    if (!rect || (rect.width===0 && rect.height===0)) { bt.classList.remove('show'); return; }
-    bt.classList.add('show');
-    const btw = bt.offsetWidth || 220;
-    bt.style.left = Math.max(8, rect.left + rect.width/2 - btw/2) + 'px';
-    bt.style.top  = Math.max(8, rect.top - 46) + 'px';
-  };
-}
-function updateBubbleToolbar() { updateBubbleToolbarFor(guiEditor)(); }
-function hideBubbleToolbar() { document.getElementById('bubble-toolbar').classList.remove('show'); }
-function bubbleCmd(cmd) { document.execCommand(cmd); handleGuiInput(); }
-function bubbleColor(color) { wrapSelectionWithStyle('color', color); }
-function bubbleFontSize(size) { if(size) wrapSelectionWithStyle('fontSize', size); }
-function bubbleLink() {
-  saveGuiSelection();
-  popupTargetMode = 'gui';
-  const sel = window.getSelection();
-  document.getElementById('link-text-input').value = sel.toString();
-  document.getElementById('link-url-input').value = '';
-  document.getElementById('link-preview').classList.remove('show');
-  openPopup('link-popup-overlay');
-  setTimeout(()=>document.getElementById('link-url-input').focus(),50);
-}
-
-// ── HTML → Markdown converter ──
-function inlineToMd(node) {
-  let out = '';
-  node.childNodes.forEach(child => {
-    if (child.nodeType === Node.TEXT_NODE) { out += child.textContent; return; }
-    if (child.nodeType !== Node.ELEMENT_NODE) return;
-    const tag = child.tagName.toLowerCase();
-    const style = child.getAttribute('style') || '';
-    if (tag==='b'||tag==='strong') out += '**'+inlineToMd(child)+'**';
-    else if (tag==='i'||tag==='em') out += '*'+inlineToMd(child)+'*';
-    else if (tag==='u') out += '<u>'+inlineToMd(child)+'</u>';
-    else if (tag==='a') out += '['+inlineToMd(child)+']('+(child.getAttribute('href')||'')+')';
-    else if (tag==='img') out += '!['+(child.getAttribute('alt')||'')+']('+(child.getAttribute('src')||'')+')';
-    else if (tag==='span' && style) out += `<span style="${style}">`+inlineToMd(child)+'</span>';
-    else if (tag==='br') out += '  \n';
-    else if (tag==='code') out += '`'+child.textContent+'`';
-    else out += inlineToMd(child);
-  });
-  return out;
-}
-
-function guiToMarkdown(root) {
-  const lines = [];
-  root.childNodes.forEach(node => {
-    if (node.nodeType === Node.TEXT_NODE) { const t=node.textContent.trim(); if(t) lines.push(t); return; }
-    if (node.nodeType !== Node.ELEMENT_NODE) return;
-    const tag = node.tagName.toLowerCase();
-    const style = node.getAttribute('style') || '';
-    const hasAlign = /text-align\s*:\s*(center|right|justify)/.test(style);
-
-    if (tag==='h1') lines.push('# '+inlineToMd(node));
-    else if (tag==='h2') lines.push('## '+inlineToMd(node));
-    else if (tag==='h3') lines.push('### '+inlineToMd(node));
-    else if (tag==='blockquote') lines.push('> '+inlineToMd(node));
-    else if (tag==='hr') lines.push('---');
-    else if (tag==='ul') node.querySelectorAll(':scope > li').forEach(li=>lines.push('- '+inlineToMd(li)));
-    else if (tag==='ol') { let n=1; node.querySelectorAll(':scope > li').forEach(li=>{ lines.push(n+'. '+inlineToMd(li)); n++; }); }
-    else if (tag==='figure') lines.push(node.outerHTML);
-    else if (tag==='div' && node.querySelector('iframe')) lines.push(node.outerHTML);
-    else if (tag==='p' || tag==='div') {
-      if (hasAlign) lines.push(`<p style="${style}">`+inlineToMd(node)+'</p>');
-      else { const inner=inlineToMd(node).trim(); if(inner) lines.push(inner); }
-    } else { const inner=inlineToMd(node).trim(); if(inner) lines.push(inner); }
-  });
-  return lines.join('\n\n');
 }
 
 // ── COPY HELPERS ─────────────────────────────────────────────
