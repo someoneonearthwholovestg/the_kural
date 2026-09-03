@@ -102,6 +102,10 @@ permalink: /editor
   #gui-editor.hidden { display:none; }
   #gui-editor img { max-width:100%;border-radius:6px;margin:.6rem 0; }
   #gui-editor:empty::before { content:'Write your article… select text to format, or use the toolbar above.';color:var(--c-border);font-style:italic; }
+  #pv-body { border:1px solid var(--c-border);border-radius:0 0 7px 7px;padding:1.1rem;min-height:300px;outline:none;transition:border-color var(--transition); }
+  #pv-body:focus { border-color:var(--c-primary); }
+  #pv-body:empty::before { content:'Start writing here — this edits directly and stays formatted…';color:var(--c-border);font-style:italic; }
+  #gui-toolbar { border-radius:7px 7px 0 0; }
 
   /* ── FLOATING BUBBLE TOOLBAR (GUI selection) ── */
   .bubble-toolbar { position:fixed;z-index:400;display:none;background:var(--c-text);border-radius:8px;padding:.3rem;box-shadow:var(--shadow-lg);gap:.15rem;align-items:center; }
@@ -271,42 +275,12 @@ permalink: /editor
       <div class="image-previews" id="image-previews"></div>
     </div>
 
-    <!-- Content -->
+    <!-- Content (code only, left) -->
     <div class="panel-section">
-      <div class="section-label-sm" style="display:flex;align-items:center;justify-content:space-between;">
-        <span>Content</span>
-        <button type="button" class="mode-toggle-btn" id="mode-toggle-btn" onclick="toggleContentMode()">
-          <span id="mode-toggle-icon">🖥️</span> <span id="mode-toggle-label">View Code</span>
-        </button>
-      </div>
-
-      <!-- GUI toolbar -->
-      <div class="gui-toolbar" id="gui-toolbar">
-        <select onmousedown="event.stopPropagation()" onchange="guiFormatBlock(this.value); this.selectedIndex=0;">
-          <option value="">Style…</option>
-          <option value="P">Paragraph</option>
-          <option value="H2">Heading 2</option>
-          <option value="H3">Heading 3</option>
-          <option value="BLOCKQUOTE">Quote</option>
-        </select>
-        <div class="tb-sep"></div>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('insertUnorderedList')">• List</button>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('insertOrderedList')">1. List</button>
-        <div class="tb-sep"></div>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('justifyLeft')">◀ Left</button>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('justifyCenter')">☰ Center</button>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('justifyRight')">▶ Right</button>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('justifyFull')">▤ Justify</button>
-        <div class="tb-sep"></div>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiInsertImage()">🖼️ Image</button>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiInsertLink()">🔗 Link</button>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiUtub()">▶️ Video</button>
-        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('insertHorizontalRule')">— HR</button>
-      </div>
-      <div id="gui-editor" contenteditable="true" class="pv-body"></div>
+      <div class="section-label-sm">Content <small style="opacity:.5;font-weight:400;text-transform:none;">(raw markdown — visually edit on the right →)</small></div>
 
       <!-- Raw markdown toolbar -->
-      <div class="content-toolbar hidden" id="code-toolbar">
+      <div class="content-toolbar" id="code-toolbar">
         <button class="tb-btn" onclick="tbIns('## ','',true)">H2</button>
         <button class="tb-btn" onclick="tbIns('### ','',true)">H3</button>
         <div class="tb-sep"></div>
@@ -324,7 +298,7 @@ permalink: /editor
         <button class="tb-btn" onclick="tbIns('\n---\n','',true)">— hr</button>
         <button class="tb-btn" onclick="tbParagraph()" style="color:var(--c-primary);font-weight:700">+ ¶</button>
       </div>
-      <textarea id="content-area" class="hidden" placeholder="Write your article in Markdown…" oninput="edUpdate()" spellcheck="true"></textarea>
+    <textarea id="content-area" placeholder="Write your article in Markdown…" oninput="markCodeEdited()" spellcheck="true"></textarea>
     </div>
 
     <!-- Output -->
@@ -360,9 +334,30 @@ permalink: /editor
         <span>·</span>
         <span id="pv-rt">— min read</span>
       </div>
-      <div class="pv-body" id="pv-body">
-        <p style="color:var(--c-border);font-style:italic;">Your content will appear here as you type…</p>
+      <!-- GUI toolbar — formats pv-body directly -->
+      <div class="gui-toolbar" id="gui-toolbar">
+        <select onmousedown="event.stopPropagation()" onchange="guiFormatBlock(this.value); this.selectedIndex=0;">
+          <option value="">Style…</option>
+          <option value="P">Paragraph</option>
+          <option value="H2">Heading 2</option>
+          <option value="H3">Heading 3</option>
+          <option value="BLOCKQUOTE">Quote</option>
+        </select>
+        <div class="tb-sep"></div>
+        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('insertUnorderedList')">• List</button>
+        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('insertOrderedList')">1. List</button>
+        <div class="tb-sep"></div>
+        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('justifyLeft')">◀ Left</button>
+        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('justifyCenter')">☰ Center</button>
+        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('justifyRight')">▶ Right</button>
+        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('justifyFull')">▤ Justify</button>
+        <div class="tb-sep"></div>
+        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiInsertImage()">🖼️ Image</button>
+        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiInsertLink()">🔗 Link</button>
+        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiUtub()">▶️ Video</button>
+        <button type="button" class="gui-btn" onmousedown="event.preventDefault()" onclick="guiCmd('insertHorizontalRule')">— HR</button>
       </div>
+      <div class="pv-body" id="pv-body" contenteditable="true" spellcheck="true"></div>
       <div id="pv-post-tags" style="display:flex;gap:.4rem;flex-wrap:wrap;margin:1.6rem 0 1.3rem;"></div>
       <div class="pv-author-card">
         <div class="pv-card-av" id="pv-card-av">?</div>
@@ -637,7 +632,7 @@ function doLogout() {
   document.getElementById('login-btn-text').textContent='Sign In';
   document.getElementById('login-error').classList.remove('show');
   document.getElementById('content-area').value='';
-  document.getElementById('gui-editor').innerHTML='';
+  document.getElementById('pv-body').innerHTML='';
   document.getElementById('ed-title').value='';
   document.getElementById('ed-excerpt').value='';
 }
@@ -671,7 +666,9 @@ function edUpdate() {
   document.getElementById('pv-av').innerHTML      = av;
   document.getElementById('pv-card-av').innerHTML = av;
 
-  document.getElementById('pv-body').innerHTML = content ? parseMarkdown(content) : '<p style="color:var(--c-border);font-style:italic;">Your content will appear here as you type…</p>';
+  if (lastEditedBy !== 'gui') {
+    document.getElementById('pv-body').innerHTML = content ? parseMarkdown(content) : '';
+  }
 
   const slug = title.toLowerCase().replace(/[^\w\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,'');
   const dateObj = date ? new Date(date) : new Date();
@@ -694,6 +691,8 @@ function edUpdate() {
     document.getElementById('out-preview').textContent = '—';
   }
 }
+
+function markCodeEdited() { lastEditedBy = 'code'; edUpdate(); }
 
 function formatDate(d) {
   if (!d) return 'Date';
@@ -788,6 +787,7 @@ function renderImages() {
 
 // ── TOOLBAR (Code mode) ─────────────────────────────────────
 function tbIns(before,after,isBlock=false) {
+  lastEditedBy = 'code';
   const el=document.getElementById('content-area'), s=el.selectionStart, e=el.selectionEnd, text=el.value, sel=text.substring(s,e);
   let ins=before+sel+after;
   if (isBlock&&s>0&&text[s-1]!=='\n') ins='\n'+ins;
@@ -796,6 +796,7 @@ function tbIns(before,after,isBlock=false) {
   edUpdate();
 }
 function tbInsRaw(text) {
+  lastEditedBy = 'code';
   const el=document.getElementById('content-area'), s=el.selectionStart, e=el.selectionEnd;
   el.value=el.value.substring(0,s)+text+el.value.substring(e);
   const np=s+text.length; el.focus(); el.setSelectionRange(np,np); edUpdate();
@@ -808,13 +809,14 @@ function closePopup(id){ document.getElementById(id).classList.remove('open'); }
 
 function openImageCaptionPopup(url) {
   pendingImgUrl=url;
-  popupTargetMode = contentMode;
-  if (contentMode === 'gui') saveGuiSelection();
+  popupTargetMode = 'gui';
+  saveGuiSelection();
   document.getElementById('img-caption-input').value='';
   document.getElementById('img-caption-preview-src').textContent=url;
   openPopup('img-caption-popup-overlay');
   setTimeout(()=>document.getElementById('img-caption-input').focus(),50);
 }
+
 function insertImageWithCaption() {
   const cap=document.getElementById('img-caption-input').value.trim();
   closePopup('img-caption-popup-overlay');
@@ -913,7 +915,7 @@ function importPost() {
   if(tags.length) { edTags=tags; renderTags(); }
   if(image) { coverImageUrl=image; renderCoverPreview(); }
   document.getElementById('content-area').value=content;
-  if (contentMode === 'gui') syncMarkdownToGui();
+  lastEditedBy='code';
   const found=[title&&'title',date&&'date',authorKey&&'author',tags.length&&`${tags.length} tag(s)`,excerpt&&'excerpt',image&&'cover image',content&&'content'].filter(Boolean);
   status.style.color='var(--c-primary)';
   status.textContent=found.length ? `✓ Imported: ${found.join(', ')}` : '✓ Content imported.';
@@ -967,11 +969,11 @@ function inlineFmt(text) {
   return text;
 }
 
-// ── GUI EDITOR ──────────────────────────────────────────────
-let contentMode = 'gui';
-let popupTargetMode = 'code';
+// ── GUI EDITOR (right side — pv-body is the live WYSIWYG surface) ──
+let popupTargetMode = 'gui';
 let guiEditor = null;
 let savedGuiRange = null;
+let lastEditedBy = 'code'; // 'code' | 'gui' — tracks which side to trust on refresh
 
 function debounce(fn, wait) {
   let t;
@@ -979,49 +981,21 @@ function debounce(fn, wait) {
 }
 
 function initGuiEditor() {
-  guiEditor = document.getElementById('gui-editor');
+  guiEditor = document.getElementById('pv-body');
   guiEditor.addEventListener('input', debounce(handleGuiInput, 200));
   guiEditor.addEventListener('mouseup', updateBubbleToolbar);
   guiEditor.addEventListener('keyup', updateBubbleToolbar);
   document.addEventListener('mousedown', (e) => {
-    if (!e.target.closest('.bubble-toolbar') && !e.target.closest('#gui-editor')) hideBubbleToolbar();
+    if (!e.target.closest('.bubble-toolbar') && !e.target.closest('#pv-body')) hideBubbleToolbar();
   });
 }
 
-function toggleContentMode() { contentMode==='gui' ? switchToCode() : switchToGui(); }
-
-function switchToCode() {
-  syncGuiToMarkdown();
-  document.getElementById('gui-editor').classList.add('hidden');
-  document.getElementById('gui-toolbar').classList.add('hidden');
-  document.getElementById('content-area').classList.remove('hidden');
-  document.getElementById('code-toolbar').classList.remove('hidden');
-  document.getElementById('mode-toggle-icon').textContent = '🎨';
-  document.getElementById('mode-toggle-label').textContent = 'View Editor';
-  contentMode = 'code';
-  document.getElementById('content-area').focus();
+// Typing/formatting in the preview → push back to the code textarea
+function handleGuiInput() {
+  lastEditedBy = 'gui';
+  document.getElementById('content-area').value = guiToMarkdown(guiEditor);
+  edUpdate();
 }
-
-function switchToGui() {
-  syncMarkdownToGui();
-  document.getElementById('content-area').classList.add('hidden');
-  document.getElementById('code-toolbar').classList.add('hidden');
-  document.getElementById('gui-editor').classList.remove('hidden');
-  document.getElementById('gui-toolbar').classList.remove('hidden');
-  document.getElementById('mode-toggle-icon').textContent = '🖥️';
-  document.getElementById('mode-toggle-label').textContent = 'View Code';
-  contentMode = 'gui';
-  document.getElementById('gui-editor').focus();
-}
-
-function syncGuiToMarkdown() {
-  document.getElementById('content-area').value = guiToMarkdown(document.getElementById('gui-editor'));
-}
-function syncMarkdownToGui() {
-  const md = document.getElementById('content-area').value;
-  document.getElementById('gui-editor').innerHTML = md.trim() ? parseMarkdown(md) : '';
-}
-function handleGuiInput() { syncGuiToMarkdown(); edUpdate(); }
 
 function guiCmd(cmd, val=null) { guiEditor.focus(); document.execCommand(cmd, false, val); handleGuiInput(); }
 function guiFormatBlock(tag) { if(!tag) return; guiEditor.focus(); document.execCommand('formatBlock', false, tag); handleGuiInput(); }
