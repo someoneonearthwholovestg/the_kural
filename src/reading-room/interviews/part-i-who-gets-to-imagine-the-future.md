@@ -8,16 +8,18 @@ image: "https://i.ibb.co/pBbcVy1n/Peter-Mc-Laren.jpg"
 author: "naila"
 description: "The first of a three-part conversation with Peter McLaren, tracing the global assault on academic spaces and the political anxiety authoritarian movements hold toward classrooms, critical thought, and the imagination of the child."
 ---
-
-*A Note to Readers*
+<p style="text-align: center;">*A Note to Readers*</p>
 
 These questions emerge from a larger concern surrounding the contemporary global assault on academic spaces such as universities, classrooms, libraries, curricula, and traditions of critical inquiry. Across different political contexts, educational institutions have increasingly become sites of political contestation, subject to efforts to discipline, defund, rewrite, surveil, or ideologically reorganize them. Many of these struggles have emerged alongside the rise of contemporary right-wing and authoritarian movements, raising broader questions about the relationship between power, knowledge, and critical thought. This conversation, therefore, is not merely about policy changes within education, but about a deeper political anxiety: why do authoritarian and right-wing projects so often perceive critical thought, collective learning, historical consciousness, and intellectual dissent as existential threats? Drawing from the work of Peter McLaren, these questions attempt to explore education not as a neutral institution, but as a contested terrain where power struggles over memory, imagination, morality, identity, and the possibility of collective emancipation unfold.
 
 We have divided this interview into three sections, each following a different thread in our conversation with Peter McLaren. The first begins with education itself around classrooms, curricula, childhood, and the struggle over what we are allowed to know, remember, and question. The second moves into less-visible territory: how power operates through our emotions, attention, and capacity to imagine that the world could be otherwise. The final section asks where this leaves critical pedagogy today, particularly when so much of how we learn about and experience the world is shaped outside the classroom, through algorithms, social media, and digital cultures. The sections are not meant to separate these questions neatly from one another; they inevitably run into each other. Rather, they offer one way of moving through a conversation that begins with the politics of education, moves into the politics of consciousness, and ends by asking where the possibilities for critical pedagogy might lie now.
 
-## Who Gets to Imagine the Future?
+## WHO GETS TO IMAGINE THE FUTURE ?
 
 ### *1. Across the world, authoritarian politics increasingly begins its cultural project by attacking universities, rewriting textbooks, banning words, policing teachers, and dismantling spaces where people gather to think critically. Why does power fear classrooms so deeply? What is it about collective thinking itself that becomes dangerous to right-wing projects?*
+
+*  
+*
 
 **McLaren:** When my name appeared on Professor Watchlist, a project created by Turning Point USA under the leadership of the recently assassinated Charlie Kirk, I was reminded of a lesson that authoritarian movements have understood for centuries: if you want to control a society, you must first shape how it remembers, how it thinks, and how it learns. Kirk was one of the most influential figures within the contemporary American right, a close ally of Donald Trump, and a leading advocate of a form of Christian nationalism that sought to fuse religious identity with an increasingly authoritarian political vision. His organization devoted considerable energy to targeting educators, students, and academic institutions deemed insufficiently loyal to conservative values. The purpose of Professor Watchlist was ostensibly to expose professors accused of promoting "radical" ideas. In reality, it functioned as part of a broader campaign to intimidate critical educators and portray intellectual inquiry itself as a threat. I was hardly alone. Hundreds of professors found themselves publicly targeted. Yet the existence of such a project raises an important question: if classrooms are politically insignificant, why devote so much effort to policing them?
 
@@ -75,8 +77,8 @@ There is a profound irony here. Critical pedagogy, following Paulo Freire, begin
 
 The inversion is revealing.
 
-When power fears questions, it must portray questioning as a threat.
-When power fears dialogue, it must portray dialogue as subversion.
+When power fears questions, it must portray questioning as a threat.  
+When power fears dialogue, it must portray dialogue as subversion.  
 When power fears freedom, it must portray freedom as danger.
 
 What we are witnessing across many parts of the world today is not merely a disagreement about curriculum. It is a struggle over consciousness itself.
@@ -89,9 +91,9 @@ The authoritarian imagination prefers certainty to conscience. It prefers obedie
 
 This is why authoritarian politics so often seeks to regulate memory. It knows that memory is dangerous. A people who remember slavery, colonialism, caste oppression, racism, patriarchy, genocide, exploitation, and resistance are less easily persuaded that existing arrangements are natural. History becomes a threat because history reveals contingency. It reminds us that every empire once appeared permanent and every system of domination once claimed inevitability.
 
-Books become dangerous because they expand the boundaries of imagination.
-Teachers become dangerous because they encourage questions.
-Universities become dangerous because they cultivate criticism.
+Books become dangerous because they expand the boundaries of imagination.  
+Teachers become dangerous because they encourage questions.  
+Universities become dangerous because they cultivate criticism.  
 And children become dangerous because they represent possibilities not yet colonized.
 
 Paulo Freire understood this with extraordinary clarity. His concept of *conscientização* — critical consciousness — was not simply a pedagogical method. It was an affirmation of human vocation itself. To become critically conscious is to learn to read both the word and the world. It is to perceive the social forces that shape our lives and to recognize ourselves as participants in history rather than spectators standing helplessly at its edge.
@@ -112,9 +114,9 @@ The difference between these visions is ultimately the difference between freedo
 
 The crucial question, therefore, is not whether children should be protected. Of course they should. The real question is what we are protecting within them.
 
-Are we protecting their capacity to wonder?
-Their capacity to question?
-Their capacity to empathize with those unlike themselves?
+Are we protecting their capacity to wonder?  
+Their capacity to question?  
+Their capacity to empathize with those unlike themselves?  
 Their capacity to imagine a world that does not yet exist?
 
 Or are we protecting them from these very capacities because they threaten established arrangements of power?
