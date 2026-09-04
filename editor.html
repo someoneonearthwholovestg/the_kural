@@ -1392,6 +1392,62 @@ function debounce(fn, wait) {
 function escAttr(s) { return String(s).replace(/'/g,"\\'").replace(/"/g,'&quot;'); }
 function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
+// ── HTML BEAUTIFIER ─────────────────────────────────────────
+// Browsers hand back pvBody.innerHTML as one unbroken minified string.
+// This re-indents it so the raw HTML in the sidebar (and the exported
+// post) reads like hand-written markup: one line per block-level tag,
+// inline tags (a, strong, em, img, etc.) left inline with their text.
+const HTML_VOID_TAGS  = ['area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr'];
+const HTML_BLOCK_TAGS = ['html','head','body','div','p','h1','h2','h3','h4','h5','h6','ul','ol','li','blockquote','figure','figcaption','hr','iframe','table','thead','tbody','tfoot','tr','td','th','section','article','header','footer','nav','pre','video','audio','form','fieldset'];
+
+function formatHtml(html) {
+  if (!html) return '';
+  const tokens = html.match(/<!--[\s\S]*?-->|<\/?[a-zA-Z][^>]*>|[^<]+/g) || [];
+  let out = '';
+  let indent = 0;
+  let atLineStart = true; // true right after we've just written a block tag
+  const pad = () => '  '.repeat(Math.max(indent, 0));
+
+  tokens.forEach(tok => {
+    if (/^<!--/.test(tok)) { out += `\n${pad()}${tok.trim()}`; atLineStart = true; return; }
+
+    const tagMatch = tok.match(/^<\/?([a-zA-Z0-9]+)/);
+    if (tagMatch) {
+      const tagName = tagMatch[1].toLowerCase();
+      const isClosing = /^<\//.test(tok);
+      const isSelfClosing = /\/>\s*$/.test(tok) || HTML_VOID_TAGS.includes(tagName);
+      const isBlock = HTML_BLOCK_TAGS.includes(tagName);
+
+      if (isBlock) {
+        if (isClosing) { indent = Math.max(indent - 1, 0); out += `\n${pad()}${tok.trim()}`; }
+        else { out += `\n${pad()}${tok.trim()}`; if (!isSelfClosing) indent++; }
+        atLineStart = true;
+      } else {
+        out += tok.trim();
+        atLineStart = false;
+      }
+      return;
+    }
+
+    // text node: collapse internal whitespace, but keep a single boundary
+    // space so words on either side of an inline tag don't run together
+    const collapsed = tok.replace(/\s+/g, ' ');
+    const trimmed = collapsed.trim();
+    if (!trimmed) return;
+    const leading  = (collapsed[0] === ' ' && !atLineStart) ? ' ' : '';
+    const trailing = collapsed[collapsed.length - 1] === ' ' ? ' ' : '';
+    out += leading + trimmed + trailing;
+    atLineStart = false;
+  });
+
+  return out
+    .split('\n')
+    .map(line => line.replace(/\s+$/, ''))
+    .join('\n')
+    .replace(/^\n/, '')
+    .trim();
+}
+
 function buildAvHtml(author) {
   if (!author) return '?';
   if (author.avatar) return `<img src="${author.avatar}" alt="${escAttr(author.name)}" onerror="this.parentNode.textContent='${escAttr(author.name.charAt(0))}'"/>`;
@@ -1662,7 +1718,7 @@ function edUpdate() {
   if (lastEditedBy === 'code') {
     pvBody.innerHTML = document.getElementById('content-area').value;
   } else {
-    document.getElementById('content-area').value = pvBody.innerHTML;
+    document.getElementById('content-area').value = formatHtml(pvBody.innerHTML);
   }
   const content = document.getElementById('content-area').value;
 
@@ -1874,7 +1930,7 @@ function importPost() {
   if(excerpt) document.getElementById('ed-excerpt').value=excerpt;
   if(tags.length) { edTags=tags; renderTags(); }
   if(image) { coverImageUrl=image; renderCoverPreview(); }
-  document.getElementById('content-area').value=content;
+  document.getElementById('content-area').value=formatHtml(content);
   lastEditedBy='code';
   const found=[title&&'title',date&&'date',authorKey&&'author',tags.length&&`${tags.length} tag(s)`,excerpt&&'excerpt',image&&'cover image',content&&'content'].filter(Boolean);
   status.style.color='var(--c-primary)';
