@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Editor"
+permalink: /editor
+---
+
 <!-- ════════════════════════════════════════════════════════
      TheKural — Post Editor
      Accessible at /editor (main) or /[section]/editor
@@ -427,7 +433,7 @@ const AUTHORS = {
     key:    "{{ author[0] }}",
     name:   {{ author[1].name   | jsonify }},
     bio:    {{ author[1].bio    | jsonify }},
-    avatar: {{ author[1].avatar | prepend: site.baseurl | jsonify }}
+    avatar: {{ author[1].avatar | jsonify }}
   }{% unless forloop.last %},{% endunless %}
   {% endfor %}
 };
@@ -720,7 +726,7 @@ function edUpdate() {
   document.getElementById('pv-card-av').innerHTML = av;
 
   if (lastEditedBy !== 'gui') {
-    document.getElementById('pv-body').innerHTML = content;
+    document.getElementById('pv-body').innerHTML = content ? parseMarkdown(content) : '';
   }
      
   const slug = title.toLowerCase().replace(/[^\w\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,'');
