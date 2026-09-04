@@ -2,7 +2,7 @@
 layout: post
 title: "Part I - Who Gets to Imagine the Future?"
 interviewer: "Naila Alavi"
-date: 2026-01-4
+date: 2026-09-04
 permalink: /interviews/part-i-who-gets-to-imagine-the-future/
 image: "https://i.ibb.co/pBbcVy1n/Peter-Mc-Laren.jpg"
 author: "naila"
