@@ -274,10 +274,16 @@ body {
   display:flex;
   align-items:center;
   justify-content:center;
+  overflow:hidden;
   font-family:var(--font-heading);
   font-weight:700;
   font-size:1rem;
   flex-shrink:0;
+}
+.dev-avatar img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 .dev-name {
   font-family:var(--font-heading);
@@ -782,7 +788,9 @@ body {
   <div class="dev-popup" id="dev-popup">
     <div class="dev-popup-arrow"></div>
     <div class="dev-popup-header">
-      <div class="dev-avatar">NN</div>
+      <div class="dev-avatar">
+        <img src="https://avatars.githubusercontent.com/u/53673312?v=4" alt="Nabil A Navab" onerror="this.parentNode.textContent='NN'"/>
+      </div>
       <div>
         <div class="dev-name">Nabil A Navab</div>
         <div class="dev-role">Developer</div>
