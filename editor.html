@@ -188,14 +188,14 @@ body {
   display:none;
 }
 .editor-screen.show {
-  display:grid;
-  grid-template-columns:420px 1fr;
+  display:block;
   height:100vh;
-  overflow:hidden;
+  overflow-y:auto;
 }
 .ed-panel {
   background:var(--c-surface);
-  border-right:1px solid var(--c-border);
+  max-width:640px;
+  margin:0 auto;
   overflow-y:auto;
   display:flex;
   flex-direction:column;
@@ -221,35 +221,6 @@ body {
 }
 .ed-topbar-logo span {
   color:var(--c-primary);
-}
-.ed-user {
-  display:flex;
-  align-items:center;
-  gap:.5rem;
-  font-family:var(--font-ui);
-  font-size:.76rem;
-  color:var(--c-text-muted);
-}
-.ed-user-av {
-  width:26px;
-  height:26px;
-  border-radius:50%;
-  border:1.5px solid var(--c-primary);
-  overflow:hidden;
-  flex-shrink:0;
-  background:color-mix(in srgb,var(--c-primary) 15%,var(--c-surface));
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-family:var(--font-heading);
-  font-size:.85rem;
-  font-weight:700;
-  color:var(--c-primary);
-}
-.ed-user-av img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
 }
 .panel-section {
   padding:.9rem 1.25rem;
@@ -312,11 +283,6 @@ body {
   gap:.55rem;
 }
 
-.author-select-wrap {
-  display:flex;
-  align-items:center;
-  gap:.65rem;
-}
 .author-locked-img {
   width:26px;
   height:26px;
@@ -337,29 +303,6 @@ body {
   width:100%;
   height:100%;
   object-fit:cover;
-}
-.author-select-wrap select {
-  flex:1;
-  font-family:var(--font-ui);
-  font-size:.84rem;
-  color:var(--c-text);
-  background:var(--c-bg);
-  border:1px solid var(--c-border);
-  border-radius:7px;
-  padding:.5rem .72rem;
-  outline:none;
-  transition:border-color var(--transition);
-  -webkit-appearance:none;
-  appearance:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none' viewBox='0 0 10 6'%3E%3Cpath stroke='%237A5C45' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m1 1 4 4 4-4'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;
-  background-position:right .72rem center;
-  padding-right:2rem;
-  cursor:pointer;
-}
-.author-select-wrap select:focus {
-  border-color:var(--c-primary);
-  background:#fff;
 }
 
 .tags-wrap {
@@ -538,372 +481,11 @@ body {
   background:#fff;
 }
 
-.output-row {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:.75rem;
-}
-.output-card {
-  background:var(--c-bg);
-  border:1px solid var(--c-border);
-  border-radius:8px;
-  padding:.8rem;
-}
-.output-card-head {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  font-family:var(--font-ui);
-  font-size:.68rem;
-  font-weight:600;
-  color:var(--c-text-muted);
-  text-transform:uppercase;
-  letter-spacing:.08em;
-  margin-bottom:.6rem;
-}
-.output-card pre {
-  font-family:var(--font-mono);
-  font-size:.72rem;
-  background:var(--c-bg);
-  border:1px solid var(--c-border);
-  border-radius:5px;
-  padding:.6rem;
-  margin:0;
-  white-space:pre-wrap;
-  word-break:break-all;
-  max-height:120px;
-  overflow-y:auto;
-  color:var(--c-text);
-}
-
 /* ── PREVIEW / EDITOR PANEL ── */
-.pv-panel {
-  background:#fff;
-  overflow-y:auto;
-}
-.pv-topbar {
-  position:sticky;
-  top:0;
-  z-index:5;
-  min-height:var(--pv-topbar-h);
-  background:rgba(255,255,255,0.95);
-  backdrop-filter:blur(8px);
-  border-bottom:1px solid var(--c-border);
-  padding:.6rem 2rem;
-  display:flex;
-  align-items:center;
-  gap:.75rem;
-  box-sizing:border-box;
-}
-.pv-live {
-  font-family:var(--font-ui);
-  font-size:.68rem;
-  font-weight:700;
-  color:#5A8C6A;
-  text-transform:uppercase;
-  letter-spacing:.12em;
-  display:flex;
-  align-items:center;
-  gap:.4rem;
-}
-.pv-live::before {
-  content:'';
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  background:#5A8C6A;
-  animation:blink 2s infinite;
-}
-@keyframes blink {
-  0%, 100% { opacity:1; }
-  50% { opacity:.3; }
-}
-.pv-content {
-  max-width:720px;
-  margin:0 auto;
-  padding:1.5rem 2rem 5rem;
-}
-.pv-title {
-  font-family:var(--font-heading);
-  font-size:clamp(1.8rem,3vw,2.6rem);
-  font-weight:700;
-  line-height:1.12;
-  letter-spacing:-.03em;
-  color:var(--c-text);
-  margin-bottom:1rem;
-  outline:none;
-}
-.pv-title.empty {
-  color:var(--c-border);
-  font-style:italic;
-  font-size:1.5rem;
-}
-.pv-meta {
-  display:flex;
-  align-items:center;
-  gap:.65rem;
-  font-family:var(--font-ui);
-  font-size:.78rem;
-  color:var(--c-text-muted);
-  margin-bottom:1.5rem;
-  flex-wrap:wrap;
-}
-.pv-avatar {
-  width:28px;
-  height:28px;
-  border-radius:50%;
-  border:2px solid var(--c-primary);
-  overflow:hidden;
-  flex-shrink:0;
-  background:color-mix(in srgb,var(--c-primary) 15%,var(--c-surface));
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-family:var(--font-heading);
-  font-size:.85rem;
-  font-weight:700;
-  color:var(--c-primary);
-}
-.pv-avatar img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
 
 /* ── FULL TOOLBAR ── */
-.rt-toolbar {
-  display:flex;
-  flex-wrap:wrap;
-  align-items:center;
-  gap:.15rem;
-  padding:.5rem .6rem;
-  background:var(--c-surface);
-  border:1px solid var(--c-border);
-  border-radius:8px 8px 0 0;
-  position:sticky;
-  top:var(--pv-topbar-h);
-  z-index:4;
-}
-.rt-sep {
-  width:1px;
-  height:20px;
-  background:var(--c-border);
-  margin:0 .3rem;
-  align-self:center;
-  flex-shrink:0;
-}
-.rt-btn {
-  position:relative;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  width:30px;
-  height:30px;
-  border-radius:6px;
-  border:1px solid transparent;
-  background:transparent;
-  color:var(--c-text);
-  cursor:pointer;
-  transition:all var(--transition);
-}
-.rt-btn:hover {
-  background:#fff;
-  border-color:var(--c-border);
-}
-.rt-btn.active {
-  background:color-mix(in srgb,var(--c-primary) 14%,var(--c-bg));
-  border-color:var(--c-primary);
-  color:var(--c-primary);
-}
-.rt-btn svg {
-  width:16px;
-  height:16px;
-}
-.rt-select {
-  font-family:var(--font-ui);
-  font-size:.76rem;
-  color:var(--c-text);
-  background:#fff;
-  border:1px solid var(--c-border);
-  border-radius:6px;
-  padding:.3rem .4rem;
-  outline:none;
-  cursor:pointer;
-}
-.rt-color-btn {
-  position:relative;
-  width:30px;
-  height:30px;
-  border-radius:6px;
-  border:1px solid var(--c-border);
-  background:#fff;
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.rt-color-btn input[type=color] {
-  position:absolute;
-  inset:0;
-  opacity:0;
-  cursor:pointer;
-  width:100%;
-  height:100%;
-}
-.rt-color-swatch {
-  width:16px;
-  height:16px;
-  border-radius:3px;
-  border:1px solid var(--c-border);
-}
 
 /* Tooltip on hover */
-[data-tip] {
-  position:relative;
-}
-[data-tip]::after {
-  content: attr(data-tip);
-  position:absolute; bottom:calc(100% + 6px); left:50%; transform:translateX(-50%);
-  background:#1a2535; color:#fff; font-family:var(--font-ui); font-size:.68rem; font-weight:500;
-  padding:.3rem .55rem; border-radius:5px; white-space:nowrap; pointer-events:none;
-  opacity:0; visibility:hidden; transition:opacity .15s ease; z-index:50;
-}
-[data-tip]:hover::after {
-  opacity:1;
-  visibility:visible;
-}
-
-.pv-body {
-  font-family:var(--font-heading);
-  font-size:1.04rem;
-  line-height:1.8;
-  color:var(--c-text);
-  border:1px solid var(--c-border);
-  border-top:none;
-  border-radius:0 0 8px 8px;
-  padding:1.2rem 1.4rem;
-  outline:none;
-  min-height:340px;
-}
-.pv-body:focus {
-  border-color:var(--c-primary);
-}
-.pv-body:empty::before {
-  content:'Start writing here…';
-  color:var(--c-border);
-  font-style:italic;
-}
-.pv-body h1 {
-  font-size:1.9rem;
-  font-weight:700;
-  margin:1.6rem 0 .6rem;
-}
-.pv-body h2 {
-  font-size:1.4rem;
-  font-weight:700;
-  margin:1.5rem 0 .55rem;
-}
-.pv-body h3 {
-  font-size:1.15rem;
-  font-weight:600;
-  margin:1.2rem 0 .45rem;
-}
-.pv-body p {
-  margin:0 0 1rem;
-}
-.pv-body code {
-  font-family:var(--font-mono);
-  font-size:.82em;
-  background:color-mix(in srgb,var(--c-primary) 12%,var(--c-surface));
-  color:var(--c-primary-dark);
-  padding:.13em .4em;
-  border-radius:4px;
-}
-.pv-body blockquote {
-  border-left:3px solid var(--c-primary);
-  padding:.6rem 1.1rem;
-  margin:1.2rem 0;
-  font-style:italic;
-  color:var(--c-text-muted);
-  background:var(--c-surface);
-  border-radius:0 var(--radius) var(--radius) 0;
-}
-.pv-body ul, .pv-body ol {
-  padding-left:1.4rem;
-  margin-bottom:1rem;
-}
-.pv-body hr {
-  border:none;
-  border-top:1px solid var(--c-border);
-  margin:1.5rem 0;
-}
-.pv-body a {
-  color:var(--c-primary);
-  text-decoration:underline;
-}
-.pv-body img {
-  max-width:100%;
-  border-radius:6px;
-  margin:.8rem 0;
-}
-.pv-body figure {
-  margin:1.2rem 0;
-}
-.pv-body figure img {
-  margin:0;
-  width:100%;
-}
-.pv-body figcaption {
-  font-family:var(--font-ui);
-  font-size:.78rem;
-  color:var(--c-text-muted);
-  text-align:center;
-  padding:.4rem 0;
-  font-style:italic;
-}
-
-.pv-author-card {
-  display:flex;
-  align-items:center;
-  gap:.9rem;
-  background:var(--c-surface);
-  border:1px solid var(--c-border);
-  border-radius:var(--radius-lg);
-  padding:1.1rem;
-  margin-top:1.6rem;
-}
-.pv-card-av {
-  width:48px;
-  height:48px;
-  border-radius:50%;
-  flex-shrink:0;
-  border:2px solid var(--c-primary);
-  overflow:hidden;
-  background:color-mix(in srgb,var(--c-primary) 15%,var(--c-surface));
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-family:var(--font-heading);
-  font-size:1.2rem;
-  font-weight:700;
-  color:var(--c-primary);
-}
-.pv-card-av img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-.pv-card-name {
-  font-family:var(--font-heading);
-  font-size:.92rem;
-  font-weight:700;
-}
-.pv-card-bio {
-  font-size:.8rem;
-  color:var(--c-text-muted);
-  font-family:var(--font-ui);
-  margin-top:.12rem;
-}
 
 /* ── POPUPS ── */
 .ed-popup-overlay {
@@ -1018,14 +600,6 @@ body {
   opacity:1;
 }
 
-@media (max-width:860px) {
-  .editor-screen.show {
-    grid-template-columns:1fr;
-  }
-  .pv-panel {
-    display:none;
-  }
-}
 </style>
 </head>
 <body>
@@ -1057,10 +631,6 @@ body {
   <div class="ed-panel">
     <div class="ed-topbar">
       <div class="ed-topbar-logo">The<span>Kural</span> <span style="font-size:.75rem;font-weight:400;color:var(--c-text-muted);font-family:var(--font-ui);">/ editor</span></div>
-      <div class="ed-user">
-        <div class="ed-user-av" id="topbar-av">?</div>
-        <span id="topbar-name">—</span>
-      </div>
       <div style="display:flex;gap:.4rem;">
         <button class="btn" style="font-size:.75rem;padding:.38rem .8rem;color:var(--c-text-muted);" onclick="doLogout()">Logout</button>
         <button class="btn btn-primary" style="font-size:.78rem;padding:.4rem .9rem;" onclick="openImportPopup()">Import</button>
@@ -1070,18 +640,9 @@ body {
     <!-- Front matter -->
     <div class="panel-section">
       <div class="section-label-sm">Front Matter</div>
-      <div class="field-row">
-        <div class="field">
-          <label>Date</label>
-          <input type="date" id="ed-date" oninput="edUpdate()"/>
-        </div>
-        <div class="field">
-          <label>Author</label>
-          <div class="author-select-wrap">
-            <div class="author-locked-img" id="al-img">?</div>
-            <select id="ed-author-select" onchange="onAuthorChange()"></select>
-          </div>
-        </div>
+      <div class="field">
+        <label>Date</label>
+        <input type="date" id="ed-date"/>
       </div>
       <div class="field">
         <label>Tags <small style="opacity:.5;font-weight:400">(Enter or comma)</small></label>
@@ -1091,7 +652,7 @@ body {
       </div>
       <div class="field">
         <label>Excerpt</label>
-        <textarea id="ed-excerpt" rows="2" placeholder="One sentence shown on cards…" oninput="edUpdate()"></textarea>
+        <textarea id="ed-excerpt" rows="2" placeholder="One sentence shown on cards…"></textarea>
       </div>
     </div>
 
@@ -1125,158 +686,10 @@ body {
 
     <!-- Content (HTML source) -->
     <div class="panel-section">
-      <div class="section-label-sm">Content — raw HTML <small style="opacity:.5;font-weight:400;text-transform:none;">(edit visually on the right →)</small></div>
-      <textarea id="content-area" placeholder="<h1>Title</h1>&#10;<p>Write your article…</p>" oninput="markCodeEdited()" spellcheck="true"></textarea>
-    </div>
-
-    <!-- Output -->
-    <div class="panel-section">
-      <div class="section-label-sm">Output — copy and save to _posts/</div>
-      <div class="output-row">
-        <div class="output-card">
-          <div class="output-card-head">Filename <button class="btn" style="font-size:.66rem;padding:.2rem .5rem;" onclick="copyOut('filename')">Copy</button></div>
-          <pre id="out-filename">—</pre>
-        </div>
-        <div class="output-card">
-          <div class="output-card-head">Full Post <button class="btn" style="font-size:.66rem;padding:.2rem .5rem;" onclick="edCopyFull()">Copy</button></div>
-          <pre id="out-preview">—</pre>
-        </div>
-      </div>
+      <div class="section-label-sm">Content — raw HTML</div>
+      <textarea id="content-area" placeholder="<h1>Title</h1>&#10;<p>Write your article…</p>" spellcheck="true"></textarea>
     </div>
   </div><!-- /ed-panel -->
-
-  <!-- RIGHT: LIVE HTML EDITOR -->
-  <div class="pv-panel">
-    <div class="pv-topbar">
-      <div class="pv-live">Live Editor</div>
-      <span style="font-size:.67rem;color:var(--c-text-muted);font-family:var(--font-ui);">Type directly — HTML saved as-is</span>
-    </div>
-    <div class="pv-content">
-      <div id="pv-tags-row" style="display:flex;gap:.5rem;align-items:center;margin-bottom:.8rem;flex-wrap:wrap;"></div>
-
-      <h1 class="pv-title empty" id="pv-title" contenteditable="true" data-placeholder="Your title…">Your title will appear here…</h1>
-
-      <div class="pv-meta">
-        <div class="pv-avatar" id="pv-av">?</div>
-        <span id="pv-aname">Author</span>
-        <span>·</span>
-        <span id="pv-date">Date</span>
-        <span>·</span>
-        <span id="pv-rt">— min read</span>
-      </div>
-
-      <!-- FULL TOOLBAR -->
-      <div class="rt-toolbar">
-        <select class="rt-select" id="style-select" data-tip="Paragraph style" onchange="pvFormatBlock(this.value);">
-          <option value="">Style…</option>
-          <option value="P">Paragraph</option>
-          <option value="H1">Heading 1</option>
-          <option value="H2">Heading 2</option>
-          <option value="H3">Heading 3</option>
-          <option value="BLOCKQUOTE">Quote</option>
-        </select>
-
-        <select class="rt-select" id="size-select" data-tip="Font size" onchange="pvFontSize(this.value);">
-          <option value="">Size…</option>
-          <option value="1">Small</option>
-          <option value="3">Normal</option>
-          <option value="5">Large</option>
-          <option value="7">X-Large</option>
-        </select>
-
-        <div class="rt-sep"></div>
-
-        <button type="button" class="rt-btn" data-cmd="bold" data-tip="Bold" onmousedown="event.preventDefault()" onclick="pvCmd('bold')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4h8a4 4 0 0 1 0 8H6zM6 12h9a4 4 0 0 1 0 8H6z"/></svg>
-        </button>
-        <button type="button" class="rt-btn" data-cmd="italic" data-tip="Italic" onmousedown="event.preventDefault()" onclick="pvCmd('italic')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="4" x2="10" y2="4"/><line x1="14" y1="20" x2="5" y2="20"/><line x1="15" y1="4" x2="9" y2="20"/></svg>
-        </button>
-        <button type="button" class="rt-btn" data-cmd="underline" data-tip="Underline" onmousedown="event.preventDefault()" onclick="pvCmd('underline')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4v6a6 6 0 0 0 12 0V4"/><line x1="4" y1="20" x2="20" y2="20"/></svg>
-        </button>
-        <button type="button" class="rt-btn" data-cmd="strikeThrough" data-tip="Strikethrough" onmousedown="event.preventDefault()" onclick="pvCmd('strikeThrough')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4H9a3 3 0 0 0-2.83 4"/><path d="M14 12a4 4 0 0 1 0 8H6"/><line x1="4" y1="12" x2="20" y2="12"/></svg>
-        </button>
-
-        <div class="rt-sep"></div>
-
-        <div class="rt-color-btn" data-tip="Text color">
-          <div class="rt-color-swatch" id="text-color-swatch" style="background:#1a2535;"></div>
-          <input type="color" onmousedown="saveGuiSelection()" oninput="pvTextColor(this.value)"/>
-        </div>
-        <div class="rt-color-btn" data-tip="Highlight">
-          <div class="rt-color-swatch" id="hl-color-swatch" style="background:#fff59d;"></div>
-          <input type="color" value="#fff59d" onmousedown="saveGuiSelection()" oninput="pvHighlight(this.value)"/>
-        </div>
-
-        <div class="rt-sep"></div>
-
-        <button type="button" class="rt-btn" data-cmd="justifyLeft" data-tip="Align left" onmousedown="event.preventDefault()" onclick="pvCmd('justifyLeft')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="16" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="14" y2="18"/></svg>
-        </button>
-        <button type="button" class="rt-btn" data-cmd="justifyCenter" data-tip="Align center" onmousedown="event.preventDefault()" onclick="pvCmd('justifyCenter')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="6" x2="18" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="7" y1="18" x2="17" y2="18"/></svg>
-        </button>
-        <button type="button" class="rt-btn" data-cmd="justifyRight" data-tip="Align right" onmousedown="event.preventDefault()" onclick="pvCmd('justifyRight')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="10" y1="18" x2="20" y2="18"/></svg>
-        </button>
-        <button type="button" class="rt-btn" data-cmd="justifyFull" data-tip="Justify" onmousedown="event.preventDefault()" onclick="pvCmd('justifyFull')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
-        </button>
-
-        <div class="rt-sep"></div>
-
-        <button type="button" class="rt-btn" data-cmd="insertUnorderedList" data-tip="Bulleted list" onmousedown="event.preventDefault()" onclick="pvCmd('insertUnorderedList')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="9" y1="6" x2="20" y2="6"/><line x1="9" y1="12" x2="20" y2="12"/><line x1="9" y1="18" x2="20" y2="18"/><circle cx="4" cy="6" r="1.3" fill="currentColor"/><circle cx="4" cy="12" r="1.3" fill="currentColor"/><circle cx="4" cy="18" r="1.3" fill="currentColor"/></svg>
-        </button>
-        <button type="button" class="rt-btn" data-cmd="insertOrderedList" data-tip="Numbered list" onmousedown="event.preventDefault()" onclick="pvCmd('insertOrderedList')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" y1="6" x2="20" y2="6"/><line x1="10" y1="12" x2="20" y2="12"/><line x1="10" y1="18" x2="20" y2="18"/><text x="2" y="8" font-size="7" fill="currentColor" stroke="none">1</text><text x="2" y="14" font-size="7" fill="currentColor" stroke="none">2</text><text x="2" y="20" font-size="7" fill="currentColor" stroke="none">3</text></svg>
-        </button>
-        <button type="button" class="rt-btn" data-tip="Quote" onmousedown="event.preventDefault()" onclick="pvFormatBlock('BLOCKQUOTE')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 8a3 3 0 0 0-3 3v3h4v-6zM17 8a3 3 0 0 0-3 3v3h4v-6z"/></svg>
-        </button>
-        <button type="button" class="rt-btn" data-tip="Horizontal rule" onmousedown="event.preventDefault()" onclick="pvCmd('insertHorizontalRule')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="12" x2="20" y2="12"/></svg>
-        </button>
-
-        <div class="rt-sep"></div>
-
-        <button type="button" class="rt-btn" data-tip="Insert image" onmousedown="event.preventDefault()" onclick="guiInsertImage()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        </button>
-        <button type="button" class="rt-btn" data-tip="Insert link" onmousedown="event.preventDefault()" onclick="guiInsertLink()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-        </button>
-        <button type="button" class="rt-btn" data-tip="Insert video" onmousedown="event.preventDefault()" onclick="guiUtub()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="15" height="12" rx="2"/><polygon points="22 8 17 12 22 16 22 8" fill="currentColor" stroke="none"/></svg>
-        </button>
-
-        <div class="rt-sep"></div>
-
-        <button type="button" class="rt-btn" data-tip="Clear formatting" onmousedown="event.preventDefault()" onclick="pvCmd('removeFormat')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h16v3"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="8" y2="20"/></svg>
-        </button>
-        <button type="button" class="rt-btn" data-tip="Undo" onmousedown="event.preventDefault()" onclick="pvCmd('undo')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10h10a5 5 0 0 1 0 10h-3"/><polyline points="7 5 3 10 7 15"/></svg>
-        </button>
-        <button type="button" class="rt-btn" data-tip="Redo" onmousedown="event.preventDefault()" onclick="pvCmd('redo')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10H11a5 5 0 0 0 0 10h3"/><polyline points="17 5 21 10 17 15"/></svg>
-        </button>
-      </div>
-
-      <div class="pv-body" id="pv-body" contenteditable="true" spellcheck="true"></div>
-
-      <div id="pv-post-tags" style="display:flex;gap:.4rem;flex-wrap:wrap;margin:1.6rem 0 1.3rem;"></div>
-      <div class="pv-author-card">
-        <div class="pv-card-av" id="pv-card-av">?</div>
-        <div>
-          <div class="pv-card-name" id="pv-card-name">Author Name</div>
-          <div class="pv-card-bio" id="pv-card-bio">Author bio</div>
-        </div>
-      </div>
-    </div>
-  </div>
 
 </div><!-- /editor-screen -->
 
@@ -1315,88 +728,25 @@ body {
   </div>
 </div>
 
-<!-- Link popup -->
-<div class="ed-popup-overlay" id="link-popup-overlay">
-  <div class="ed-popup">
-    <div class="ed-popup-title">🔗 Insert Link</div>
-    <div class="ed-popup-field">
-      <label>Display Text</label>
-      <input type="text" id="link-text-input" placeholder="Click here to read more…" oninput="updateLinkPreview()"/>
-    </div>
-    <div class="ed-popup-field">
-      <label>URL</label>
-      <input type="text" id="link-url-input" placeholder="https://example.com" oninput="updateLinkPreview()"/>
-    </div>
-    <div class="ed-popup-preview" id="link-preview">
-      Preview: <span id="link-preview-text"></span> → <span id="link-preview-url"></span>
-    </div>
-    <div class="ed-popup-actions">
-      <button class="btn" onclick="closePopup('link-popup-overlay')">Cancel</button>
-      <button class="btn btn-primary" onclick="insertLink()">Insert</button>
-    </div>
-  </div>
-</div>
-
-<!-- YouTube popup -->
-<div class="ed-popup-overlay" id="yt-popup-overlay">
-  <div class="ed-popup">
-    <div class="ed-popup-title">▶️ Insert YouTube Video</div>
-    <div class="ed-popup-field">
-      <label>YouTube URL or Video ID</label>
-      <input type="text" id="yt-url-input" placeholder="https://youtube.com/watch?v=… or video ID" oninput="updateYtPreview()"/>
-    </div>
-    <div class="ed-popup-preview" id="yt-preview">Video ID: <span id="yt-preview-id"></span></div>
-    <div class="ed-popup-actions">
-      <button class="btn" onclick="closePopup('yt-popup-overlay')">Cancel</button>
-      <button class="btn btn-primary" onclick="insertYoutube()">Insert</button>
-    </div>
-  </div>
-</div>
-
 <div class="ed-toast" id="ed-toast"></div>
 
 <script>
 // ── CONFIG ──────────────────────────────────────────────────
-const CLOUDINARY_CLOUD  = 'dl1gyw7jo';
-const CLOUDINARY_PRESET = 'thekural';
-
-// ── AUTHORS (from Jekyll data) ───────────────────────────────
-const AUTHORS = {
-  {% for author in site.data.authors %}
-  "{{ author[0] }}": {
-    key:    "{{ author[0] }}",
-    name:   {{ author[1].name   | jsonify }},
-    bio:    {{ author[1].bio    | jsonify }},
-    avatar: {{ author[1].avatar | jsonify }}
-  }{% unless forloop.last %},{% endunless %}
-  {% endfor %}
-};
+const CLOUDINARY_CLOUD   = 'dl1gyw7jo';
+const CLOUDINARY_PRESET  = 'thekural';
+const CLOUDINARY_FOLDER  = 'blog/posts';
 
 // ── STATE ────────────────────────────────────────────────────
-let currentAuthor = null;
 let edTags        = [];
 let edImages      = [];
 let coverImageUrl = '';
 let pendingImgUrl = '';
-let lastEditedBy  = 'code';
-let savedPvRange  = null;
-let pvBody        = null;
-let linkTargetIsPv = false;
-
-function debounce(fn, wait) {
-  let t;
-  return function(...args) { clearTimeout(t); t = setTimeout(()=>fn.apply(this,args), wait); };
-}
 
 // ── HELPERS ──────────────────────────────────────────────────
 function escAttr(s) { return String(s).replace(/'/g,"\\'").replace(/"/g,'&quot;'); }
 function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
 // ── HTML BEAUTIFIER ─────────────────────────────────────────
-// Browsers hand back pvBody.innerHTML as one unbroken minified string.
-// This re-indents it so the raw HTML in the sidebar (and the exported
-// post) reads like hand-written markup: one line per block-level tag,
-// inline tags (a, strong, em, img, etc.) left inline with their text.
 const HTML_VOID_TAGS  = ['area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr'];
 const HTML_BLOCK_TAGS = ['html','head','body','div','p','h1','h2','h3','h4','h5','h6','ul','ol','li','blockquote','figure','figcaption','hr','iframe','table','thead','tbody','tfoot','tr','td','th','section','article','header','footer','nav','pre','video','audio','form','fieldset'];
 
@@ -1405,7 +755,7 @@ function formatHtml(html) {
   const tokens = html.match(/<!--[\s\S]*?-->|<\/?[a-zA-Z][^>]*>|[^<]+/g) || [];
   let out = '';
   let indent = 0;
-  let atLineStart = true; // true right after we've just written a block tag
+  let atLineStart = true;
   const pad = () => '  '.repeat(Math.max(indent, 0));
 
   tokens.forEach(tok => {
@@ -1429,8 +779,6 @@ function formatHtml(html) {
       return;
     }
 
-    // text node: collapse internal whitespace, but keep a single boundary
-    // space so words on either side of an inline tag don't run together
     const collapsed = tok.replace(/\s+/g, ' ');
     const trimmed = collapsed.trim();
     if (!trimmed) return;
@@ -1448,35 +796,13 @@ function formatHtml(html) {
     .trim();
 }
 
-function buildAvHtml(author) {
-  if (!author) return '?';
-  if (author.avatar) return `<img src="${author.avatar}" alt="${escAttr(author.name)}" onerror="this.parentNode.textContent='${escAttr(author.name.charAt(0))}'"/>`;
-  return author.name.charAt(0);
-}
-
-// ── AUTHOR DROPDOWN ──────────────────────────────────────────
-function populateAuthorDropdown() {
-  const sel = document.getElementById('ed-author-select');
-  sel.innerHTML = '';
-  Object.keys(AUTHORS).forEach(k => {
-    const o = document.createElement('option');
-    o.value = k; o.textContent = AUTHORS[k].name;
-    sel.appendChild(o);
-  });
-}
-function onAuthorChange() {
-  const k = document.getElementById('ed-author-select').value;
-  currentAuthor = AUTHORS[k] || { key:k, name:'Author', bio:'', avatar:'' };
-  sessionStorage.setItem('tk-author', k);
-  updateAuthorDisplays();
-  edUpdate();
-}
-function updateAuthorDisplays() {
-  if (!currentAuthor) return;
-  const av = buildAvHtml(currentAuthor);
-  document.getElementById('topbar-av').innerHTML = av;
-  document.getElementById('topbar-name').textContent = currentAuthor.name;
-  document.getElementById('al-img').innerHTML = av;
+function insertAtCursor(textarea, text) {
+  const start = textarea.selectionStart;
+  const end   = textarea.selectionEnd;
+  textarea.value = textarea.value.substring(0, start) + text + textarea.value.substring(end);
+  const pos = start + text.length;
+  textarea.focus();
+  textarea.selectionStart = textarea.selectionEnd = pos;
 }
 
 // ── LOGIN ────────────────────────────────────────────────────
@@ -1519,12 +845,6 @@ function loginSuccess() {
   document.getElementById('login-screen').style.display='none';
   document.getElementById('editor-screen').classList.add('show');
 
-  populateAuthorDropdown();
-  const saved = sessionStorage.getItem('tk-author');
-  if (saved && AUTHORS[saved]) document.getElementById('ed-author-select').value=saved;
-  const selKey = document.getElementById('ed-author-select').value;
-  currentAuthor = AUTHORS[selKey] || { key:selKey, name:'Author', bio:'', avatar:'' };
-  updateAuthorDisplays();
   document.getElementById('ed-date').value = new Date().toISOString().split('T')[0];
 
   if (window.DEFAULT_SECTION_TAG && !edTags.includes(window.DEFAULT_SECTION_TAG)) addTag(window.DEFAULT_SECTION_TAG);
@@ -1547,7 +867,6 @@ function loginSuccess() {
       const s=this.selectionStart, en=this.selectionEnd;
       this.value=this.value.substring(0,s)+'  '+this.value.substring(en);
       this.selectionStart=this.selectionEnd=s+2;
-      lastEditedBy='code'; edUpdate();
     }
   });
 
@@ -1557,25 +876,11 @@ function loginSuccess() {
   document.addEventListener('keydown', e=>{
     if(e.key==='Escape') document.querySelectorAll('.ed-popup-overlay.open').forEach(o=>o.classList.remove('open'));
   });
-
-  // Title contenteditable behavior
-  const pvTitle = document.getElementById('pv-title');
-  pvTitle.addEventListener('focus', function() {
-    if (this.classList.contains('empty')) { this.textContent=''; this.classList.remove('empty'); }
-  });
-  pvTitle.addEventListener('blur', function() {
-    if (!this.textContent.trim()) { this.textContent='Your title will appear here…'; this.classList.add('empty'); }
-    edUpdate();
-  });
-  pvTitle.addEventListener('input', edUpdate);
-  pvTitle.addEventListener('keydown', e => { if (e.key === 'Enter') e.preventDefault(); });
-
-  edUpdate();
 }
 
 function doLogout() {
-  ['cloudinary-key','cloudinary-secret','tk-author'].forEach(k=>sessionStorage.removeItem(k));
-  currentAuthor=null; edTags=[]; edImages=[]; coverImageUrl='';
+  ['cloudinary-key','cloudinary-secret'].forEach(k=>sessionStorage.removeItem(k));
+  edTags=[]; edImages=[]; coverImageUrl='';
   document.getElementById('editor-screen').classList.remove('show');
   document.getElementById('login-screen').style.display='flex';
   document.getElementById('login-api-key').value='';
@@ -1584,198 +889,24 @@ function doLogout() {
   document.getElementById('login-btn-text').textContent='Sign In';
   document.getElementById('login-error').classList.remove('show');
   document.getElementById('content-area').value='';
-  document.getElementById('pv-body').innerHTML='';
-  const pvTitle = document.getElementById('pv-title');
-  pvTitle.textContent='Your title will appear here…'; pvTitle.classList.add('empty');
   document.getElementById('ed-excerpt').value='';
-  lastEditedBy='code';
+  renderTags();
+  renderImages();
+  renderCoverPreview();
 }
 
 document.addEventListener('DOMContentLoaded', ()=>{
-  pvBody = document.getElementById('pv-body');
-  pvBody.addEventListener('input', debounce(handlePvInput, 200));
-  pvBody.addEventListener('mouseup', updateBubbleState);
-  pvBody.addEventListener('keyup', updateBubbleState);
-
-  document.addEventListener('selectionchange', () => {
-    const sel = window.getSelection();
-    if (sel.rangeCount > 0 && pvBody && pvBody.contains(sel.anchorNode)) {
-      savedPvRange = sel.getRangeAt(0).cloneRange();
-    }
-  });
-
   if (sessionStorage.getItem('cloudinary-key')&&sessionStorage.getItem('cloudinary-secret')) loginSuccess();
 });
-
-function markCodeEdited() { lastEditedBy='code'; edUpdate(); }
-
-// ── LIVE EDITOR (right side, real HTML) ───────────────────────
-function handlePvInput() { lastEditedBy='gui'; edUpdate(); }
-function saveGuiSelection() {
-  const sel = window.getSelection();
-  if (sel.rangeCount > 0 && pvBody.contains(sel.anchorNode)) savedPvRange = sel.getRangeAt(0).cloneRange();
-}
-function restoreGuiSelection() {
-  if (!savedPvRange) return;
-  pvBody.focus();
-  const sel = window.getSelection();
-  sel.removeAllRanges(); sel.addRange(savedPvRange);
-}
-function pvCmd(cmd, val=null) { restoreGuiSelection(); pvBody.focus(); document.execCommand(cmd, false, val); handlePvInput(); updateBubbleState(); }
-function pvFormatBlock(tag) { if(!tag) return; restoreGuiSelection(); pvBody.focus(); document.execCommand('formatBlock', false, tag); handlePvInput(); updateBubbleState(); }
-function pvFontSize(size) { if(!size) return; restoreGuiSelection(); pvBody.focus(); document.execCommand('fontSize', false, size); handlePvInput(); updateBubbleState(); }
-function pvTextColor(color) { restoreGuiSelection(); pvBody.focus(); document.execCommand('foreColor', false, color); document.getElementById('text-color-swatch').style.background=color; handlePvInput(); updateBubbleState(); }
-function pvHighlight(color) { restoreGuiSelection(); pvBody.focus(); document.execCommand('hiliteColor', false, color); document.getElementById('hl-color-swatch').style.background=color; handlePvInput(); updateBubbleState(); }
-
-// Reflects the current cursor/selection formatting state back onto the toolbar:
-// toggles .active on buttons like Bold/Italic/Align, and sets the Style/Size
-// dropdowns to match the block or font size the cursor is currently in.
-function updateBubbleState() {
-  if (!pvBody) return;
-  const sel = window.getSelection();
-  const inBody = sel.rangeCount > 0 && pvBody.contains(sel.anchorNode);
-
-  // Toggle buttons (bold, italic, underline, strike, align, lists)
-  document.querySelectorAll('.rt-btn[data-cmd]').forEach(btn => {
-    let isActive = false;
-    if (inBody) {
-      try { isActive = document.queryCommandState(btn.dataset.cmd); } catch(e) { isActive = false; }
-    }
-    btn.classList.toggle('active', isActive);
-  });
-
-  const styleSelect = document.getElementById('style-select');
-  const sizeSelect   = document.getElementById('size-select');
-  if (!inBody) { styleSelect.value=''; sizeSelect.value=''; return; }
-
-  // Paragraph style: walk up from the selection to find the nearest block tag
-  let node = sel.anchorNode;
-  if (node && node.nodeType === 3) node = node.parentElement;
-  let blockTag = '';
-  let el = node;
-  while (el && el !== pvBody) {
-    if (['H1','H2','H3','BLOCKQUOTE','P'].includes(el.tagName)) { blockTag = el.tagName; break; }
-    el = el.parentElement;
-  }
-  styleSelect.value = blockTag && [...styleSelect.options].some(o=>o.value===blockTag) ? blockTag : '';
-
-  // Font size
-  let size = '';
-  try { size = document.queryCommandValue('fontSize') || ''; } catch(e) { size = ''; }
-  sizeSelect.value = size && [...sizeSelect.options].some(o=>o.value===String(size)) ? String(size) : '';
-}
-
-function guiInsertImage() {
-  saveGuiSelection();
-  const inp = document.createElement('input');
-  inp.type='file'; inp.accept='image/*';
-  inp.onchange = async () => {
-    if (!inp.files.length) return;
-    showToast('Uploading image…');
-    try {
-      const fd = new FormData();
-      fd.append('file', inp.files[0]);
-      fd.append('upload_preset', CLOUDINARY_PRESET);
-      fd.append('folder', `blog/${currentAuthor.key}`);
-      const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`, {method:'POST', body: fd});
-      const data = await res.json();
-      if (data.secure_url) {
-        restoreGuiSelection(); pvBody.focus();
-        document.execCommand('insertHTML', false, `<img src="${data.secure_url}" alt="" />`);
-        handlePvInput(); showToast('Image inserted!');
-      } else showToast('Upload failed.');
-    } catch(e) { showToast('Upload failed.'); }
-  };
-  inp.click();
-}
-function guiInsertLink() {
-  linkTargetIsPv = true;
-  saveGuiSelection();
-  const sel = window.getSelection();
-  document.getElementById('link-text-input').value = sel.toString();
-  document.getElementById('link-url-input').value = '';
-  document.getElementById('link-preview').classList.remove('show');
-  openPopup('link-popup-overlay');
-  setTimeout(()=>document.getElementById(sel.toString()?'link-url-input':'link-text-input').focus(),50);
-}
-function guiUtub() {
-  linkTargetIsPv = true;
-  saveGuiSelection();
-  document.getElementById('yt-url-input').value='';
-  document.getElementById('yt-preview').classList.remove('show');
-  openPopup('yt-popup-overlay');
-  setTimeout(()=>document.getElementById('yt-url-input').focus(),50);
-}
-
-// ── EDITOR UPDATE ─────────────────────────────────────────────
-function edUpdate() {
-  if (!currentAuthor) return;
-  const pvTitle = document.getElementById('pv-title');
-  const title   = pvTitle.classList.contains('empty') ? '' : pvTitle.textContent.trim();
-  const date    = document.getElementById('ed-date').value;
-  const excerpt = document.getElementById('ed-excerpt').value;
-
-  if (lastEditedBy === 'code') {
-    pvBody.innerHTML = document.getElementById('content-area').value;
-  } else {
-    document.getElementById('content-area').value = formatHtml(pvBody.innerHTML);
-  }
-  const content = document.getElementById('content-area').value;
-
-  document.getElementById('pv-aname').textContent = currentAuthor.name;
-  document.getElementById('pv-date').textContent  = formatDate(date);
-  document.getElementById('pv-rt').textContent    = calcReadTime(content)+' min read';
-
-  document.getElementById('pv-tags-row').innerHTML  = edTags.map(t=>`<span style="font-family:var(--font-ui);font-size:.69rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--c-text-muted);">${escHtml(t)}</span>`).join('<span>·</span>');
-  document.getElementById('pv-post-tags').innerHTML = edTags.map(t=>`<span class="tag">${escHtml(t)}</span>`).join('');
-
-  document.getElementById('pv-card-name').textContent = currentAuthor.name;
-  document.getElementById('pv-card-bio').textContent  = currentAuthor.bio;
-  const av = buildAvHtml(currentAuthor);
-  document.getElementById('pv-av').innerHTML      = av;
-  document.getElementById('pv-card-av').innerHTML = av;
-
-  const slug = title.toLowerCase().replace(/[^\w\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,'');
-  let filename = '—';
-  if (title && date) {
-    const dateObj = new Date(date);
-    const year = dateObj.getFullYear();
-    const month = dateObj.getMonth() + 1;
-    const quarter = Math.ceil(month / 3);
-    filename = `_posts/${year}-Q${quarter}/${date}-${slug}.md`;
-  }
-  document.getElementById('out-filename').textContent = filename;
-
-  if (title && date) {
-    let fm = `---\nlayout: post\ntitle: ${JSON.stringify(title)}\ndate: ${date}\nauthor: ${currentAuthor.key}\n`;
-    if (edTags.length) fm += `tags: [${edTags.map(t=>JSON.stringify(t)).join(', ')}]\n`;
-    if (excerpt)       fm += `excerpt: ${JSON.stringify(excerpt)}\n`;
-    if (coverImageUrl) fm += `image: ${coverImageUrl}\n`;
-    fm += `---\n\n${content}`;
-    document.getElementById('out-preview').textContent = fm;
-  } else {
-    document.getElementById('out-preview').textContent = '—';
-  }
-}
-
-function formatDate(d) {
-  if (!d) return 'Date';
-  const [y,m,day] = d.split('-').map(Number);
-  return new Date(y,m-1,day).toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'});
-}
-function calcReadTime(html) {
-  const text = html.replace(/<[^>]+>/g,' ');
-  return Math.max(1,Math.ceil(text.trim().split(/\s+/).filter(Boolean).length/225));
-}
 
 // ── TAGS ─────────────────────────────────────────────────────
 function addTag(tag) {
   tag = tag.replace(/,/g,'').trim();
   if (!tag||edTags.includes(tag)) { document.getElementById('tag-input').value=''; return; }
   edTags.push(tag); renderTags();
-  document.getElementById('tag-input').value=''; edUpdate();
+  document.getElementById('tag-input').value='';
 }
-function removeTag(tag) { edTags=edTags.filter(t=>t!==tag); renderTags(); edUpdate(); }
+function removeTag(tag) { edTags=edTags.filter(t=>t!==tag); renderTags(); }
 function renderTags() {
   const wrap=document.getElementById('tags-wrap'), input=document.getElementById('tag-input');
   wrap.querySelectorAll('.tag-chip').forEach(c=>c.remove());
@@ -1793,7 +924,7 @@ async function handleImages(files) {
   for (const file of Array.from(files)) {
     try {
       const fd=new FormData();
-      fd.append('file',file); fd.append('upload_preset',CLOUDINARY_PRESET); fd.append('folder',`blog/${currentAuthor.key}`);
+      fd.append('file',file); fd.append('upload_preset',CLOUDINARY_PRESET); fd.append('folder',CLOUDINARY_FOLDER);
       const res=await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`,{method:'POST',body:fd});
       const data=await res.json();
       if (data.secure_url) { edImages.push({name:file.name,url:data.secure_url}); renderImages(); showToast('Image uploaded!'); }
@@ -1807,10 +938,10 @@ async function handleCover(files) {
   const prog=document.getElementById('cover-progress'); prog.style.display='block';
   try {
     const fd=new FormData();
-    fd.append('file',files[0]); fd.append('upload_preset',CLOUDINARY_PRESET); fd.append('folder',`blog/${currentAuthor.key}`);
+    fd.append('file',files[0]); fd.append('upload_preset',CLOUDINARY_PRESET); fd.append('folder',CLOUDINARY_FOLDER);
     const res=await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`,{method:'POST',body:fd});
     const data=await res.json();
-    if (data.secure_url) { coverImageUrl=data.secure_url; renderCoverPreview(); edUpdate(); showToast('Cover uploaded!'); }
+    if (data.secure_url) { coverImageUrl=data.secure_url; renderCoverPreview(); showToast('Cover uploaded!'); }
     else showToast('Upload failed.');
   } catch(e) { showToast('Upload failed.'); }
   prog.style.display='none'; document.getElementById('cover-input').value='';
@@ -1830,7 +961,7 @@ function renderCoverPreview() {
   const img=document.createElement('img'); img.src=coverImageUrl; img.style.cssText='width:100%;height:80px;object-fit:cover;display:block;';
   const btn=document.createElement('button'); btn.type='button'; btn.textContent='× Remove';
   btn.style.cssText='position:absolute;top:4px;right:4px;background:rgba(0,0,0,.65);color:#fff;border:none;border-radius:5px;font-size:.68rem;padding:.2rem .45rem;cursor:pointer;font-family:var(--font-ui);';
-  btn.addEventListener('click',()=>{ coverImageUrl=''; renderCoverPreview(); edUpdate(); });
+  btn.addEventListener('click',()=>{ coverImageUrl=''; renderCoverPreview(); });
   c.appendChild(img); c.appendChild(btn); wrap.innerHTML=''; wrap.appendChild(c);
 }
 function renderImages() {
@@ -1853,7 +984,7 @@ function openPopup(id) { document.getElementById(id).classList.add('open'); }
 function closePopup(id){ document.getElementById(id).classList.remove('open'); }
 
 function openImageCaptionPopup(url) {
-  pendingImgUrl=url; linkTargetIsPv=true; saveGuiSelection();
+  pendingImgUrl=url;
   document.getElementById('img-caption-input').value='';
   document.getElementById('img-caption-preview-src').textContent=url;
   openPopup('img-caption-popup-overlay');
@@ -1862,43 +993,11 @@ function openImageCaptionPopup(url) {
 function insertImageWithCaption() {
   const cap=document.getElementById('img-caption-input').value.trim();
   closePopup('img-caption-popup-overlay');
-  restoreGuiSelection(); pvBody.focus();
   const html = cap
     ? `<figure><img src="${pendingImgUrl}" alt="${escAttr(cap)}" /><figcaption>${escHtml(cap)}</figcaption></figure>`
     : `<img src="${pendingImgUrl}" alt="" />`;
-  document.execCommand('insertHTML', false, html);
-  handlePvInput();
+  insertAtCursor(document.getElementById('content-area'), html);
   pendingImgUrl='';
-}
-
-function updateLinkPreview() {
-  const t=document.getElementById('link-text-input').value.trim(), u=document.getElementById('link-url-input').value.trim(), p=document.getElementById('link-preview');
-  if(t||u){ document.getElementById('link-preview-text').textContent=t||'(no text)'; document.getElementById('link-preview-url').textContent=u||'(no url)'; p.classList.add('show'); } else p.classList.remove('show');
-}
-function insertLink() {
-  const t=document.getElementById('link-text-input').value.trim(), u=document.getElementById('link-url-input').value.trim();
-  if(!u){ showToast('Please enter a URL.'); return; }
-  closePopup('link-popup-overlay');
-  restoreGuiSelection(); pvBody.focus();
-  if (window.getSelection().isCollapsed) document.execCommand('insertHTML', false, `<a href="${u}">${t||u}</a>`);
-  else document.execCommand('createLink', false, u);
-  handlePvInput();
-}
-
-function extractYoutubeId(input) {
-  input=input.trim();
-  for (const p of [/youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})/,/youtu\.be\/([a-zA-Z0-9_-]{11})/,/youtube\.com\/embed\/([a-zA-Z0-9_-]{11})/]) { const m=input.match(p); if(m) return m[1]; }
-  return /^[a-zA-Z0-9_-]{11}$/.test(input) ? input : null;
-}
-function updateYtPreview() { const id=extractYoutubeId(document.getElementById('yt-url-input').value), p=document.getElementById('yt-preview'); if(id){document.getElementById('yt-preview-id').textContent=id;p.classList.add('show');}else p.classList.remove('show'); }
-function insertYoutube() {
-  const id=extractYoutubeId(document.getElementById('yt-url-input').value);
-  if(!id){ showToast('Could not find a valid YouTube video ID.'); return; }
-  const html = `<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;margin:2rem 0;"><iframe src="https://www.youtube.com/embed/${id}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe></div>`;
-  closePopup('yt-popup-overlay');
-  restoreGuiSelection(); pvBody.focus();
-  document.execCommand('insertHTML', false, html);
-  handlePvInput();
 }
 
 // ── IMPORT ───────────────────────────────────────────────────
@@ -1912,41 +1011,28 @@ function importPost() {
   const raw=document.getElementById('import-textarea').value.trim();
   const status=document.getElementById('import-status');
   if(!raw){ status.textContent='⚠️ Nothing to import.'; return; }
-  let content=raw, title='', date='', authorKey='', excerpt='', tags=[], image='';
+  let content=raw, date='', excerpt='', tags=[], image='';
   const fmMatch=raw.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
   if (fmMatch) {
     const fm=fmMatch[1]; content=fmMatch[2].trim();
-    const tM=fm.match(/^title:\s*["']?(.+?)["']?\s*$/m); if(tM) title=tM[1].trim();
     const dM=fm.match(/^date:\s*(\d{4}-\d{2}-\d{2})/m); if(dM) date=dM[1].trim();
-    const aM=fm.match(/^author:\s*(\S+)/m); if(aM) authorKey=aM[1].trim();
     const eM=fm.match(/^excerpt:\s*["']?(.+?)["']?\s*$/m); if(eM) excerpt=eM[1].trim();
     const tgL=fm.match(/^tags:\s*\[(.+?)\]/m);
     if(tgL) tags=tgL[1].split(',').map(t=>t.trim().replace(/['"]/g,'')).filter(Boolean);
     const iM=fm.match(/^image:\s*(\S+)/m); if(iM) image=iM[1].trim();
   }
-  if(title) { const pvTitle=document.getElementById('pv-title'); pvTitle.textContent=title; pvTitle.classList.remove('empty'); }
   if(date)  document.getElementById('ed-date').value=date;
-  if(authorKey&&AUTHORS[authorKey]) { document.getElementById('ed-author-select').value=authorKey; currentAuthor=AUTHORS[authorKey]; updateAuthorDisplays(); }
   if(excerpt) document.getElementById('ed-excerpt').value=excerpt;
   if(tags.length) { edTags=tags; renderTags(); }
   if(image) { coverImageUrl=image; renderCoverPreview(); }
   document.getElementById('content-area').value=formatHtml(content);
-  lastEditedBy='code';
-  const found=[title&&'title',date&&'date',authorKey&&'author',tags.length&&`${tags.length} tag(s)`,excerpt&&'excerpt',image&&'cover image',content&&'content'].filter(Boolean);
+  const found=[date&&'date',tags.length&&`${tags.length} tag(s)`,excerpt&&'excerpt',image&&'cover image',content&&'content'].filter(Boolean);
   status.style.color='var(--c-primary)';
   status.textContent=found.length ? `✓ Imported: ${found.join(', ')}` : '✓ Content imported.';
-  edUpdate();
   setTimeout(()=>closePopup('import-popup-overlay'),1200);
 }
 
-// ── COPY HELPERS ─────────────────────────────────────────────
-function copyOut(type) {
-  const el=document.getElementById(type==='filename'?'out-filename':'out-preview');
-  const text=el.textContent;
-  if(text==='—'){ showToast('Nothing to copy yet.'); return; }
-  navigator.clipboard.writeText(text).then(()=>showToast('Copied!')).catch(()=>{ const ta=document.createElement('textarea'); ta.value=text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); showToast('Copied!'); });
-}
-function edCopyFull() { copyOut('preview'); }
+// ── TOAST ────────────────────────────────────────────────────
 function showToast(msg) { const t=document.getElementById('ed-toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2500); }
 </script>
 </body>
